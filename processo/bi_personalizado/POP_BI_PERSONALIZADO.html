@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POP — BI Personalizado — FXL</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #f8f9fa;
+        color: #1a1a2e;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      .topnav {
+        background: #1b3a5c;
+        padding: 10px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .topnav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+      .topnav a:hover {
+        opacity: 1;
+      }
+      .topnav .right {
+        display: flex;
+        gap: 20px;
+      }
+      .wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+      }
+      .doc-header {
+        margin-bottom: 36px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid #e0e8f0;
+      }
+      .doc-header .label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+      .doc-header h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1b3a5c;
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+      .doc-header .subtitle {
+        font-size: 16px;
+        color: #5a6a7a;
+        margin-bottom: 16px;
+      }
+      .doc-header .meta {
+        font-size: 12px;
+        color: #8a9aaa;
+        display: flex;
+        gap: 16px;
+      }
+      .toc {
+        background: #f0f4f8;
+        border: 1px solid #d0d8e4;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin-bottom: 40px;
+      }
+      .toc h3 {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 12px;
+      }
+      .toc ol {
+        padding-left: 20px;
+      }
+      .toc li {
+        margin-bottom: 4px;
+      }
+      .toc a {
+        color: #1b3a5c;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+      }
+      .section {
+        margin-bottom: 48px;
+      }
+      h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1b3a5c;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #e0e8f0;
+        scroll-margin-top: 60px;
+      }
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 24px 0 10px;
+      }
+      p {
+        margin-bottom: 14px;
+      }
+      ul,
+      ol {
+        padding-left: 24px;
+        margin-bottom: 14px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      strong {
+        font-weight: 600;
+      }
+      em {
+        font-style: italic;
+        color: #5a6a7a;
+      }
+      code {
+        font-family: "Courier New", monospace;
+        background: #f0f4f8;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 13px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      thead tr {
+        background: #1b3a5c;
+        color: #fff;
+      }
+      thead th {
+        padding: 10px 14px;
+        text-align: left;
+        font-weight: 600;
+      }
+      tbody tr:nth-child(odd) {
+        background: #f5f5f5;
+      }
+      tbody tr:nth-child(even) {
+        background: #fff;
+      }
+      tbody td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e8e8e8;
+        vertical-align: top;
+      }
+      .prompt-block {
+        background: #f0f4f8;
+        border-left: 4px solid #1b3a5c;
+        border-radius: 0 6px 6px 0;
+        padding: 16px 20px;
+        margin: 20px 0;
+      }
+      .prompt-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+      .prompt-block pre {
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        color: #2a3a4a;
+        white-space: pre-wrap;
+        line-height: 1.6;
+      }
+      .advance {
+        background: #e8f5e9;
+        border-left: 4px solid #2e8b57;
+        border-radius: 0 6px 6px 0;
+        padding: 14px 20px;
+        margin: 20px 0;
+        font-weight: 600;
+        color: #1b5e20;
+        font-size: 14px;
+      }
+      .warning {
+        background: #fff8e1;
+        border-left: 4px solid #f59e0b;
+        border-radius: 0 6px 6px 0;
+        padding: 14px 20px;
+        margin: 20px 0;
+        font-size: 14px;
+        color: #7a5800;
+      }
+      .vision-block {
+        background: #eef4ff;
+        border-left: 4px solid #1b3a5c;
+        border-radius: 0 6px 6px 0;
+        padding: 20px 24px;
+        margin: 20px 0;
+        font-size: 16px;
+        font-style: italic;
+        color: #1b3a5c;
+        line-height: 1.7;
+      }
+      .phase-header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .phase-badge {
+        background: #1b3a5c;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+      .phase-prazo {
+        font-size: 13px;
+        color: #8a9aaa;
+        font-style: italic;
+      }
+      .checklist {
+        list-style: none;
+        padding: 0;
+      }
+      .checklist li {
+        padding: 6px 0 6px 28px;
+        position: relative;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px;
+      }
+      .checklist li::before {
+        content: "☐";
+        position: absolute;
+        left: 0;
+        color: #1b3a5c;
+        font-size: 16px;
+      }
+      footer {
+        background: #1b3a5c;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 12px;
+        margin-top: 60px;
+      }
+      footer a {
+        color: #90b4d4;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <div class="right">
+        <a
+          href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/bi_personalizado/POP_BI_PERSONALIZADO.md"
+          target="_blank"
+          >Ver MD no GitHub</a
+        >
+      </div>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Documento Interno</div>
+        <h1>POP — BI Personalizado</h1>
+        <div class="subtitle">Projetos construídos para um cliente específico com dados únicos do negócio</div>
+        <div class="meta"><span>Versão 1.0</span><span>2025</span></div>
+      </header>
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#quando">Quando usar este POP</a></li>
+          <li><a href="#fase1">Fase 1 — Diagnóstico Estratégico</a></li>
+          <li><a href="#fase2">Fase 2 — Wireframe Estratégico</a></li>
+          <li><a href="#fase3">Fase 3 — Desenvolvimento no Lovable</a></li>
+          <li><a href="#fase4">Fase 4 — Auditoria e Validação</a></li>
+          <li><a href="#fase5">Fase 5 — Entrega + Validação Assistida</a></li>
+          <li><a href="#fase6">Fase 6 — Tutorial e Mentoria</a></li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+      <section class="section" id="quando">
+        <h2>Quando usar este POP</h2>
+        <ul>
+          <li>É para um cliente específico com dados únicos</li>
+          <li>Não será reutilizado diretamente para outros clientes</li>
+          <li>Parte de uma reunião de diagnóstico com o cliente</li>
+        </ul>
+        <p><em>Exemplos: BI Tatu do Bem, BI Mercadão, BI [qualquer empresa com operação própria]</em></p>
+        <div class="warning">⚠️ Se for um produto FXL com vida própria, usar <strong>POP_PRODUTO</strong>.</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Módulo</th>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Financeiro</td>
+                <td>
+                  Normalmente resolvido com software White Label (ex: Conta Azul). FXL raramente constrói dashboard
+                  financeiro customizado.
+                </td>
+              </tr>
+              <tr>
+                <td>Comercial</td>
+                <td>
+                  Dashboard exclusivo. KPIs de vendas, funil, ticket médio, performance por vendedor, produto e região.
+                </td>
+              </tr>
+              <tr>
+                <td>Operacional</td>
+                <td>Dashboard exclusivo. Alta variação entre clientes — requer diagnóstico mais profundo na Fase 1.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="fase1">
+        <h2>Fase 1 — Diagnóstico Estratégico</h2>
+        <div class="phase-header">
+          <span class="phase-badge">Fase 1</span><span class="phase-prazo">Dia 0 — 60 a 90 minutos</span>
+        </div>
+        <h2 id="fase1" style="margin-top: 8px">Diagnóstico Estratégico</h2>
+        <p>O diagnóstico é a fundação de tudo. Um briefing incompleto gera retrabalho em todas as fases.</p>
+        <h3>Campos obrigatórios do Briefing</h3>
+        <ul>
+          <li>Nome da empresa e segmento</li>
+          <li>Módulos contratados</li>
+          <li>Sistemas utilizados — onde os dados são gerados</li>
+          <li>Relatórios disponíveis — nome + colunas de cada um</li>
+          <li>Dores principais — o que o cliente não enxerga hoje</li>
+          <li>KPIs prioritários declarados — em ordem de importância</li>
+          <li>Frequência de análise (Diária / Semanal / Mensal)</li>
+          <li>Maturidade analítica (Baixa / Média / Alta)</li>
+          <li>Quantidade e perfis de usuários</li>
+          <li>Prazo esperado</li>
+        </ul>
+        <h3>Erros comuns a evitar</h3>
+        <ul>
+          <li>Não confirmar colunas antes de propor KPIs que dependem delas</li>
+          <li>Assumir que o cliente sabe o que quer — sempre cruzar com a Biblioteca de KPIs</li>
+          <li>Avançar sem briefing validado pelo operador</li>
+        </ul>
+        <div class="prompt-block">
+          <div class="prompt-label">💬 Prompt — colar no Claude Project</div>
+          <pre>
+Leia o briefing abaixo e organize em Documento de Briefing FXL. Cruze os KPIs declarados com a Biblioteca de KPIs, proponha adicionais relevantes e sinalize gaps onde o KPI desejado não tem coluna de dados confirmada.
+
+[COLE O BRIEFING AQUI]</pre
+          >
+        </div>
+        <div class="advance">
+          ✅ Critério de Avanço: Operador valida o Documento de Briefing. Nenhuma fase subsequente começa sem briefing
+          validado.
+        </div>
+      </section>
+      <section class="section" id="fase2">
+        <h2>Fase 2 — Wireframe Estratégico</h2>
+        <div class="phase-header">
+          <span class="phase-badge">Fase 2</span><span class="phase-prazo">D+1 após reunião</span>
+        </div>
+        <h2 id="fase2" style="margin-top: 8px">Wireframe Estratégico</h2>
+        <p>
+          O wireframe define a arquitetura completa antes de qualquer linha de código. O cliente aprova antes do
+          desenvolvimento — isso evita retrabalho caro.
+        </p>
+        <p>
+          O Claude gera o Blueprint textual. O operador usa como prompt no <strong>Whimsical AI</strong> para gerar o
+          visual. O Whimsical é apresentado ao cliente para aprovação formal.
+        </p>
+        <div class="prompt-block">
+          <div class="prompt-label">💬 Prompt — colar no Claude Project</div>
+          <pre>
+Com base no briefing validado, gere o Blueprint completo. Para cada tela: nome, objetivo, filtros, cards de KPI, gráficos e tabelas. Inclua a tela de Inputs. Ao final, gere o Prompt Whimsical pronto para uso.</pre
+          >
+        </div>
+        <div class="advance">
+          ✅ Critério de Avanço: Cliente visualiza o wireframe no Whimsical e dá aprovação formal escrita. Sem
+          aprovação, a Fase 3 não inicia.
+        </div>
+      </section>
+      <section class="section" id="fase3">
+        <h2>Fase 3 — Desenvolvimento no Lovable</h2>
+        <div class="phase-header">
+          <span class="phase-badge">Fase 3</span><span class="phase-prazo">Após aprovação do wireframe</span>
+        </div>
+        <h2 id="fase3" style="margin-top: 8px">Desenvolvimento no Lovable</h2>
+        <p>
+          O Claude monta o Prompt de Desenvolvimento combinando Blueprint + regras do design system. O operador cola no
+          Lovable.
+        </p>
+        <div class="prompt-block">
+          <div class="prompt-label">💬 Prompt — colar no Claude Project</div>
+          <pre>
+O wireframe foi aprovado. Com base no Blueprint e no briefing, gere o Prompt de Desenvolvimento completo para o Lovable. Incluir: contexto, navegação, especificação de cada tela, regras de UI, tela de Inputs e regras de dados.</pre
+          >
+        </div>
+        <div class="advance">✅ Critério de Avanço: Operador cola o prompt no Lovable e inicia o desenvolvimento.</div>
+      </section>
+      <section class="section" id="fase4">
+        <h2>Fase 4 — Auditoria e Validação</h2>
+        <div class="phase-header">
+          <span class="phase-badge">Fase 4</span><span class="phase-prazo">Após desenvolvimento concluído</span>
+        </div>
+        <h2 id="fase4" style="margin-top: 8px">Auditoria e Validação</h2>
+        <p>A auditoria é executada por um profissional da FXL. O Claude gera o checklist — a execução é humana.</p>
+        <h3>Checklist base — obrigatório em todos os projetos</h3>
+        <ul class="checklist">
+          <li>Faturamento total bate com relatório de origem (tolerância: 0%)</li>
+          <li>Filtro de período funciona e atualiza todos os KPIs</li>
+          <li>Filtro de segmento/unidade isola corretamente os dados</li>
+          <li>Ticket médio = Faturamento ÷ Pedidos para o período filtrado</li>
+          <li>Margem bruta calculada corretamente (se aplicável)</li>
+          <li>Top rankings ordenados — verificar 3 primeiros e últimos manualmente</li>
+          <li>Tela de Inputs: upload funciona e dados aparecem no dashboard</li>
+          <li>Skeleton loading aparece antes dos dados ao recarregar</li>
+          <li>Seletor de período: mês atual como padrão ao abrir</li>
+          <li>Todos os KPIs do briefing estão presentes — nenhum pode faltar</li>
+          <li>Sem erros de console / telas quebradas</li>
+        </ul>
+        <div class="prompt-block">
+          <div class="prompt-label">💬 Prompt — colar no Claude Project</div>
+          <pre>
+Com base no briefing deste projeto, gere o Checklist de Auditoria completo: checklist base + itens específicos dos KPIs, segmento e particularidades deste cliente.</pre
+          >
+        </div>
+        <div class="advance">
+          ✅ Critério de Avanço: Zero itens bloqueantes. Melhorias podem seguir para a Fase 5, mas não bloqueiam a
+          entrega.
+        </div>
+      </section>
+      <section class="section" id="fase5">
+        <h2>Fase 5 — Entrega + Validação Assistida</h2>
+        <div class="phase-header">
+          <span class="phase-badge">Fase 5</span><span class="phase-prazo">Imediato após auditoria</span>
+        </div>
+        <h2 id="fase5" style="margin-top: 8px">Entrega + Validação Assistida</h2>
+        <p>
+          Sistema entregue com status <strong>"Em fase de checkagem assistida"</strong>. O cliente tem
+          <strong>15 dias</strong> para validar, testar e solicitar ajustes. Após esse período, o produto é considerado
+          validado.
+        </p>
+        <h3>Cláusulas contratuais obrigatórias</h3>
+        <ul>
+          <li>Cliente responsável pela veracidade dos dados enviados</li>
+          <li>Ajustes após 15 dias podem gerar aditivo contratual</li>
+          <li>Mudança estrutural de escopo exige nova proposta</li>
+          <li>O BI não substitui a contabilidade oficial</li>
+          <li>A entrega depende do envio correto dos relatórios</li>
+        </ul>
+      </section>
+      <section class="section" id="fase6">
+        <h2>Fase 6 — Tutorial e Mentoria</h2>
+        <div class="phase-header">
+          <span class="phase-badge">Fase 6</span><span class="phase-prazo">Paralelo à Fase 5</span>
+        </div>
+        <h2 id="fase6" style="margin-top: 8px">Tutorial e Mentoria</h2>
+        <p>Tutorial personalizado com base no briefing e na maturidade analítica do cliente.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Bloco</th>
+                <th>Duração</th>
+                <th>Conteúdo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Introdução</td>
+                <td>1–2 min</td>
+                <td>O que o sistema resolve para este cliente especificamente</td>
+              </tr>
+              <tr>
+                <td>Acesso e login</td>
+                <td>1 min</td>
+                <td>Onde acessar, como fazer login</td>
+              </tr>
+              <tr>
+                <td>Navegação geral</td>
+                <td>1–2 min</td>
+                <td>Sidebar, seções, lógica de navegação</td>
+              </tr>
+              <tr>
+                <td>Tela de Inputs</td>
+                <td>2–3 min</td>
+                <td>Como exportar do sistema de origem, como fazer upload</td>
+              </tr>
+              <tr>
+                <td>Cada tela principal</td>
+                <td>2–3 min each</td>
+                <td>KPIs, filtros, como interpretar variações</td>
+              </tr>
+              <tr>
+                <td>Dúvidas frequentes</td>
+                <td>1–2 min</td>
+                <td>Erros comuns, o que fazer se o dado não atualizar</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="prompt-block">
+          <div class="prompt-label">💬 Prompt — colar no Claude Project</div>
+          <pre>
+Com base no briefing e na maturidade analítica deste cliente, gere o roteiro completo do vídeo tutorial e o documento de orientação escrita. Personalize para o segmento e perfil do cliente.</pre
+          >
+        </div>
+      </section>
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Versão</th>
+                <th>O que mudou</th>
+                <th>Responsável</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025</td>
+                <td>1.0</td>
+                <td>Criação do documento</td>
+                <td>FXL</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>POP — BI Personalizado — Versão 1.0</span>
+        <span
+          ><a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank"
+            >github.com/FXL-BI/fxl-processo-padrao</a
+          ></span
+        >
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>

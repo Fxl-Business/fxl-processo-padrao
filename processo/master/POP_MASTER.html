@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POP Master — FXL</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #f8f9fa;
+        color: #1a1a2e;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+      .topnav {
+        background: #1b3a5c;
+        padding: 10px 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .topnav a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 13px;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+      .topnav a:hover {
+        opacity: 1;
+      }
+      .topnav .right {
+        display: flex;
+        gap: 20px;
+      }
+      .wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px 80px;
+      }
+      .doc-header {
+        margin-bottom: 36px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid #e0e8f0;
+      }
+      .doc-header .label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 8px;
+      }
+      .doc-header h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1b3a5c;
+        line-height: 1.2;
+        margin-bottom: 8px;
+      }
+      .doc-header .subtitle {
+        font-size: 16px;
+        color: #5a6a7a;
+        margin-bottom: 16px;
+      }
+      .doc-header .meta {
+        font-size: 12px;
+        color: #8a9aaa;
+        display: flex;
+        gap: 16px;
+      }
+      .toc {
+        background: #f0f4f8;
+        border: 1px solid #d0d8e4;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin-bottom: 40px;
+      }
+      .toc h3 {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 12px;
+      }
+      .toc ol {
+        padding-left: 20px;
+      }
+      .toc li {
+        margin-bottom: 4px;
+      }
+      .toc a {
+        color: #1b3a5c;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .toc a:hover {
+        text-decoration: underline;
+      }
+      .section {
+        margin-bottom: 48px;
+      }
+      h2 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1b3a5c;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #e0e8f0;
+        scroll-margin-top: 60px;
+      }
+      h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1a1a2e;
+        margin: 24px 0 10px;
+      }
+      p {
+        margin-bottom: 14px;
+      }
+      ul,
+      ol {
+        padding-left: 24px;
+        margin-bottom: 14px;
+      }
+      li {
+        margin-bottom: 6px;
+      }
+      strong {
+        font-weight: 600;
+      }
+      em {
+        font-style: italic;
+        color: #5a6a7a;
+      }
+      code {
+        font-family: "Courier New", monospace;
+        background: #f0f4f8;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 13px;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      thead tr {
+        background: #1b3a5c;
+        color: #fff;
+      }
+      thead th {
+        padding: 10px 14px;
+        text-align: left;
+        font-weight: 600;
+      }
+      tbody tr:nth-child(odd) {
+        background: #f5f5f5;
+      }
+      tbody tr:nth-child(even) {
+        background: #fff;
+      }
+      tbody td {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e8e8e8;
+        vertical-align: top;
+      }
+      .prompt-block {
+        background: #f0f4f8;
+        border-left: 4px solid #1b3a5c;
+        border-radius: 0 6px 6px 0;
+        padding: 16px 20px;
+        margin: 20px 0;
+      }
+      .prompt-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+      }
+      .prompt-block pre {
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        color: #2a3a4a;
+        white-space: pre-wrap;
+        line-height: 1.6;
+      }
+      .advance {
+        background: #e8f5e9;
+        border-left: 4px solid #2e8b57;
+        border-radius: 0 6px 6px 0;
+        padding: 14px 20px;
+        margin: 20px 0;
+        font-weight: 600;
+        color: #1b5e20;
+        font-size: 14px;
+      }
+      .warning {
+        background: #fff8e1;
+        border-left: 4px solid #f59e0b;
+        border-radius: 0 6px 6px 0;
+        padding: 14px 20px;
+        margin: 20px 0;
+        font-size: 14px;
+        color: #7a5800;
+      }
+      .vision-block {
+        background: #eef4ff;
+        border-left: 4px solid #1b3a5c;
+        border-radius: 0 6px 6px 0;
+        padding: 20px 24px;
+        margin: 20px 0;
+        font-size: 16px;
+        font-style: italic;
+        color: #1b3a5c;
+        line-height: 1.7;
+      }
+      .phase-header {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+      .phase-badge {
+        background: #1b3a5c;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+      }
+      .phase-prazo {
+        font-size: 13px;
+        color: #8a9aaa;
+        font-style: italic;
+      }
+      .checklist {
+        list-style: none;
+        padding: 0;
+      }
+      .checklist li {
+        padding: 6px 0 6px 28px;
+        position: relative;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 14px;
+      }
+      .checklist li::before {
+        content: "☐";
+        position: absolute;
+        left: 0;
+        color: #1b3a5c;
+        font-size: 16px;
+      }
+      footer {
+        background: #1b3a5c;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 12px;
+        margin-top: 60px;
+      }
+      footer a {
+        color: #90b4d4;
+        text-decoration: none;
+      }
+      footer a:hover {
+        text-decoration: underline;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <div class="right">
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/master/POP_MASTER.md" target="_blank"
+          >Ver MD no GitHub</a
+        >
+      </div>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Documento Interno</div>
+        <h1>POP Master</h1>
+        <div class="subtitle">Documento central de processo — leia antes de qualquer outro</div>
+        <div class="meta"><span>Versão 1.0</span><span>2025</span></div>
+      </header>
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#visao">Visão de Longo Prazo</a></li>
+          <li><a href="#tipos">Tipos de Projeto FXL</a></li>
+          <li><a href="#fases">Fases do Processo</a></li>
+          <li><a href="#regra">Regra de Ouro — Onde Trabalhar</a></li>
+          <li><a href="#manutencao">Como Este Processo é Mantido</a></li>
+          <li><a href="#evolucao">Ciclo de Evolução</a></li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+      <section class="section" id="visao">
+        <h2>Visão de Longo Prazo</h2>
+        <p>
+          A FXL é uma consultoria de Business Intelligence para PMEs. Hoje entregamos dashboards e sistemas que
+          transformam dados em decisões — e decisões em resultado.
+        </p>
+        <div class="vision-block">
+          Ter um processo capaz de entender qualquer negócio e, a partir de perguntas e respostas estruturadas, gerar
+          qualquer produto digital — dashboard, sistema, landing page, mobile ou automação — de forma progressivamente
+          automatizada.
+        </div>
+        <p>
+          Todo projeto executado deve contribuir com aprendizados que aproximem o processo desse objetivo. A pasta
+          <code>/build</code> do repositório é onde essa evolução técnica acontece.
+        </p>
+      </section>
+      <section class="section" id="tipos">
+        <h2>Tipos de Projeto FXL</h2>
+        <p>Antes de iniciar qualquer projeto, identifique o tipo. Isso determina qual POP seguir.</p>
+        <ul>
+          <li><strong>É para um cliente específico, com dados únicos do negócio?</strong> → BI Personalizado</li>
+          <li><strong>É um produto com vida própria para múltiplos clientes?</strong> → Produto</li>
+        </ul>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Exemplos</th>
+                <th>POP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>BI Personalizado</td>
+                <td>Construído para um cliente específico. Dados únicos, não reutilizável.</td>
+                <td>BI Tatu do Bem, BI [Cliente]</td>
+                <td>POP_BI_PERSONALIZADO</td>
+              </tr>
+              <tr>
+                <td>Produto</td>
+                <td>Construído pela FXL com vida própria. Inclui BI de Plataforma, Sistema e SaaS.</td>
+                <td>BI Conta Azul, Locação de Imóveis</td>
+                <td>POP_PRODUTO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="fases">
+        <h2>Fases do Processo</h2>
+        <p>As fases se aplicam a todos os tipos. O que muda são as entradas e critérios — detalhados nos POPs.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Fase</th>
+                <th>Nome</th>
+                <th>Prazo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Diagnóstico Estratégico</td>
+                <td>Dia 0</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Wireframe Estratégico</td>
+                <td>D+1 após reunião</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Desenvolvimento</td>
+                <td>Após aprovação do wireframe</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Auditoria e Validação</td>
+                <td>Após desenvolvimento</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Entrega + Validação Assistida</td>
+                <td>Imediato após auditoria</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Tutorial e Mentoria</td>
+                <td>Paralelo à Fase 5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="regra">
+        <h2>Regra de Ouro — Onde Trabalhar</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Situação</th>
+                <th>Onde trabalhar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A tarefa muda de cliente para cliente</td>
+                <td>Project do Cliente específico</td>
+              </tr>
+              <tr>
+                <td>A tarefa é sobre um produto FXL</td>
+                <td>Project do Produto específico</td>
+              </tr>
+              <tr>
+                <td>A tarefa é sobre evolução do processo</td>
+                <td>Project "FXL — Processo Padrão"</td>
+              </tr>
+              <tr>
+                <td>Execução de edição nos arquivos</td>
+                <td>Claude Code no repositório</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section class="section" id="manutencao">
+        <h2>Como Este Processo é Mantido</h2>
+        <h3>Claude Project "FXL — Processo Padrão"</h3>
+        <p>Onde melhorias são discutidas e prompts de alteração são gerados.</p>
+        <h3>Claude Code</h3>
+        <p>
+          Onde as alterações são executadas nos arquivos. Lê o <code>CLAUDE.md</code> automaticamente e sabe quais
+          arquivos verificar em cascata.
+        </p>
+        <div class="warning">
+          ⚠️ Uma alteração no processo geral pode refletir em múltiplos arquivos simultaneamente.
+        </div>
+      </section>
+      <section class="section" id="evolucao">
+        <h2>Ciclo de Evolução</h2>
+        <ul>
+          <li>KPIs novos → <code>suporte/biblioteca_kpis.md</code></li>
+          <li>Problemas recorrentes na auditoria → checklist da Fase 4</li>
+          <li>Padrões de build → <code>build/</code></li>
+          <li>Ajustes de UI → <code>build/design/</code></li>
+          <li>Melhorias no briefing → <code>processo/fases/fase1_diagnostico.md</code></li>
+        </ul>
+        <div class="vision-block">
+          Processo Padrão define como trabalhar → Projeto específico executa → Aprendizados voltam para o Padrão → O
+          próximo começa mais forte
+        </div>
+      </section>
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Versão</th>
+                <th>O que mudou</th>
+                <th>Responsável</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2025</td>
+                <td>1.0</td>
+                <td>Criação do documento</td>
+                <td>FXL</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>POP Master — Versão 1.0</span>
+        <span
+          ><a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank"
+            >github.com/FXL-BI/fxl-processo-padrao</a
+          ></span
+        >
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>

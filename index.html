@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>FXL — Processo Padrão</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        background: #f8f9fa;
+        color: #1a1a2e;
+      }
+      header {
+        background: #1b3a5c;
+        color: #fff;
+        padding: 48px 24px;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      header p {
+        font-size: 16px;
+        opacity: 0.8;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      .wrapper {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+      }
+      .vision {
+        background: #eef4ff;
+        border-left: 4px solid #1b3a5c;
+        border-radius: 0 8px 8px 0;
+        padding: 20px 24px;
+        margin-bottom: 48px;
+        font-style: italic;
+        color: #1b3a5c;
+        line-height: 1.7;
+      }
+      .sec-title {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #1b3a5c;
+        margin: 40px 0 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #1b3a5c;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #e0e8f0;
+        border-radius: 10px;
+        padding: 20px;
+        text-decoration: none;
+        color: inherit;
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+        display: block;
+      }
+      .card:hover {
+        box-shadow: 0 4px 16px rgba(27, 58, 92, 0.12);
+        transform: translateY(-2px);
+      }
+      .card .badge {
+        font-size: 11px;
+        font-weight: 700;
+        color: #1b3a5c;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 8px;
+      }
+      .card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #1b3a5c;
+        margin-bottom: 6px;
+      }
+      .card p {
+        font-size: 13px;
+        color: #5a6a7a;
+        line-height: 1.5;
+      }
+      .card.disabled {
+        opacity: 0.45;
+        pointer-events: none;
+      }
+      footer {
+        background: #1b3a5c;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 12px;
+      }
+      footer a {
+        color: #90b4d4;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>FXL — Processo Padrão</h1>
+      <p>Base de conhecimento operacional da FXL Business Intelligence</p>
+    </header>
+    <div class="wrapper">
+      <div class="vision">
+        <strong>Visão de longo prazo:</strong> Ter um processo capaz de entender qualquer negócio e, a partir de
+        perguntas e respostas estruturadas, gerar qualquer produto digital — dashboard, sistema, landing page, mobile ou
+        automação — de forma progressivamente automatizada.
+      </div>
+
+      <div class="sec-title">Documentos Centrais</div>
+      <div class="cards">
+        <a class="card" href="processo/master/POP_MASTER.html">
+          <div class="badge">Master</div>
+          <h3>POP Master</h3>
+          <p>Documento central. Define tipos de projeto, fases do processo e onde trabalhar.</p>
+        </a>
+        <a class="card" href="processo/identidade/identidade_fxl.html">
+          <div class="badge">Identidade</div>
+          <h3>Identidade FXL</h3>
+          <p>Posicionamento, metodologia, tom de comunicação e nomenclaturas padrão.</p>
+        </a>
+      </div>
+
+      <div class="sec-title">POPs por Tipo de Projeto</div>
+      <div class="cards">
+        <a class="card" href="processo/bi_personalizado/POP_BI_PERSONALIZADO.html">
+          <div class="badge">BI Personalizado</div>
+          <h3>POP BI Personalizado</h3>
+          <p>Projetos construídos para um cliente específico com dados únicos do negócio.</p>
+        </a>
+        <a class="card" href="processo/produto/POP_PRODUTO.html">
+          <div class="badge">Produto</div>
+          <h3>POP Produto FXL</h3>
+          <p>BI de Plataforma, BI de Segmento, Sistema e SaaS — produtos com vida própria.</p>
+        </a>
+      </div>
+
+      <div class="sec-title">Em Construção</div>
+      <div class="cards">
+        <a class="card disabled"
+          ><div class="badge">Fases</div>
+          <h3>Fases 1–6</h3>
+          <p>Detalhamento de cada fase — diagnóstico, wireframe, desenvolvimento, auditoria, entrega e tutorial.</p></a
+        >
+        <a class="card disabled"
+          ><div class="badge">Build</div>
+          <h3>Wireframe & Design</h3>
+          <p>Biblioteca de blocos, design system e padrões de arquitetura técnica.</p></a
+        >
+      </div>
+    </div>
+    <footer>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
+      — FXL Business Intelligence — Uso Interno
+    </footer>
+  </body>
+</html>
