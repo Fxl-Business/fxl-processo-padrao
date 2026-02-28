@@ -116,6 +116,61 @@
         color: #90b4d4;
         text-decoration: none;
       }
+      .evolve-block {
+        background: #fff;
+        border: 1px solid #e0e8f0;
+        border-radius: 10px;
+        padding: 24px;
+        margin-bottom: 32px;
+      }
+      .evolve-block p {
+        font-size: 14px;
+        line-height: 1.7;
+        color: #3a4a5a;
+        margin-bottom: 20px;
+      }
+      .prompt-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #1b3a5c;
+        margin-bottom: 8px;
+      }
+      .prompt-wrapper {
+        position: relative;
+      }
+      .prompt-block {
+        background: #f0f4f8;
+        border-left: 4px solid #1b3a5c;
+        border-radius: 0 6px 6px 0;
+        padding: 16px 20px;
+        padding-right: 100px;
+        font-family: monospace;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #1a1a2e;
+        white-space: pre-wrap;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #1b3a5c;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-family: Inter, system-ui, sans-serif;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .copy-btn:hover {
+        background: #2a5480;
+      }
+      .copy-btn.copied {
+        background: #2e8b57;
+      }
     </style>
   </head>
   <body>
@@ -171,7 +226,49 @@
           <p>Biblioteca de blocos, design system e padrões de arquitetura técnica.</p></a
         >
       </div>
+      <div class="sec-title">Como Evoluir Este Processo</div>
+      <div class="evolve-block">
+        <p>Este repositório é evoluído via Claude Project <strong>"FXL — Processo Padrão"</strong>. Você discute a melhoria lá, recebe um prompt estruturado, cola no Claude Code dentro do repositório, e faz o commit. O GitHub Pages atualiza automaticamente.</p>
+        <div class="prompt-label">💬 Use este prompt para iniciar uma conversa no Project FXL — Processo Padrão</div>
+        <div class="prompt-wrapper">
+          <button class="copy-btn" onclick="copyPrompt(this)">Copiar</button>
+          <div class="prompt-block" id="prompt-text">Olá. Vamos trabalhar na evolução do processo FXL.
+
+Antes de começar, leia os seguintes arquivos do repositório
+para ter o contexto completo da sessão:
+- CLAUDE.md (regras operacionais)
+- processo/master/POP_MASTER.md (visão geral do processo atual)
+
+Meu objetivo nesta conversa é: [DESCREVA AQUI O QUE QUER EVOLUIR]
+
+Exemplos do que posso querer:
+- Adicionar um novo campo ao briefing da Fase 1
+- Criar uma nova seção em um POP existente
+- Atualizar a nomenclatura em todos os arquivos
+- Adicionar um novo KPI à biblioteca
+- Criar um novo documento de fase
+- Revisar o checklist de auditoria com base em um problema recorrente
+
+Ao final da nossa discussão, quero receber um prompt estruturado
+e completo para colar no Claude Code, que irá executar todas as
+alterações necessárias no repositório — incluindo MD e HTML de
+todos os arquivos afetados.</div>
+        </div>
+      </div>
     </div>
+    <script>
+      function copyPrompt(btn) {
+        const text = document.getElementById('prompt-text').innerText;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copiado!';
+          btn.classList.add('copied');
+          setTimeout(function () {
+            btn.textContent = 'Copiar';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      }
+    </script>
     <footer>
       <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
       — FXL Business Intelligence — Uso Interno
