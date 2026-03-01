@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fase 1 — Diagnóstico — FXL</title>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: Inter, system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
+      .topnav { background: #1b3a5c; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+      .topnav a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; transition: opacity 0.2s; }
+      .topnav a:hover { opacity: 1; }
+      .topnav .right { display: flex; gap: 20px; }
+      .wrapper { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+      .doc-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid #e0e8f0; }
+      .doc-header .label { font-size: 12px; font-weight: 600; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+      .doc-header h1 { font-size: 28px; font-weight: 700; color: #1b3a5c; line-height: 1.2; margin-bottom: 8px; }
+      .doc-header .subtitle { font-size: 16px; color: #5a6a7a; margin-bottom: 16px; }
+      .doc-header .meta { font-size: 12px; color: #8a9aaa; display: flex; gap: 16px; }
+      .toc { background: #f0f4f8; border: 1px solid #d0d8e4; border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+      .toc h3 { font-size: 13px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+      .toc ol { padding-left: 20px; }
+      .toc li { margin-bottom: 4px; }
+      .toc a { color: #1b3a5c; text-decoration: none; font-size: 14px; }
+      .toc a:hover { text-decoration: underline; }
+      .section { margin-bottom: 48px; }
+      h2 { font-size: 20px; font-weight: 700; color: #1b3a5c; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e0e8f0; scroll-margin-top: 60px; }
+      h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 24px 0 10px; }
+      h4 { font-size: 14px; font-weight: 700; color: #1b3a5c; margin: 20px 0 8px; }
+      p { margin-bottom: 14px; }
+      ul, ol { padding-left: 24px; margin-bottom: 14px; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 600; }
+      .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      thead tr { background: #1b3a5c; color: #fff; }
+      thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+      tbody tr:nth-child(odd) { background: #f5f5f5; }
+      tbody tr:nth-child(even) { background: #fff; }
+      tbody td { padding: 10px 14px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+      .prompt-label { font-size: 12px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+      .prompt-block { background: #f0f4f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 20px 0; font-family: "Courier New", monospace; font-size: 13px; color: #2a3a4a; white-space: pre-wrap; line-height: 1.6; }
+      .advance { background: #e8f5e9; border-left: 4px solid #2e8b57; border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; font-weight: 600; color: #1b5e20; font-size: 14px; }
+      .warning { background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; font-size: 14px; color: #7a5800; }
+      .type-badge { display: inline-block; background: #1b3a5c; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+      .flow-list { background: #f8f9fa; border: 1px solid #e0e8f0; border-radius: 8px; padding: 16px 24px; margin-bottom: 20px; }
+      .flow-list ol { padding-left: 20px; margin: 0; }
+      .flow-list li { margin-bottom: 6px; font-size: 14px; }
+      footer { background: #1b3a5c; color: #fff; text-align: center; padding: 20px; font-size: 12px; margin-top: 60px; }
+      footer a { color: #90b4d4; text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+      .footer-inner { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+      .version-table { margin-top: 16px; }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <div class="right">
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/fases/fase1_diagnostico.md" target="_blank">Ver MD no GitHub</a>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Fases do Processo</div>
+        <h1>Fase 1 — Diagnóstico</h1>
+        <div class="subtitle">Coleta de informações para definição de escopo</div>
+        <div class="meta"><span>Versão 1.0</span><span>2026</span></div>
+      </header>
+
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#objetivo">Objetivo</a></li>
+          <li><a href="#bi-personalizado">BI Personalizado</a>
+            <ol>
+              <li><a href="#formulario-comercial">Formulário Comercial</a></li>
+              <li><a href="#documento-briefing">Documento de Briefing</a></li>
+              <li><a href="#prompt-briefing">Prompt — Gerar Briefing</a></li>
+              <li><a href="#criterio-bi">Critério de Avanço</a></li>
+            </ol>
+          </li>
+          <li><a href="#produto-fxl">Produto FXL</a>
+            <ol>
+              <li><a href="#documento-definicao">Documento de Definição</a></li>
+              <li><a href="#prompt-produto">Prompt — Gerar Definição</a></li>
+              <li><a href="#criterio-produto">Critério de Avanço</a></li>
+            </ol>
+          </li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+
+      <section class="section" id="objetivo">
+        <h2>Objetivo</h2>
+        <p>Coletar todas as informações necessárias para definir o escopo do projeto antes de iniciar o wireframe. Um diagnóstico incompleto gera retrabalho em todas as fases subsequentes.</p>
+        <div class="warning">⚠️ Não avance para a Fase 2 sem o critério de avanço desta fase cumprido. Wireframe gerado com briefing incompleto obriga retrabalho em todas as fases seguintes.</div>
+      </section>
+
+      <section class="section" id="bi-personalizado">
+        <h2>BI Personalizado</h2>
+        <span class="type-badge">BI Personalizado</span>
+        <p><strong>Contexto:</strong> Reunião com cliente para entender dores, sistemas e dados disponíveis. O objetivo é gerar um Documento de Briefing que o cliente valida antes de qualquer trabalho de design.</p>
+
+        <h3>Fluxo</h3>
+        <div class="flow-list">
+          <ol>
+            <li>Comercial preenche o Formulário Comercial durante/após reunião</li>
+            <li>Equipe Funcional + Dev analisa e gera o Documento de Briefing</li>
+            <li>Cliente valida o briefing (confirma colunas, prioridades)</li>
+            <li>Critério de avanço atingido → Fase 2</li>
+          </ol>
+        </div>
+
+        <h3>Entradas necessárias</h3>
+        <ul>
+          <li>Reunião realizada com cliente</li>
+          <li>Acesso aos sistemas ou relatórios exportados</li>
+          <li>Contato disponível para validação</li>
+        </ul>
+
+        <h3 id="formulario-comercial">Formulário Comercial</h3>
+        <p>Preenchido pelo comercial. Respostas objetivas, sem necessidade de conhecimento técnico. O formulário é dividido em 5 blocos.</p>
+
+        <h4>Bloco 1 — Identificação</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Campo</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>Nome da empresa</td><td>Texto</td></tr>
+              <tr><td>Segmento de atuação</td><td>Texto</td></tr>
+              <tr><td>Nome e cargo do contato principal</td><td>Texto</td></tr>
+              <tr><td>Data da reunião</td><td>Data</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Bloco 2 — Contexto atual</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Campo</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>Quais sistemas a empresa usa hoje? (ERP, planilhas, CRM, etc.)</td><td>Texto</td></tr>
+              <tr><td>A empresa já tem algum tipo de dashboard ou relatório estruturado?</td><td>Sim / Não</td></tr>
+              <tr><td>Com que frequência a liderança analisa dados hoje?</td><td>Nunca / Mensal / Semanal / Diária</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Bloco 3 — Dores e objetivos</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Campo</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>Qual a principal dor que motivou a busca por BI?</td><td>Texto (1-2 frases)</td></tr>
+              <tr><td>O que a empresa quer conseguir enxergar que não enxerga hoje?</td><td>Texto</td></tr>
+              <tr><td>Quem vai usar o dashboard no dia a dia? (perfis e quantidade)</td><td>Texto</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Bloco 4 — Escopo inicial</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Campo</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>Módulos de interesse</td><td>Comercial / Operacional / Financeiro / Outro</td></tr>
+              <tr><td>Para financeiro: já usa software como Conta Azul, Omie, etc.?</td><td>Sim / Não / Não se aplica</td></tr>
+              <tr><td>O cliente consegue exportar relatórios dos sistemas?</td><td>Sim / Não / Não sabe</td></tr>
+              <tr><td>O cliente pode enviar exemplo de relatório antes do próximo passo?</td><td>Sim / Não</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Bloco 5 — Próximos passos</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Campo</th><th>Tipo</th></tr></thead>
+            <tbody>
+              <tr><td>Data prevista para envio dos relatórios de exemplo</td><td>Data</td></tr>
+              <tr><td>Observações adicionais do comercial</td><td>Texto</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="documento-briefing">Documento de Briefing</h3>
+        <p>Gerado pela equipe funcional a partir do Formulário Comercial + relatórios recebidos. É o documento que o cliente valida antes do wireframe.</p>
+
+        <h4>Seção 1 — Resumo do cliente</h4>
+        <ul>
+          <li>Nome, segmento, contexto</li>
+          <li>Maturidade analítica: Baixa / Média / Alta</li>
+          <li>Perfis de usuário e quantidade</li>
+        </ul>
+
+        <h4>Seção 2 — Sistemas e dados</h4>
+        <ul>
+          <li>Sistemas utilizados (lista)</li>
+          <li>Relatórios recebidos: nome do arquivo + colunas confirmadas</li>
+          <li>Frequência de atualização dos dados na origem</li>
+          <li>Gaps identificados: dados desejados sem coluna confirmada</li>
+        </ul>
+
+        <h4>Seção 3 — Módulos e KPIs</h4>
+        <ul>
+          <li>Módulos contratados</li>
+          <li>KPIs prioritários declarados pelo cliente (em ordem)</li>
+          <li>KPIs sugeridos pela FXL (cruzar com <code>suporte/biblioteca_kpis.md</code>)</li>
+          <li>KPIs bloqueados: desejados mas sem coluna de dados</li>
+        </ul>
+
+        <h4>Seção 4 — Regras de negócio</h4>
+        <ul>
+          <li>Particularidades do segmento ou operação</li>
+          <li>Exceções conhecidas</li>
+          <li>Sazonalidades ou períodos atípicos</li>
+        </ul>
+
+        <h4>Seção 5 — Decisões pendentes</h4>
+        <ul>
+          <li>Lista de perguntas que precisam ser validadas antes do wireframe</li>
+          <li>Formato: pergunta + opções + impacto se não resolver</li>
+        </ul>
+
+        <h4>Seção 6 — Critério de avanço</h4>
+        <ul>
+          <li>Checklist de validação</li>
+          <li>Assinatura: "Briefing validado por [nome] em [data]"</li>
+        </ul>
+
+        <h3 id="prompt-briefing">Prompt — Gerar Documento de Briefing</h3>
+        <div class="prompt-label">💬 Prompt</div>
+        <div class="prompt-block">Leia o Formulário Comercial e os relatórios abaixo. Gere o Documento de Briefing FXL completo.
+
+Cruze os KPIs declarados com a Biblioteca de KPIs (suporte/biblioteca_kpis.md).
+Proponha KPIs adicionais relevantes para o segmento.
+Sinalize gaps onde o KPI desejado não tem coluna de dados confirmada.
+Liste todas as decisões pendentes que bloqueiam o avanço.
+
+[COLE O FORMULÁRIO COMERCIAL AQUI]
+
+[COLE OS RELATÓRIOS / LISTA DE COLUNAS AQUI]</div>
+
+        <h3>Saída esperada</h3>
+        <ul>
+          <li>Formulário Comercial preenchido</li>
+          <li>Documento de Briefing completo e validado pelo cliente</li>
+        </ul>
+
+        <h3 id="criterio-bi">Critério de Avanço</h3>
+        <div class="advance">✅ Critério de Avanço — Cliente valida o Documento de Briefing. Todas as colunas de dados confirmadas para os KPIs prioritários. Nenhuma decisão bloqueante em aberto.</div>
+      </section>
+
+      <section class="section" id="produto-fxl">
+        <h2>Produto FXL</h2>
+        <span class="type-badge">Produto FXL</span>
+        <p><strong>Contexto:</strong> Sessão interna para definir escopo do produto. Não há cliente externo nesta fase — toda a validação é feita internamente pela equipe FXL.</p>
+
+        <h3>Fluxo</h3>
+        <div class="flow-list">
+          <ol>
+            <li>Equipe define objetivo e público-alvo do produto</li>
+            <li>Mapeia fonte de dados (sistema externo ou inputs manuais)</li>
+            <li>Define MVP e visão de longo prazo</li>
+            <li>Documenta decisões de produto em aberto</li>
+            <li>Critério de avanço atingido → Fase 2</li>
+          </ol>
+        </div>
+
+        <h3>Entradas necessárias</h3>
+        <ul>
+          <li>Ideia ou oportunidade identificada</li>
+          <li>Conhecimento do segmento ou plataforma-alvo</li>
+          <li>Exemplos de dados (relatórios exportados, estrutura de inputs)</li>
+        </ul>
+
+        <h3 id="documento-definicao">Documento de Definição de Produto</h3>
+
+        <h4>Seção 1 — Visão do produto</h4>
+        <ul>
+          <li>Nome do produto</li>
+          <li>Objetivo em uma frase</li>
+          <li>Problema que resolve</li>
+          <li>Público-alvo (perfil, maturidade analítica, contexto de uso)</li>
+        </ul>
+
+        <h4>Seção 2 — Fonte de dados</h4>
+        <ul>
+          <li>Tipo: Sistema externo (qual?) / Inputs manuais / Híbrido</li>
+          <li>Para sistema externo: relatórios disponíveis + colunas</li>
+          <li>Para inputs manuais: campos necessários + frequência de preenchimento</li>
+          <li>Restrições técnicas conhecidas</li>
+        </ul>
+
+        <h4>Seção 3 — Escopo do MVP</h4>
+        <ul>
+          <li>Módulos incluídos no MVP</li>
+          <li>KPIs do MVP (lista com lógica de cálculo)</li>
+          <li>Funcionalidades do MVP</li>
+          <li>O que fica de fora do MVP (backlog)</li>
+        </ul>
+
+        <h4>Seção 4 — Visão de longo prazo</h4>
+        <ul>
+          <li>Funcionalidades futuras planejadas</li>
+          <li>Possibilidade de virar SaaS? (Sim / Não / A avaliar)</li>
+          <li>Integrações futuras</li>
+        </ul>
+
+        <h4>Seção 5 — Regras de negócio</h4>
+        <ul>
+          <li>Regras do segmento que o produto deve respeitar</li>
+          <li>Exceções e casos especiais</li>
+          <li>Nomenclaturas específicas do domínio</li>
+        </ul>
+
+        <h4>Seção 6 — Decisões de produto</h4>
+        <ul>
+          <li>Lista de decisões em aberto marcadas como [DECISÃO DE PRODUTO]</li>
+          <li>Formato: pergunta + opções + recomendação da equipe</li>
+        </ul>
+
+        <h3 id="prompt-produto">Prompt — Gerar Documento de Definição de Produto</h3>
+        <div class="prompt-label">💬 Prompt</div>
+        <div class="prompt-block">Vou descrever um produto FXL. Gere o Documento de Definição de Produto estruturado.
+
+Organize as informações nas seções padrão.
+Sinalize todas as [DECISÕES DE PRODUTO] em aberto.
+Para cada decisão, apresente as opções e sua recomendação.
+Identifique restrições técnicas ou gaps de informação.
+
+[DESCREVA O PRODUTO AQUI]</div>
+
+        <h3>Saída esperada</h3>
+        <ul>
+          <li>Documento de Definição de Produto completo</li>
+          <li>Todas as decisões de produto resolvidas</li>
+        </ul>
+
+        <h3 id="criterio-produto">Critério de Avanço</h3>
+        <div class="advance">✅ Critério de Avanço — Todas as [DECISÃO DE PRODUTO] resolvidas. Documento validado internamente pela equipe FXL.</div>
+      </section>
+
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap version-table">
+          <table>
+            <thead><tr><th>Data</th><th>Versão</th><th>O que mudou</th><th>Responsável</th></tr></thead>
+            <tbody>
+              <tr><td>2026-02-27</td><td>1.0</td><td>Criação inicial do documento</td><td>FXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>Versão 1.0 — 2026</span>
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>
