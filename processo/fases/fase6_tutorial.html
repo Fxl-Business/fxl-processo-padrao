@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fase 6 — Tutorial e Documentação — FXL</title>
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       body { font-family: Inter, system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
       .topnav { background: #1b3a5c; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
       .topnav a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; transition: opacity 0.2s; }
       .topnav a:hover { opacity: 1; }
-      .topnav .right { display: flex; gap: 20px; }
+      .type-tabs { display: flex; gap: 4px; }
+      .type-tab { padding: 4px 14px; border-radius: 4px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.5); color: #fff; background: transparent; transition: background 0.15s, color 0.15s; font-family: Inter, system-ui, sans-serif; }
+      .type-tab.active { background: #fff; color: #1b3a5c; border-color: #fff; }
       .wrapper { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
       .doc-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid #e0e8f0; }
       .doc-header .label { font-size: 12px; font-weight: 600; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
@@ -61,9 +64,11 @@
   <body>
     <nav class="topnav">
       <a href="../../index.html">← Índice Geral</a>
-      <div class="right">
-        <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/fases/fase6_tutorial.md" target="_blank">Ver MD no GitHub</a>
+      <div class="type-tabs">
+        <button class="type-tab" data-tab="bi" onclick="toggleTipo('bi')">BI Personalizado</button>
+        <button class="type-tab" data-tab="produto" onclick="toggleTipo('produto')">Produto FXL</button>
       </div>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/fases/fase6_tutorial.md" target="_blank">Ver MD no GitHub</a>
     </nav>
     <div class="wrapper">
       <header class="doc-header">
@@ -101,7 +106,7 @@
         <p>Garantir que o usuário final saiba usar o sistema de forma autônoma. O formato varia conforme o tipo de projeto e a maturidade analítica do público.</p>
       </section>
 
-      <section class="section" id="bi-personalizado">
+      <section class="section" id="bi-personalizado" data-tipo="bi">
         <h2>BI Personalizado</h2>
         <span class="type-badge">BI Personalizado</span>
         <p><strong>Contexto:</strong> Tutorial personalizado para o cliente específico, considerando seu segmento, contexto e maturidade analítica.</p>
@@ -172,7 +177,7 @@ Maturidade analítica: [BAIXA / MÉDIA / ALTA]
         <div class="advance">✅ Critério de Avanço — Vídeo tutorial gravado e enviado ao cliente. Documento de orientação entregue.</div>
       </section>
 
-      <section class="section" id="produto-fxl">
+      <section class="section" id="produto-fxl" data-tipo="produto">
         <h2>Produto FXL</h2>
         <span class="type-badge">Produto FXL</span>
         <p><strong>Contexto:</strong> Documentação genérica para qualquer usuário do produto. Deve ser autoexplicativa — sem dependência de onboarding personalizado.</p>
@@ -255,6 +260,7 @@ Inclua exemplos práticos de uso.
             <thead><tr><th>Data</th><th>Versão</th><th>O que mudou</th><th>Responsável</th></tr></thead>
             <tbody>
               <tr><td>2026-02-27</td><td>1.0</td><td>Criação inicial do documento</td><td>FXL</td></tr>
+              <tr><td>2026-03-01</td><td>1.1</td><td>Favicon, seletor de tipo (tabs BI/Produto) e data-tipo nas sections</td><td>FXL</td></tr>
             </tbody>
           </table>
         </div>
@@ -267,5 +273,18 @@ Inclua exemplos práticos de uso.
         <span>FXL Business Intelligence — Uso Interno</span>
       </div>
     </footer>
+  <script>
+    function toggleTipo(tipo) {
+      var tabs = document.querySelectorAll('.type-tab');
+      var isAlreadyActive = document.querySelector('.type-tab[data-tab="' + tipo + '"]').classList.contains('active');
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('[data-tipo]').forEach(function(el) { el.style.display = ''; });
+      if (!isAlreadyActive) {
+        document.querySelector('.type-tab[data-tab="' + tipo + '"]').classList.add('active');
+        var outro = tipo === 'bi' ? 'produto' : 'bi';
+        document.querySelectorAll('[data-tipo="' + outro + '"]').forEach(function(el) { el.style.display = 'none'; });
+      }
+    }
+  </script>
   </body>
 </html>

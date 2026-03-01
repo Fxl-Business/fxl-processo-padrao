@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>POP Master — FXL</title>
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
     <style>
       *,
       *::before,
@@ -43,9 +44,15 @@
       .topnav a:hover {
         opacity: 1;
       }
-      .topnav .right {
-        display: flex;
-        gap: 20px;
+      .topnav .nav-title {
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 40%;
+        text-align: center;
       }
       .wrapper {
         max-width: 860px;
@@ -301,11 +308,8 @@
   <body>
     <nav class="topnav">
       <a href="../../index.html">← Índice Geral</a>
-      <div class="right">
-        <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/master/POP_MASTER.md" target="_blank"
-          >Ver MD no GitHub</a
-        >
-      </div>
+      <span class="nav-title">POP Master</span>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/processo/master/POP_MASTER.md" target="_blank">Ver MD no GitHub</a>
     </nav>
     <div class="wrapper">
       <header class="doc-header">
@@ -498,6 +502,12 @@
                 <td>2025</td>
                 <td>1.0</td>
                 <td>Criação do documento</td>
+                <td>FXL</td>
+              </tr>
+              <tr>
+                <td>2026-03-01</td>
+                <td>1.1</td>
+                <td>Favicon e título centralizado no sticky header</td>
                 <td>FXL</td>
               </tr>
             </tbody>

@@ -4,7 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>FXL — Processo Padrão</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <style>
+      .topnav {
+        background: #1b3a5c;
+        padding: 0 24px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        font-size: 13px;
+      }
+      .topnav .nav-title {
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 40%;
+        text-align: center;
+      }
+      .topnav a { color: #fff; text-decoration: none; opacity: 0.85; }
+      .topnav a:hover { opacity: 1; text-decoration: underline; }
+      .topnav .placeholder { width: 80px; }
       *,
       *::before,
       *::after {
@@ -174,6 +200,11 @@
     </style>
   </head>
   <body>
+    <nav class="topnav">
+      <span class="placeholder"></span>
+      <span class="nav-title">FXL — Processo Padrão</span>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">Ver no GitHub</a>
+    </nav>
     <header>
       <h1>FXL — Processo Padrão</h1>
       <p>Base de conhecimento operacional da FXL Business Intelligence</p>
