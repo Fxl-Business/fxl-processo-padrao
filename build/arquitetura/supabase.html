@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Supabase — Padrão FXL</title>
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: Inter, system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
+      .topnav { background: #1b3a5c; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+      .topnav a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; transition: opacity 0.2s; }
+      .topnav a:hover { opacity: 1; }
+      .wrapper { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+      .doc-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid #e0e8f0; }
+      .doc-header .label { font-size: 12px; font-weight: 600; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+      .doc-header h1 { font-size: 28px; font-weight: 700; color: #1b3a5c; line-height: 1.2; margin-bottom: 8px; }
+      .doc-header .subtitle { font-size: 16px; color: #5a6a7a; margin-bottom: 16px; }
+      .doc-header .meta { font-size: 12px; color: #8a9aaa; display: flex; gap: 16px; }
+      .toc { background: #f0f4f8; border: 1px solid #d0d8e4; border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+      .toc h3 { font-size: 13px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+      .toc ol { padding-left: 20px; }
+      .toc li { margin-bottom: 4px; }
+      .toc a { color: #1b3a5c; text-decoration: none; font-size: 14px; }
+      .toc a:hover { text-decoration: underline; }
+      .section { margin-bottom: 48px; }
+      h2 { font-size: 20px; font-weight: 700; color: #1b3a5c; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e0e8f0; scroll-margin-top: 60px; }
+      h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 24px 0 10px; }
+      p { margin-bottom: 14px; }
+      ul, ol { padding-left: 24px; margin-bottom: 14px; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 600; }
+      code { font-family: "Courier New", monospace; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+      .prompt-label { font-size: 12px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+      .prompt-block { background: #f0f4f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 20px 0; font-family: "Courier New", monospace; font-size: 13px; color: #2a3a4a; white-space: pre-wrap; line-height: 1.6; }
+      .warning { background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; font-size: 14px; color: #7a5800; }
+      .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      thead tr { background: #1b3a5c; color: #fff; }
+      thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+      tbody tr:nth-child(odd) { background: #f5f5f5; }
+      tbody tr:nth-child(even) { background: #fff; }
+      tbody td { padding: 10px 14px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+      .files-tree { background: #f0f4f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 14px 0; font-family: "Courier New", monospace; font-size: 13px; color: #2a3a4a; line-height: 1.7; }
+      footer { background: #1b3a5c; color: #fff; text-align: center; padding: 20px; font-size: 12px; margin-top: 60px; }
+      footer a { color: #90b4d4; text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+      .footer-inner { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/build/arquitetura/supabase.md" target="_blank">Ver MD no GitHub</a>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Build / Arquitetura</div>
+        <h1>Supabase — Padrão FXL</h1>
+        <div class="subtitle">Conexão, Auth, RLS e Migrations</div>
+        <div class="meta"><span>Versão 1.0</span><span>2026-03-02</span></div>
+      </header>
+
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#config">Configuração inicial</a></li>
+          <li><a href="#auth">Auth</a></li>
+          <li><a href="#rls">Row Level Security (RLS)</a></li>
+          <li><a href="#migrations">Migrations</a></li>
+          <li><a href="#edge-functions">Edge Functions</a></li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+
+      <section class="section" id="config">
+        <h2>Configuração inicial</h2>
+        <h3>Client (<code>src/lib/supabase.ts</code>)</h3>
+        <div class="prompt-label">💬 Código</div>
+        <div class="prompt-block">import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error('Supabase URL e Anon Key são obrigatórios. Verifique o arquivo .env')
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey)</div>
+
+        <h3>Variáveis de ambiente mínimas</h3>
+        <div class="prompt-block">VITE_SUPABASE_URL=https://xxxx.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJ...</div>
+        <div class="warning">⚠️ <strong>Regra absoluta:</strong> A <code>service_role</code> key NUNCA vai para o frontend. Usar apenas em Edge Functions. Expor essa chave no frontend dá ao usuário acesso irrestrito ao banco de dados, bypassando qualquer RLS.</div>
+      </section>
+
+      <section class="section" id="auth">
+        <h2>Auth</h2>
+        <p>Supabase Auth é o padrão para todos os projetos FXL. Não usar bibliotecas de auth externas.</p>
+        <ul>
+          <li><strong>Método primário:</strong> Email + senha</li>
+          <li><strong>Alternativa:</strong> Magic link (link por email)</li>
+          <li><strong>Não usar por padrão:</strong> OAuth social (requer configuração adicional e caso de uso claro)</li>
+        </ul>
+
+        <h3>Estrutura de arquivos de auth</h3>
+        <div class="files-tree">src/
+├── hooks/
+│   └── useAuth.ts              ← hook principal de autenticação
+├── components/
+│   └── auth/
+│       ├── AuthGuard.tsx       ← protege rotas autenticadas
+│       ├── LoginForm.tsx       ← formulário de login
+│       └── SignUpForm.tsx      ← formulário de cadastro</div>
+        <p>O hook <code>useAuth.ts</code> deve expor: <code>user</code>, <code>session</code>, <code>loading</code>, <code>signIn</code>, <code>signUp</code>, <code>signOut</code>. Usar <code>supabase.auth.onAuthStateChange</code> para manter estado reativo entre navegações.</p>
+      </section>
+
+      <section class="section" id="rls">
+        <h2>Row Level Security (RLS)</h2>
+        <div class="warning">⚠️ <strong>Regra absoluta:</strong> TODA tabela tem RLS habilitado, sem exceção. Tabela sem RLS = qualquer usuário autenticado pode ler/escrever todos os dados.</div>
+
+        <h3>Habilitar RLS (incluir em toda migration)</h3>
+        <div class="prompt-label">💬 SQL</div>
+        <div class="prompt-block">ALTER TABLE nome_da_tabela ENABLE ROW LEVEL SECURITY;</div>
+
+        <h3>Policies para dados do usuário</h3>
+        <div class="prompt-block">-- Usuário vê apenas seus próprios dados
+CREATE POLICY "users_select_own" ON nome_da_tabela
+  FOR SELECT USING (auth.uid() = user_id);
+
+-- Usuário insere apenas com seu próprio user_id
+CREATE POLICY "users_insert_own" ON nome_da_tabela
+  FOR INSERT WITH CHECK (auth.uid() = user_id);
+
+-- Usuário atualiza apenas seus próprios dados
+CREATE POLICY "users_update_own" ON nome_da_tabela
+  FOR UPDATE USING (auth.uid() = user_id);
+
+-- Usuário deleta apenas seus próprios dados
+CREATE POLICY "users_delete_own" ON nome_da_tabela
+  FOR DELETE USING (auth.uid() = user_id);</div>
+
+        <h3>Policies para tabelas públicas</h3>
+        <div class="prompt-block">CREATE POLICY "public_read" ON nome_da_tabela
+  FOR SELECT USING (true);</div>
+
+        <h3>Policies para SaaS multi-tenant</h3>
+        <div class="prompt-block">CREATE POLICY "org_isolation_select" ON nome_da_tabela
+  FOR SELECT USING (
+    organization_id IN (
+      SELECT organization_id FROM user_organizations
+      WHERE user_id = auth.uid()
+    )
+  );</div>
+      </section>
+
+      <section class="section" id="migrations">
+        <h2>Migrations</h2>
+        <ul>
+          <li>Pasta: <code>supabase/migrations/</code></li>
+          <li>Nomes incrementais: <code>001_create_users.sql</code>, <code>002_create_transactions.sql</code></li>
+          <li>Cada migration faz <strong>uma coisa</strong> — nunca misturar criações de tabelas não relacionadas</li>
+          <li><strong>Nunca editar uma migration existente</strong> — criar nova migration com a correção</li>
+          <li>Toda criação de tabela deve incluir as policies RLS correspondentes</li>
+        </ul>
+      </section>
+
+      <section class="section" id="edge-functions">
+        <h2>Edge Functions</h2>
+        <h3>Usar quando</h3>
+        <ul>
+          <li>Precisa usar a <code>service_role</code> key</li>
+          <li>Integrações com APIs externas (webhooks, pagamentos)</li>
+          <li>Processamento pesado que não deve rodar no cliente</li>
+        </ul>
+        <h3>Não usar para</h3>
+        <ul>
+          <li>CRUD simples — queries diretas do client são suficientes</li>
+          <li>Validação que o Zod resolve no frontend</li>
+        </ul>
+      </section>
+
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Versão</th><th>O que mudou</th><th>Responsável</th></tr></thead>
+            <tbody>
+              <tr><td>2026-03-02</td><td>1.0</td><td>Criação inicial</td><td>FXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>Versão 1.0 — 2026-03-02</span>
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>

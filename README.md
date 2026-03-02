@@ -76,7 +76,7 @@ fxl-processo-padrao/
 │   ├── HTML_STANDARD_FXL.md        ← padrão obrigatório para HTMLs
 │   ├── wireframe/                   ← blocos disponíveis, padrões de UX
 │   ├── design/                      ← design system FXL (a criar)
-│   └── arquitetura/                 ← auth, banco, infra, lógica (a criar)
+│   └── arquitetura/                 ← premissas técnicas, stack, deploy, segurança, master prompt
 │
 ├── suporte/                         ← referências compartilhadas
 │   ├── biblioteca_kpis.md

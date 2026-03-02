@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>build/arquitetura — Índice — FXL</title>
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: Inter, system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
+      .topnav { background: #1b3a5c; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+      .topnav a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; transition: opacity 0.2s; }
+      .topnav a:hover { opacity: 1; }
+      .wrapper { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+      .doc-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid #e0e8f0; }
+      .doc-header .label { font-size: 12px; font-weight: 600; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+      .doc-header h1 { font-size: 28px; font-weight: 700; color: #1b3a5c; line-height: 1.2; margin-bottom: 8px; }
+      .doc-header .subtitle { font-size: 16px; color: #5a6a7a; margin-bottom: 16px; }
+      .doc-header .meta { font-size: 12px; color: #8a9aaa; display: flex; gap: 16px; }
+      .toc { background: #f0f4f8; border: 1px solid #d0d8e4; border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+      .toc h3 { font-size: 13px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+      .toc ol { padding-left: 20px; }
+      .toc li { margin-bottom: 4px; }
+      .toc a { color: #1b3a5c; text-decoration: none; font-size: 14px; }
+      .toc a:hover { text-decoration: underline; }
+      .section { margin-bottom: 48px; }
+      h2 { font-size: 20px; font-weight: 700; color: #1b3a5c; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e0e8f0; scroll-margin-top: 60px; }
+      h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 24px 0 10px; }
+      p { margin-bottom: 14px; }
+      ul, ol { padding-left: 24px; margin-bottom: 14px; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 600; }
+      code { font-family: "Courier New", monospace; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+      pre { background: #f0f4f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 16px 20px; overflow-x: auto; font-size: 13px; margin-bottom: 14px; font-family: "Courier New", monospace; }
+      .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      thead tr { background: #1b3a5c; color: #fff; }
+      thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+      tbody tr:nth-child(odd) { background: #f5f5f5; }
+      tbody tr:nth-child(even) { background: #fff; }
+      tbody td { padding: 10px 14px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+      .table-wrap td a { color: #1b3a5c; font-weight: 600; text-decoration: none; }
+      .table-wrap td a:hover { text-decoration: underline; }
+      .info-block { background: #e8f0f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; font-size: 14px; color: #1a2a3a; }
+      footer { background: #1b3a5c; color: #fff; text-align: center; padding: 20px; font-size: 12px; margin-top: 60px; }
+      footer a { color: #90b4d4; text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+      .footer-inner { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/build/arquitetura/README.md" target="_blank">Ver MD no GitHub</a>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Build / Arquitetura</div>
+        <h1>build/arquitetura — Índice</h1>
+        <div class="subtitle">Fundação técnica para projetos FXL via Claude Code</div>
+        <div class="meta"><span>Versão 1.0</span><span>2026-03-02</span></div>
+      </header>
+
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#o-que-e">O que é esta pasta</a></li>
+          <li><a href="#como-usar">Como usar</a></li>
+          <li><a href="#documentos">Documentos disponíveis</a></li>
+          <li><a href="#evolucao">Evolução</a></li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+
+      <section class="section" id="o-que-e">
+        <h2>O que é esta pasta</h2>
+        <p>Contém as premissas técnicas que todo projeto FXL deve seguir quando desenvolvido via Claude Code. É a fundação que garante qualidade, segurança e consistência entre projetos.</p>
+        <p>Cada documento desta pasta define um aspecto específico da construção: stack, banco de dados, deploy, segurança, testes e como montar o prompt de desenvolvimento.</p>
+      </section>
+
+      <section class="section" id="como-usar">
+        <h2>Como usar</h2>
+        <p>Ao iniciar um novo projeto (Fase 3), o <code>CLAUDE.md</code> do repositório do projeto deve referenciar esta pasta por caminho absoluto. Veja o template em <a href="claude_md_projeto.html">claude_md_projeto.html</a>.</p>
+        <pre>Antes de começar, leia obrigatoriamente:
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/premissas_gerais.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/supabase.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/deploy_vercel.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/seguranca.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/testes.md</pre>
+        <div class="info-block">Substitua <code>[CAMINHO_ABSOLUTO]</code> pelo caminho real na sua máquina antes de usar. Ex: <code>/Users/operador/projetos</code></div>
+      </section>
+
+      <section class="section" id="documentos">
+        <h2>Documentos disponíveis</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Documento</th><th>O que define</th><th>Quando consultar</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="premissas_gerais.html">premissas_gerais.md</a></td><td>Stack, estrutura de pastas, convenções de código</td><td>Sempre — é o primeiro a ler</td></tr>
+              <tr><td><a href="supabase.html">supabase.md</a></td><td>Conexão, Auth, RLS, migrations</td><td>Ao configurar banco de dados</td></tr>
+              <tr><td><a href="deploy_vercel.html">deploy_vercel.md</a></td><td>Setup, environment variables, domínios</td><td>Ao configurar deploy</td></tr>
+              <tr><td><a href="seguranca.html">seguranca.md</a></td><td>Checklist anti AI-slop, rate-limit, validação</td><td>Antes de cada deploy</td></tr>
+              <tr><td><a href="master_prompt.html">master_prompt.md</a></td><td>Template para montar o prompt de desenvolvimento</td><td>Ao iniciar cada projeto novo</td></tr>
+              <tr><td><a href="testes.html">testes.md</a></td><td>O que testar, quando testar, critérios de aprovação</td><td>Durante e entre sprints</td></tr>
+              <tr><td><a href="claude_md_projeto.html">claude_md_projeto.md</a></td><td>Template do CLAUDE.md para repositórios de projeto</td><td>Ao criar repositório novo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="evolucao">
+        <h2>Evolução</h2>
+        <p>Cada projeto concluído deve contribuir com aprendizados para esta pasta. Se um padrão recorrente emergir em um projeto — seja uma solução elegante, um erro evitado ou uma decisão arquitetural importante — registrar aqui para beneficiar os próximos projetos.</p>
+        <p>A pasta <code>build/</code> é onde o processo técnico da FXL vive e evolui. A visão de longo prazo é que cada documento aqui se torne mais completo e preciso com cada projeto.</p>
+      </section>
+
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Versão</th><th>O que mudou</th><th>Responsável</th></tr></thead>
+            <tbody>
+              <tr><td>2026-03-02</td><td>1.0</td><td>Criação inicial — base de knowledge de desenvolvimento FXL</td><td>FXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>Versão 1.0 — 2026-03-02</span>
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>

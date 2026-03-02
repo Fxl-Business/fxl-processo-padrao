@@ -59,6 +59,10 @@ Este Project tem acesso aos seguintes arquivos no knowledge:
 - `suporte/biblioteca_kpis.md` — KPIs disponíveis por módulo
 - `build/design/design_system.md` — regras de UI (quando existir)
 
+**Premissas de desenvolvimento (`build/arquitetura/`):**
+- `build/arquitetura/premissas_gerais.md` — stack e convenções (para informar decisões de Blueprint)
+- `build/arquitetura/seguranca.md` — checklist de segurança (para antecipar requisitos no Blueprint)
+
 **Do `fxl-wireframes`:**
 - Documentação da plataforma (estrutura, convenções, padrões de código)
 

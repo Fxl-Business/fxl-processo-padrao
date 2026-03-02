@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testes — Premissas FXL</title>
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: Inter, system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
+      .topnav { background: #1b3a5c; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+      .topnav a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; transition: opacity 0.2s; }
+      .topnav a:hover { opacity: 1; }
+      .wrapper { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+      .doc-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid #e0e8f0; }
+      .doc-header .label { font-size: 12px; font-weight: 600; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+      .doc-header h1 { font-size: 28px; font-weight: 700; color: #1b3a5c; line-height: 1.2; margin-bottom: 8px; }
+      .doc-header .subtitle { font-size: 16px; color: #5a6a7a; margin-bottom: 16px; }
+      .doc-header .meta { font-size: 12px; color: #8a9aaa; display: flex; gap: 16px; }
+      .toc { background: #f0f4f8; border: 1px solid #d0d8e4; border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+      .toc h3 { font-size: 13px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+      .toc ol { padding-left: 20px; }
+      .toc li { margin-bottom: 4px; }
+      .toc a { color: #1b3a5c; text-decoration: none; font-size: 14px; }
+      .toc a:hover { text-decoration: underline; }
+      .section { margin-bottom: 48px; }
+      h2 { font-size: 20px; font-weight: 700; color: #1b3a5c; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e0e8f0; scroll-margin-top: 60px; }
+      h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 24px 0 10px; }
+      p { margin-bottom: 14px; }
+      ul, ol { padding-left: 24px; margin-bottom: 14px; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 600; }
+      code { font-family: "Courier New", monospace; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+      .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      thead tr { background: #1b3a5c; color: #fff; }
+      thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+      tbody tr:nth-child(odd) { background: #f5f5f5; }
+      tbody tr:nth-child(even) { background: #fff; }
+      tbody td { padding: 10px 14px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+      .prompt-label { font-size: 12px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+      .prompt-block { background: #f0f4f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 20px 0; font-family: "Courier New", monospace; font-size: 13px; color: #2a3a4a; white-space: pre-wrap; line-height: 1.6; }
+      .advance { background: #e8f5e9; border-left: 4px solid #2e8b57; border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 20px 0; color: #1b5e20; font-size: 14px; }
+      .advance .advance-title { font-weight: 700; margin-bottom: 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; }
+      .advance ul { list-style: none; padding-left: 0; margin: 0; }
+      .advance li { padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
+      .advance li::before { content: "✅"; flex-shrink: 0; }
+      .checklist-section { background: #f8f9fa; border: 1px solid #e0e8f0; border-radius: 8px; padding: 16px 20px; margin: 16px 0; }
+      .checklist-section h4 { font-size: 14px; font-weight: 700; color: #1b3a5c; margin-bottom: 10px; }
+      .checklist-section ul { list-style: none; padding-left: 0; margin: 0; }
+      .checklist-section li { padding: 4px 0; font-size: 14px; display: flex; gap: 8px; border-bottom: 1px solid #edf0f4; }
+      .checklist-section li:last-child { border-bottom: none; }
+      .checklist-section li::before { content: "☐"; color: #1b3a5c; flex-shrink: 0; }
+      footer { background: #1b3a5c; color: #fff; text-align: center; padding: 20px; font-size: 12px; margin-top: 60px; }
+      footer a { color: #90b4d4; text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+      .footer-inner { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/build/arquitetura/testes.md" target="_blank">Ver MD no GitHub</a>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Build / Arquitetura</div>
+        <h1>Testes — Premissas FXL</h1>
+        <div class="subtitle">O que testar, quando testar e critério de sprint aprovado</div>
+        <div class="meta"><span>Versão 1.0</span><span>2026-03-02</span></div>
+      </header>
+
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#filosofia">Filosofia</a></li>
+          <li><a href="#tipos">Testes obrigatórios por tipo</a></li>
+          <li><a href="#por-componente">Por tipo de componente</a></li>
+          <li><a href="#report">Formato de report</a></li>
+          <li><a href="#criterio">Critério de sprint aprovado</a></li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+
+      <section class="section" id="filosofia">
+        <h2>Filosofia</h2>
+        <p><strong>Testes não são opcionais. Sprint sem testes = sprint incompleto.</strong> O Claude Code gera testes junto com o código — não como etapa separada após o desenvolvimento.</p>
+        <p>Cada feature entregue é uma feature testada. Isso garante que o sistema cresce com confiança, sem medo de quebrar o que já funcionava.</p>
+      </section>
+
+      <section class="section" id="tipos">
+        <h2>Testes obrigatórios por tipo</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tipo</th><th>Quando executar</th><th>O que verifica</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Funcionalidade</strong></td><td>Ao concluir cada feature</td><td>Comportamento esperado funciona, casos de erro tratados</td></tr>
+              <tr><td><strong>Integração</strong></td><td>Ao concluir cada sprint</td><td>Fluxo completo funciona end-to-end</td></tr>
+              <tr><td><strong>Segurança</strong></td><td>Antes de marcar sprint como completo</td><td>RLS, inputs, autenticação</td></tr>
+              <tr><td><strong>Responsividade</strong></td><td>Antes de cada deploy</td><td>Layout em mobile e desktop</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="por-componente">
+        <h2>Por tipo de componente</h2>
+
+        <div class="checklist-section">
+          <h4>Telas</h4>
+          <ul>
+            <li>Renderiza sem erros no console</li>
+            <li>Dados corretos são exibidos</li>
+            <li>Skeleton loading aparece durante carregamento</li>
+            <li>Filtros funcionam e atualizam os dados exibidos</li>
+            <li>Layout responsivo em 375px (mobile) e 1280px (desktop)</li>
+          </ul>
+        </div>
+
+        <div class="checklist-section">
+          <h4>Auth</h4>
+          <ul>
+            <li>Login com credenciais corretas funciona</li>
+            <li>Login com credenciais incorretas exibe mensagem de erro (genérica)</li>
+            <li>Signup cria usuário e perfil corretamente</li>
+            <li>AuthGuard redireciona não-autenticados para /login</li>
+            <li>Logout limpa sessão e redireciona para /login</li>
+          </ul>
+        </div>
+
+        <div class="checklist-section">
+          <h4>Supabase (queries e mutations)</h4>
+          <ul>
+            <li>Query retorna dados esperados para o usuário autenticado</li>
+            <li>RLS: usuário A não consegue acessar dados do usuário B</li>
+            <li>Mutations (insert/update/delete) funcionam e refletem na UI</li>
+            <li>Erros de rede são tratados com mensagem ao usuário</li>
+          </ul>
+        </div>
+
+        <div class="checklist-section">
+          <h4>Inputs e formulários</h4>
+          <ul>
+            <li>Formato válido é aceito e processado</li>
+            <li>Formato inválido é rejeitado com mensagem clara</li>
+            <li>Validação Zod funciona no submit</li>
+            <li>Feedback visual de loading durante submit</li>
+            <li>Campos obrigatórios bloqueiam submit quando vazios</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="report">
+        <h2>Formato de report do Claude Code</h2>
+        <p>Ao concluir cada sprint, o Claude Code deve apresentar o resultado dos testes neste formato:</p>
+        <div class="prompt-label">💬 Formato de Report — copiar para docs/SPRINTS.md</div>
+        <div class="prompt-block">## Resultado dos testes — Sprint [N]
+
+### Passaram ✅
+- [Lista dos testes executados com sucesso]
+
+### Falharam ❌
+- [Lista de falhas com descrição e como corrigir]
+
+### Não testados ⚠️
+- [Lista de itens que não foram testados e por quê]</div>
+      </section>
+
+      <section class="section" id="criterio">
+        <h2>Critério de sprint aprovado</h2>
+        <div class="advance">
+          <div class="advance-title">✅ Critério de Sprint Aprovado</div>
+          <ul>
+            <li>Todos os critérios de aceite do Master Prompt atendidos</li>
+            <li>Nenhum teste obrigatório falhando</li>
+            <li>RLS testado e funcionando (isolamento verificado)</li>
+            <li>Responsividade verificada em mobile e desktop</li>
+            <li>Documentação atualizada (CHANGELOG, SPRINTS)</li>
+            <li>Checklist de segurança aprovado</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Versão</th><th>O que mudou</th><th>Responsável</th></tr></thead>
+            <tbody>
+              <tr><td>2026-03-02</td><td>1.0</td><td>Criação inicial</td><td>FXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>Versão 1.0 — 2026-03-02</span>
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>

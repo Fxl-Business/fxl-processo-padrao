@@ -29,6 +29,7 @@
       .section { margin-bottom: 48px; }
       h2 { font-size: 20px; font-weight: 700; color: #1b3a5c; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e0e8f0; scroll-margin-top: 60px; }
       h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 24px 0 10px; }
+      h4 { font-size: 14px; font-weight: 700; color: #1a1a2e; margin: 18px 0 8px; }
       p { margin-bottom: 14px; }
       ul, ol { padding-left: 24px; margin-bottom: 14px; }
       li { margin-bottom: 6px; }
@@ -46,6 +47,14 @@
       .advance { background: #e8f5e9; border-left: 4px solid #2e8b57; border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; font-weight: 600; color: #1b5e20; font-size: 14px; }
       .warning { background: #fff8e1; border-left: 4px solid #f59e0b; border-radius: 0 6px 6px 0; padding: 14px 20px; margin: 20px 0; font-size: 14px; color: #7a5800; }
       .type-badge { display: inline-block; background: #1b3a5c; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
+      .path-badge-primary { display: inline-flex; align-items: center; gap: 6px; background: #e8f5e9; color: #1b5e20; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; border: 1px solid #2e8b57; }
+      .path-badge-secondary { display: inline-flex; align-items: center; gap: 6px; background: #fff8e1; color: #7a5800; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; border: 1px solid #f59e0b; }
+      .path-card { border-radius: 8px; padding: 24px 28px; margin-bottom: 36px; }
+      .path-card.primary { background: #f0faf2; border: 2px solid #2e8b57; }
+      .path-card.secondary { background: #fffdf0; border: 2px solid #f59e0b; }
+      .path-card h2 { border-color: transparent; margin-bottom: 8px; }
+      .path-card.primary h2 { color: #1b5e20; }
+      .path-card.secondary h2 { color: #7a5800; }
       .flow-list { background: #f8f9fa; border: 1px solid #e0e8f0; border-radius: 8px; padding: 16px 24px; margin-bottom: 20px; }
       .flow-list ol { padding-left: 20px; margin: 0; }
       .flow-list li { margin-bottom: 6px; font-size: 14px; }
@@ -72,26 +81,18 @@
         <div class="label">FXL Business Intelligence — Fases do Processo</div>
         <h1>Fase 3 — Desenvolvimento</h1>
         <div class="subtitle">Transformação do wireframe aprovado em sistema funcional</div>
-        <div class="meta"><span>Versão 1.0</span><span>2026</span></div>
+        <div class="meta"><span>Versão 2.0</span><span>2026-03-02</span></div>
       </header>
 
       <nav class="toc">
         <h3>Sumário</h3>
         <ol>
           <li><a href="#objetivo">Objetivo</a></li>
-          <li><a href="#bi-personalizado">BI Personalizado</a>
-            <ol>
-              <li><a href="#prompt-dev">Prompt — Gerar Prompt de Desenvolvimento</a></li>
-              <li><a href="#regras">Regras de Desenvolvimento</a></li>
-              <li><a href="#criterio-bi">Critério de Avanço</a></li>
-            </ol>
-          </li>
-          <li><a href="#produto-fxl">Produto FXL</a>
-            <ol>
-              <li><a href="#consideracoes-produto">Considerações Adicionais</a></li>
-              <li><a href="#criterio-produto">Critério de Avanço</a></li>
-            </ol>
-          </li>
+          <li><a href="#caminhos">Caminhos de desenvolvimento</a></li>
+          <li><a href="#claude-code">Caminho 1: Claude Code (Padrão)</a></li>
+          <li><a href="#bi-personalizado">BI Personalizado</a></li>
+          <li><a href="#produto-fxl">Produto FXL</a></li>
+          <li><a href="#lovable">Caminho 2: Lovable (Temporário)</a></li>
           <li><a href="#historico">Histórico de Versões</a></li>
         </ol>
       </nav>
@@ -102,9 +103,111 @@
         <div class="warning">⚠️ Qualquer solicitação de mudança de escopo durante o desenvolvimento deve ser registrada e avaliada. Mudanças estruturais exigem nova aprovação do wireframe.</div>
       </section>
 
+      <section class="section" id="caminhos">
+        <h2>Caminhos de desenvolvimento</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Caminho</th><th>Quando usar</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Claude Code</strong></td><td>Padrão para todos os novos projetos</td><td>✅ Padrão</td></tr>
+              <tr><td><strong>Lovable</strong></td><td>Projetos já em andamento no Lovable</td><td>⚠️ Temporário</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="path-card primary" id="claude-code">
+        <span class="path-badge-primary">✅ Caminho Padrão</span>
+        <h2>Caminho 1: Claude Code</h2>
+
+        <h3>Fluxo</h3>
+        <div class="flow-list">
+          <ol>
+            <li>Criar repositório do projeto no GitHub</li>
+            <li>Copiar template <code>CLAUDE.md</code> de <code>build/arquitetura/claude_md_projeto.md</code> e preencher</li>
+            <li>Planejar sprints (tabela com escopo, dependência, critério de aceite)</li>
+            <li>Montar o Master Prompt usando o template de <code>build/arquitetura/master_prompt.md</code></li>
+            <li>Executar o sprint no Claude Code</li>
+            <li>Revisar: testes, segurança, documentação</li>
+            <li>Repetir passos 4–6 para cada sprint</li>
+            <li>Sistema completo → Fase 4</li>
+          </ol>
+        </div>
+
+        <h3>Referências obrigatórias</h3>
+        <p>Antes de iniciar, ler via caminho absoluto (configurado no CLAUDE.md do projeto):</p>
+        <ul>
+          <li><code>build/arquitetura/premissas_gerais.md</code> — stack e estrutura de pastas</li>
+          <li><code>build/arquitetura/supabase.md</code> — conexão, Auth, RLS</li>
+          <li><code>build/arquitetura/deploy_vercel.md</code> — setup e checklist de deploy</li>
+          <li><code>build/arquitetura/seguranca.md</code> — checklist anti AI-slop</li>
+          <li><code>build/arquitetura/testes.md</code> — o que testar e quando</li>
+          <li><code>build/arquitetura/master_prompt.md</code> — template do prompt de sprint</li>
+          <li><code>build/arquitetura/claude_md_projeto.md</code> — template do CLAUDE.md do projeto</li>
+        </ul>
+
+        <h3>Regras de desenvolvimento</h3>
+        <div class="rules-list">
+          <ul>
+            <li>Stack padrão: React + TypeScript + Tailwind + shadcn/ui + Supabase + Vercel + Vite</li>
+            <li>Seguir design system FXL (<code>build/design/design_system.md</code>)</li>
+            <li>Skeleton loading obrigatório em todas as telas que carregam dados</li>
+            <li>Filtro de período com mês atual como padrão</li>
+            <li>Responsivo: desktop prioritário, mobile funcional</li>
+            <li>Sem dependências não autorizadas (ver <code>build/arquitetura/premissas_gerais.md</code>)</li>
+            <li>TypeScript strict mode — nunca usar <code>any</code></li>
+            <li>RLS obrigatório em toda tabela Supabase</li>
+            <li>Executar checklist de segurança antes de concluir cada sprint</li>
+            <li>Documentar decisões técnicas em <code>docs/SPRINTS.md</code> e <code>docs/CHANGELOG.md</code></li>
+          </ul>
+        </div>
+      </div>
+
       <section class="section" id="bi-personalizado" data-tipo="bi">
         <h2>BI Personalizado</h2>
         <span class="type-badge">BI Personalizado</span>
+
+        <h3>Entradas necessárias</h3>
+        <ul>
+          <li>Blueprint aprovado (Fase 2)</li>
+          <li>Wireframe visual (referência)</li>
+          <li>Design system FXL (<code>build/design/design_system.md</code>)</li>
+          <li>Dados reais ou amostra do cliente</li>
+        </ul>
+
+        <h3>Saída esperada</h3>
+        <ul>
+          <li>Repositório com código-fonte versionado</li>
+          <li>Aplicação funcional deployada na Vercel</li>
+          <li>Documentação técnica em <code>docs/</code></li>
+          <li>Dados de teste carregados</li>
+        </ul>
+
+        <h3>Critério de Avanço</h3>
+        <div class="advance">✅ Critério de Avanço — Sistema funcional com todas as telas do Blueprint implementadas. Checklist de segurança aprovado. Pronto para auditoria.</div>
+      </section>
+
+      <section class="section" id="produto-fxl" data-tipo="produto">
+        <h2>Produto FXL</h2>
+        <span class="type-badge">Produto FXL</span>
+        <p>O fluxo é idêntico ao BI Personalizado. As considerações abaixo são específicas para produtos com múltiplos usuários.</p>
+
+        <h3>Considerações adicionais para Produto</h3>
+        <ul>
+          <li>Testar com dados de múltiplos perfis fictícios</li>
+          <li>Garantir que não há dados hardcoded de um contexto específico</li>
+          <li>UI autoexplicativa — o usuário não terá onboarding personalizado</li>
+          <li>Se SaaS: considerar isolamento de dados entre tenants desde o início</li>
+        </ul>
+
+        <h3>Critério de Avanço</h3>
+        <div class="advance">✅ Critério de Avanço — Sistema funcional. Testado com múltiplos perfis de dados. Checklist de segurança aprovado. Pronto para auditoria.</div>
+      </section>
+
+      <div class="path-card secondary" id="lovable">
+        <span class="path-badge-secondary">⚠️ Temporário — Em descontinuação</span>
+        <h2>Caminho 2: Lovable</h2>
+        <div class="warning">⚠️ Este caminho está em descontinuação. Usar apenas para projetos já iniciados no Lovable. <strong>Novos projetos devem usar o Caminho 1 (Claude Code).</strong></div>
 
         <h3>Fluxo</h3>
         <div class="flow-list">
@@ -125,7 +228,7 @@
           <li>Dados reais ou amostra do cliente</li>
         </ul>
 
-        <h3 id="prompt-dev">Prompt — Gerar Prompt de Desenvolvimento</h3>
+        <h3>Prompt — Gerar Prompt de Desenvolvimento</h3>
         <div class="prompt-label">💬 Prompt</div>
         <div class="prompt-block">O wireframe foi aprovado. Com base no Blueprint e no Documento de Briefing, gere o Prompt de Desenvolvimento completo para o Lovable.
 
@@ -139,7 +242,7 @@ Incluir:
 
 [COLE O BLUEPRINT AQUI]</div>
 
-        <h3 id="regras">Regras de Desenvolvimento</h3>
+        <h3>Regras de desenvolvimento (Lovable)</h3>
         <div class="rules-list">
           <ul>
             <li>Seguir design system FXL</li>
@@ -149,34 +252,7 @@ Incluir:
             <li>Sem dependências externas desnecessárias</li>
           </ul>
         </div>
-
-        <h3>Saída esperada</h3>
-        <ul>
-          <li>Prompt de Desenvolvimento completo</li>
-          <li>Aplicação funcional no Lovable</li>
-          <li>Dados de teste carregados</li>
-        </ul>
-
-        <h3 id="criterio-bi">Critério de Avanço</h3>
-        <div class="advance">✅ Critério de Avanço — Sistema funcional com todas as telas do Blueprint implementadas. Pronto para auditoria.</div>
-      </section>
-
-      <section class="section" id="produto-fxl" data-tipo="produto">
-        <h2>Produto FXL</h2>
-        <span class="type-badge">Produto FXL</span>
-        <p>O fluxo é idêntico ao BI Personalizado. As considerações abaixo são específicas para produtos com múltiplos usuários.</p>
-
-        <h3 id="consideracoes-produto">Considerações Adicionais para Produto</h3>
-        <ul>
-          <li>Testar com dados de múltiplos perfis fictícios</li>
-          <li>Garantir que não há dados hardcoded de um contexto específico</li>
-          <li>UI autoexplicativa — o usuário não terá onboarding personalizado</li>
-          <li>Se SaaS: considerar isolamento de dados entre tenants desde o início</li>
-        </ul>
-
-        <h3 id="criterio-produto">Critério de Avanço</h3>
-        <div class="advance">✅ Critério de Avanço — Sistema funcional. Testado com múltiplos perfis de dados. Pronto para auditoria.</div>
-      </section>
+      </div>
 
       <section class="section" id="historico">
         <h2>Histórico de Versões</h2>
@@ -186,6 +262,7 @@ Incluir:
             <tbody>
               <tr><td>2026-02-27</td><td>1.0</td><td>Criação inicial do documento</td><td>FXL</td></tr>
               <tr><td>2026-03-01</td><td>1.1</td><td>Favicon, seletor de tipo (tabs BI/Produto) e data-tipo nas sections</td><td>FXL</td></tr>
+              <tr><td>2026-03-02</td><td>2.0</td><td>Dois caminhos de desenvolvimento — Claude Code (padrão) e Lovable (temporário). Referências à build/arquitetura/. Regras expandidas para Claude Code.</td><td>FXL</td></tr>
             </tbody>
           </table>
         </div>
@@ -193,7 +270,7 @@ Incluir:
     </div>
     <footer>
       <div class="footer-inner">
-        <span>Versão 1.0 — 2026</span>
+        <span>Versão 2.0 — 2026-03-02</span>
         <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
         <span>FXL Business Intelligence — Uso Interno</span>
       </div>

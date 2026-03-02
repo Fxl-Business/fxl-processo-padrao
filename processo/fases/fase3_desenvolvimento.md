@@ -6,11 +6,99 @@ Transformar o wireframe aprovado em sistema funcional. O desenvolvimento segue o
 
 ---
 
+## Caminhos de desenvolvimento
+
+| Caminho | Quando usar | Status |
+|---|---|---|
+| Claude Code | Padrão para todos os novos projetos | ✅ Padrão |
+| Lovable | Projetos já em andamento no Lovable | ⚠️ Temporário |
+
+---
+
+## Caminho 1: Claude Code (Padrão)
+
+### Fluxo
+
+1. Criar repositório do projeto no GitHub
+2. Copiar template `CLAUDE.md` de `build/arquitetura/claude_md_projeto.md` e preencher
+3. Planejar sprints (tabela com escopo, dependência, critério de aceite por sprint)
+4. Montar o Master Prompt usando o template de `build/arquitetura/master_prompt.md`
+5. Executar o sprint no Claude Code
+6. Revisar: testes, segurança, documentação
+7. Repetir passos 4–6 para cada sprint
+8. Sistema completo → Fase 4
+
+### Referências obrigatórias
+
+Antes de iniciar, ler (via caminho absoluto no CLAUDE.md do projeto):
+- `build/arquitetura/premissas_gerais.md` — stack e estrutura de pastas
+- `build/arquitetura/supabase.md` — conexão, Auth, RLS
+- `build/arquitetura/deploy_vercel.md` — setup e checklist de deploy
+- `build/arquitetura/seguranca.md` — checklist anti AI-slop
+- `build/arquitetura/testes.md` — o que testar e quando
+- `build/arquitetura/master_prompt.md` — template do prompt de sprint
+- `build/arquitetura/claude_md_projeto.md` — template do CLAUDE.md do projeto
+
+### Regras de desenvolvimento
+
+- Seguir stack padrão: React + TypeScript + Tailwind + shadcn/ui + Supabase + Vercel + Vite
+- Seguir design system FXL (`build/design/design_system.md`)
+- Skeleton loading obrigatório em todas as telas que carregam dados
+- Filtro de período com mês atual como padrão
+- Responsivo: desktop prioritário, mobile funcional
+- Sem dependências não autorizadas (ver `build/arquitetura/premissas_gerais.md`)
+- TypeScript strict mode — nunca usar `any`
+- RLS obrigatório em toda tabela Supabase
+- Executar checklist de segurança antes de concluir cada sprint
+- Documentar decisões técnicas em `docs/SPRINTS.md` e `docs/CHANGELOG.md`
+
+---
+
 ## Por tipo de projeto
 
 ### BI Personalizado
 
-**Fluxo:**
+#### Entradas
+
+- Blueprint aprovado (Fase 2)
+- Wireframe visual (referência)
+- Design system FXL (`build/design/design_system.md`)
+- Dados reais ou amostra do cliente
+
+#### Saída esperada
+
+- Repositório com código-fonte versionado
+- Aplicação funcional deployada na Vercel
+- Documentação técnica em `docs/`
+- Dados de teste carregados
+
+#### Critério de avanço
+
+✅ Sistema funcional com todas as telas do Blueprint implementadas. Checklist de segurança aprovado. Pronto para auditoria.
+
+---
+
+### Produto FXL
+
+#### Considerações adicionais para Produto
+
+- Testar com dados de múltiplos perfis fictícios
+- Garantir que não há dados hardcoded de um contexto específico
+- UI autoexplicativa (usuário não terá onboarding personalizado)
+- Se SaaS: considerar isolamento de dados entre tenants desde o início
+
+#### Critério de avanço
+
+✅ Sistema funcional. Testado com múltiplos perfis de dados. Checklist de segurança aprovado. Pronto para auditoria.
+
+---
+
+## Caminho 2: Lovable (Temporário)
+
+> ⚠️ Este caminho está em descontinuação. Usar apenas para projetos já iniciados no Lovable. Novos projetos devem usar o Caminho 1 (Claude Code).
+
+### Fluxo
+
 1. Claude gera o Prompt de Desenvolvimento a partir do Blueprint
 2. Operador cola o prompt no Lovable
 3. Lovable gera a aplicação
@@ -40,7 +128,7 @@ Incluir:
 [COLE O BLUEPRINT AQUI]
 ```
 
-#### Regras de desenvolvimento
+#### Regras de desenvolvimento (Lovable)
 
 - Seguir design system FXL
 - Skeleton loading obrigatório em todas as telas
@@ -48,37 +136,13 @@ Incluir:
 - Responsivo: desktop prioritário, mobile funcional
 - Sem dependências externas desnecessárias
 
-#### Saída esperada
-
-- Prompt de Desenvolvimento completo
-- Aplicação funcional no Lovable
-- Dados de teste carregados
-
-#### Critério de avanço
-
-✅ Sistema funcional com todas as telas do Blueprint implementadas. Pronto para auditoria.
-
----
-
-### Produto FXL
-
-**Fluxo:** Idêntico ao BI Personalizado.
-
-#### Considerações adicionais para Produto
-
-- Testar com dados de múltiplos perfis fictícios
-- Garantir que não há dados hardcoded de um contexto específico
-- UI autoexplicativa (usuário não terá onboarding personalizado)
-- Se SaaS: considerar isolamento de dados entre tenants desde o início
-
-#### Critério de avanço
-
-✅ Sistema funcional. Testado com múltiplos perfis de dados. Pronto para auditoria.
-
 ---
 
 ## Checklist de validação MD ↔ HTML
 
-- [ ] Regras de desenvolvimento listadas
-- [ ] Prompt de desenvolvimento completo
-- [ ] Considerações específicas para Produto destacadas
+- [ ] Dois caminhos de desenvolvimento documentados (Claude Code e Lovable)
+- [ ] Claude Code claramente marcado como padrão
+- [ ] Lovable claramente marcado como temporário com aviso de descontinuação
+- [ ] Regras de desenvolvimento expandidas para Claude Code
+- [ ] Referências à pasta `build/arquitetura/` presentes
+- [ ] Seções BI Personalizado e Produto com critérios de avanço

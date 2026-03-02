@@ -38,13 +38,13 @@ O Blueprint é gerado a partir do briefing pelo Claude Project "FXL — Wirefram
 
 ---
 
-## Fase 3 — Desenvolvimento no Lovable
+## Fase 3 — Desenvolvimento
 
-O Claude gera o Prompt de Desenvolvimento combinando Blueprint + regras do design system. O operador cola no Lovable. O desenvolvimento segue rigorosamente o Blueprint aprovado pelo cliente.
+O desenvolvimento segue o Blueprint aprovado pelo cliente. O caminho padrão é Claude Code — ver `processo/fases/fase3_desenvolvimento.md` para o fluxo completo com referências à pasta `build/arquitetura/`.
 
 → Detalhamento completo: processo/fases/fase3_desenvolvimento.md
 
-**Critério de Avanço:** Sistema funcional com todas as telas do Blueprint implementadas. Pronto para auditoria.
+**Critério de Avanço:** Sistema funcional com todas as telas do Blueprint implementadas. Checklist de segurança aprovado. Pronto para auditoria.
 
 ---
 

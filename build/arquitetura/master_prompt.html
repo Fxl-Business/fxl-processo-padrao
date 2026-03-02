@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master Prompt — Template de Desenvolvimento — FXL</title>
+    <link rel="icon" type="image/png" href="../../assets/favicon.png">
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body { font-family: Inter, system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
+      .topnav { background: #1b3a5c; padding: 10px 24px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+      .topnav a { color: #fff; text-decoration: none; font-size: 13px; opacity: 0.85; transition: opacity 0.2s; }
+      .topnav a:hover { opacity: 1; }
+      .wrapper { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+      .doc-header { margin-bottom: 36px; padding-bottom: 24px; border-bottom: 2px solid #e0e8f0; }
+      .doc-header .label { font-size: 12px; font-weight: 600; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+      .doc-header h1 { font-size: 28px; font-weight: 700; color: #1b3a5c; line-height: 1.2; margin-bottom: 8px; }
+      .doc-header .subtitle { font-size: 16px; color: #5a6a7a; margin-bottom: 16px; }
+      .doc-header .meta { font-size: 12px; color: #8a9aaa; display: flex; gap: 16px; }
+      .toc { background: #f0f4f8; border: 1px solid #d0d8e4; border-radius: 8px; padding: 20px 24px; margin-bottom: 40px; }
+      .toc h3 { font-size: 13px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+      .toc ol { padding-left: 20px; }
+      .toc li { margin-bottom: 4px; }
+      .toc a { color: #1b3a5c; text-decoration: none; font-size: 14px; }
+      .toc a:hover { text-decoration: underline; }
+      .section { margin-bottom: 48px; }
+      h2 { font-size: 20px; font-weight: 700; color: #1b3a5c; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e0e8f0; scroll-margin-top: 60px; }
+      h3 { font-size: 16px; font-weight: 700; color: #1a1a2e; margin: 24px 0 10px; }
+      p { margin-bottom: 14px; }
+      ul, ol { padding-left: 24px; margin-bottom: 14px; }
+      li { margin-bottom: 6px; }
+      strong { font-weight: 600; }
+      code { font-family: "Courier New", monospace; background: #f0f4f8; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+      .principles { background: #f0f4f8; border-radius: 8px; padding: 20px 24px; margin: 16px 0; }
+      .principles ol { padding-left: 20px; margin: 0; }
+      .principles li { padding: 4px 0; font-size: 14px; }
+      .prompt-label { font-size: 12px; font-weight: 700; color: #1b3a5c; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+      .prompt-block { background: #f0f4f8; border-left: 4px solid #1b3a5c; border-radius: 0 6px 6px 0; padding: 16px 20px; margin: 20px 0; font-family: "Courier New", monospace; font-size: 12.5px; color: #2a3a4a; white-space: pre-wrap; line-height: 1.65; }
+      .table-wrap { overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid #e0e0e0; }
+      table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      thead tr { background: #1b3a5c; color: #fff; }
+      thead th { padding: 10px 14px; text-align: left; font-weight: 600; }
+      tbody tr:nth-child(odd) { background: #f5f5f5; }
+      tbody tr:nth-child(even) { background: #fff; }
+      tbody td { padding: 10px 14px; border-bottom: 1px solid #e8e8e8; vertical-align: top; }
+      footer { background: #1b3a5c; color: #fff; text-align: center; padding: 20px; font-size: 12px; margin-top: 60px; }
+      footer a { color: #90b4d4; text-decoration: none; }
+      footer a:hover { text-decoration: underline; }
+      .footer-inner { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+    <nav class="topnav">
+      <a href="../../index.html">← Índice Geral</a>
+      <a href="https://github.com/FXL-BI/fxl-processo-padrao/blob/main/build/arquitetura/master_prompt.md" target="_blank">Ver MD no GitHub</a>
+    </nav>
+    <div class="wrapper">
+      <header class="doc-header">
+        <div class="label">FXL Business Intelligence — Build / Arquitetura</div>
+        <h1>Master Prompt — Template de Desenvolvimento</h1>
+        <div class="subtitle">Template para montar prompts de sprint no Claude Code</div>
+        <div class="meta"><span>Versão 1.0</span><span>2026-03-02</span></div>
+      </header>
+
+      <nav class="toc">
+        <h3>Sumário</h3>
+        <ol>
+          <li><a href="#filosofia">Filosofia</a></li>
+          <li><a href="#antes">Antes de criar o Master Prompt</a></li>
+          <li><a href="#template">Template do Master Prompt</a></li>
+          <li><a href="#exemplo">Exemplo preenchido — Sprint 1 de "BI Conta Azul"</a></li>
+          <li><a href="#historico">Histórico de Versões</a></li>
+        </ol>
+      </nav>
+
+      <section class="section" id="filosofia">
+        <h2>Filosofia</h2>
+        <p>O Claude Code é tratado como uma equipe de desenvolvedores. O Master Prompt é o briefing de sprint — deve ser específico, com critérios de aceite claros e escopo fechado.</p>
+        <div class="principles">
+          <ol>
+            <li><strong>Tratar a IA como equipe de devs</strong> — Master Prompt = briefing de sprint completo</li>
+            <li><strong>Dividir em sprints</strong> — escopo fechado, critérios de aceite, entregáveis claros</li>
+            <li><strong>Autonomia com documentação</strong> — tomar decisões técnicas sem perguntar, documentar tudo em <code>docs/SPRINTS.md</code></li>
+            <li><strong>Testes são entregáveis</strong> — sprint completo = testes passando</li>
+            <li><strong>Documentação gerada junto</strong> — README, CHANGELOG e docs atualizados por sprint</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="antes">
+        <h2>Antes de criar o Master Prompt</h2>
+
+        <h3>Passo 1 — Planejar os sprints</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Sprint</th><th>Escopo</th><th>Dependência</th><th>Critério de aceite</th></tr></thead>
+            <tbody>
+              <tr><td>Sprint 1</td><td>Setup + Auth</td><td>—</td><td>Login/signup funcional, rotas protegidas</td></tr>
+              <tr><td>Sprint 2</td><td>[Tela principal]</td><td>Sprint 1</td><td>Dados exibidos, filtros funcionando</td></tr>
+              <tr><td>Sprint 3</td><td>[Módulo X]</td><td>Sprint 2</td><td>Funcionalidades do módulo completas</td></tr>
+              <tr><td>Sprint N</td><td>Deploy + Segurança</td><td>Sprint N-1</td><td>Checklist de segurança aprovado</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>Passo 2 — Blueprint técnico por sprint</h3>
+        <p>Para cada sprint, definir antes de escrever o prompt:</p>
+        <ul>
+          <li>Quais telas e componentes serão criados</li>
+          <li>Quais tabelas no Supabase serão necessárias</li>
+          <li>Quais RLS policies serão criadas</li>
+          <li>Quais queries serão usadas</li>
+          <li>Dados de teste realistas (nunca lorem ipsum)</li>
+        </ul>
+
+        <h3>Passo 3 — Escrever o Master Prompt usando o template</h3>
+      </section>
+
+      <section class="section" id="template">
+        <h2>Template do Master Prompt</h2>
+        <div class="prompt-label">💬 Template — copiar e preencher para cada sprint</div>
+        <div class="prompt-block"># Master Prompt — [Nome do Projeto] — Sprint [N]
+
+## Contexto do projeto
+[Descrição breve do que é o projeto, para quem é e o problema que resolve]
+
+## Premissas técnicas
+Antes de começar, leia obrigatoriamente:
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/premissas_gerais.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/supabase.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/deploy_vercel.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/seguranca.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/testes.md
+
+## Sprint atual: Sprint [N] — [Nome do Sprint]
+
+### Objetivo
+[O que este sprint entrega — em uma frase]
+
+### Escopo
+
+#### [Nome da Tela/Componente 1]
+- Localização: `src/pages/[Nome].tsx`
+- O que exibe: [descrição]
+- De onde vêm os dados: [tabela Supabase ou prop]
+- Interações: [o que o usuário pode fazer]
+
+#### [Nome da Tela/Componente 2]
+[repetir estrutura acima]
+
+### Schema do banco (Supabase)
+
+```sql
+CREATE TABLE nome_da_tabela (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
+  [campos...],
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE nome_da_tabela ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "users_select_own" ON nome_da_tabela
+  FOR SELECT USING (auth.uid() = user_id);
+```
+
+### Dados de teste
+[Dados fictícios e realistas. Nunca lorem ipsum.]
+
+### Critério de aceite
+- [ ] [Critério específico e verificável]
+- [ ] Checklist de segurança de `seguranca.md` aprovado
+- [ ] Testes do sprint passando (ver `testes.md`)
+- [ ] `docs/SPRINTS.md` atualizado com decisões tomadas
+- [ ] `docs/CHANGELOG.md` atualizado
+
+## Regras de execução
+1. Autonomia total — tome decisões técnicas sem perguntar. Documente em `docs/SPRINTS.md`
+2. Documentação contínua — atualizar CHANGELOG e SPRINTS a cada feature concluída
+3. Segurança primeiro — executar checklist de `seguranca.md` antes de concluir o sprint
+4. Ao concluir — apresentar resumo: implementado, decisões autônomas, critérios atendidos, débitos técnicos</div>
+      </section>
+
+      <section class="section" id="exemplo">
+        <h2>Exemplo preenchido — Sprint 1 de "BI Conta Azul"</h2>
+        <p>Exemplo completo e real de como usar o template acima. Projeto fictício — BI financeiro para PMEs que usam Conta Azul.</p>
+        <div class="prompt-label">💬 Exemplo — Sprint 1 preenchido (BI Conta Azul)</div>
+        <div class="prompt-block"># Master Prompt — BI Conta Azul — Sprint 1: Setup + Auth
+
+## Contexto do projeto
+BI Conta Azul é um dashboard financeiro para PMEs que usam o software Conta Azul.
+Permite visualizar faturamento, despesas e fluxo de caixa com dados exportados do Conta Azul.
+Usuário primário: gestor financeiro da empresa. Um usuário = uma empresa.
+
+## Premissas técnicas
+Antes de começar, leia obrigatoriamente:
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/premissas_gerais.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/supabase.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/deploy_vercel.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/seguranca.md
+- [CAMINHO_ABSOLUTO]/fxl-processo-padrao/build/arquitetura/testes.md
+
+## Sprint atual: Sprint 1 — Setup + Autenticação
+
+### Objetivo
+Projeto configurado com a stack FXL padrão e autenticação funcional com Supabase Auth.
+
+### Escopo
+
+#### Inicialização do projeto
+- Criar projeto React + TypeScript + Vite
+- Configurar Tailwind CSS e shadcn/ui
+- Configurar path aliases (@/components, @/hooks, @/types, @/lib)
+- Configurar tsconfig.json com strict: true
+- Criar .env.example com VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY
+- Criar estrutura de pastas conforme premissas_gerais.md
+
+#### Conexão com Supabase
+- Criar src/lib/supabase.ts com validação de variáveis de ambiente
+- Configurar cliente Supabase com tipagem TypeScript
+
+#### Tela de Login (`src/pages/Login.tsx`)
+- Exibe: formulário com email e senha, link para cadastro
+- Comportamento: chama supabase.auth.signInWithPassword
+- Feedback: loading state no botão, mensagem de erro genérica em falha
+- Ao autenticar com sucesso: redirecionar para /dashboard
+
+#### Tela de Cadastro (`src/pages/SignUp.tsx`)
+- Exibe: formulário com nome, email, senha e confirmação de senha
+- Comportamento: cria conta via supabase.auth.signUp, cria perfil em user_profiles
+- Validação: Zod — email válido, senha mínimo 8 caracteres, confirmação idêntica
+
+#### Hook de autenticação (`src/hooks/useAuth.ts`)
+- Expõe: user, session, loading, signIn, signOut
+- Usa supabase.auth.onAuthStateChange para estado reativo
+
+#### AuthGuard (`src/components/auth/AuthGuard.tsx`)
+- Redireciona para /login se não autenticado
+- Exibe skeleton loading enquanto carrega estado de auth
+- Envolve todas as rotas privadas em App.tsx
+
+#### Dashboard placeholder (`src/pages/Dashboard.tsx`)
+- Exibe: header com nome do usuário, botão de logout, texto "Sprint 2 em breve"
+- Acessível apenas via AuthGuard
+
+### Schema do banco (Supabase)
+
+```sql
+CREATE TABLE user_profiles (
+  id UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "users_select_own_profile" ON user_profiles
+  FOR SELECT USING (auth.uid() = id);
+
+CREATE POLICY "users_insert_own_profile" ON user_profiles
+  FOR INSERT WITH CHECK (auth.uid() = id);
+
+CREATE POLICY "users_update_own_profile" ON user_profiles
+  FOR UPDATE USING (auth.uid() = id);
+```
+
+### Dados de teste
+- Usuário 1: maria.gestora@contaazul-demo.com / Senha@2026
+- Usuário 2: joao.diretor@contaazul-demo.com / Senha@2026
+
+### Critério de aceite
+- [ ] Projeto inicializado com React + TypeScript + Vite, sem erros de build
+- [ ] Tailwind e shadcn/ui configurados e funcionando
+- [ ] Conexão com Supabase estabelecida (supabase.ts sem erros)
+- [ ] Login com email/senha funcional (usuários de teste conseguem entrar)
+- [ ] Cadastro cria usuário em auth.users e perfil em user_profiles
+- [ ] AuthGuard redireciona não-autenticados para /login
+- [ ] Dashboard placeholder acessível apenas para autenticados
+- [ ] Logout funcional (limpa sessão e redireciona para /login)
+- [ ] Checklist de segurança de seguranca.md aprovado para este sprint
+
+## Regras de execução
+1. Autonomia total — decisões de implementação sem perguntar. Documentar em docs/SPRINTS.md
+2. Documentação contínua — CHANGELOG e SPRINTS a cada feature
+3. Segurança primeiro — RLS obrigatório, .env no .gitignore antes do primeiro commit
+4. Ao concluir — apresentar: implementado, decisões autônomas, critérios atendidos, débitos</div>
+      </section>
+
+      <section class="section" id="historico">
+        <h2>Histórico de Versões</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Data</th><th>Versão</th><th>O que mudou</th><th>Responsável</th></tr></thead>
+            <tbody>
+              <tr><td>2026-03-02</td><td>1.0</td><td>Criação inicial</td><td>FXL</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <div class="footer-inner">
+        <span>Versão 1.0 — 2026-03-02</span>
+        <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
+        <span>FXL Business Intelligence — Uso Interno</span>
+      </div>
+    </footer>
+  </body>
+</html>
