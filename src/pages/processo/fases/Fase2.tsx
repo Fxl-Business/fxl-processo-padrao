@@ -1,0 +1,87 @@
+import InfoBlock from '@/components/docs/InfoBlock'
+import PageHeader from '@/components/docs/PageHeader'
+import PromptBlock from '@/components/docs/PromptBlock'
+
+const PROMPT_WIREFRAME = `Olá. Vamos iniciar a Fase 2 — Wireframe Estratégico.
+
+Leia antes de começar:
+- docs/processo/fases/fase2_wireframe.md
+- docs/processo/fases/fase1_diagnostico.md
+
+Cole abaixo o Briefing validado e gere o Blueprint completo, pronto para revisão visual:
+
+[BRIEFING AQUI]`
+
+export default function Fase2() {
+  return (
+    <div>
+      <PageHeader
+        badge="Fase 2"
+        title="Wireframe Estratégico"
+        description="Traduz o Briefing em Blueprint, organiza as telas do produto e busca aprovação antes de qualquer sprint."
+        version="1.0"
+        date="2026"
+      />
+
+      <div className="prose">
+        <h2>O que acontece nesta fase</h2>
+        <p>
+          Aqui a equipe para de discutir conceitos e passa a desenhar estrutura. O Blueprint vira a
+          referência oficial de telas, filtros, KPIs, tabelas e interações. Só depois disso o código
+          faz sentido.
+        </p>
+
+        <h2>Como o fluxo funciona</h2>
+        <ol>
+          <li>O Briefing validado entra no Project "FXL — Wireframe Builder".</li>
+          <li>O Blueprint textual é montado tela a tela.</li>
+          <li>O prompt resultante vai para o Claude Code no repositório de wireframes.</li>
+          <li>O wireframe é publicado para navegação e comentários.</li>
+          <li>A equipe itera até aprovação formal ou interna.</li>
+        </ol>
+
+        <h2>O que um bom Blueprint define</h2>
+        <ul>
+          <li>Objetivo de cada tela.</li>
+          <li>Filtros globais e locais.</li>
+          <li>Cards de KPI, gráficos, tabelas e ações.</li>
+          <li>Tela de Inputs e seu papel no fluxo operacional.</li>
+        </ul>
+
+        <h2>Onde o Whimsical entra</h2>
+        <p>
+          Se o time usar Whimsical como apoio de discussão visual, trate-o como artefato auxiliar.
+          A fonte de verdade continua sendo o Blueprint textual validado e o wireframe navegável
+          publicado para revisão.
+        </p>
+      </div>
+
+      <InfoBlock type="warning" className="mb-6">
+        <strong>Regra operacional:</strong> sem aprovação do wireframe, não existe Fase 3. Em BI
+        Personalizado a aprovação é do cliente; em Produto FXL, da equipe.
+      </InfoBlock>
+
+      <PromptBlock
+        label="Use este prompt ao gerar o Blueprint no Wireframe Builder"
+        prompt={PROMPT_WIREFRAME}
+      />
+
+      <div className="prose">
+        <h2>Erros comuns</h2>
+        <ul>
+          <li>
+            <strong>Pular a tela de Inputs</strong> — ela define como o dado entra no produto.
+          </li>
+          <li>
+            <strong>Confundir comentário visual com mudança de escopo</strong> — nem toda sugestão
+            de revisão altera o combinado.
+          </li>
+          <li>
+            <strong>Tratar o wireframe como decoração</strong> — ele é uma peça estratégica, não um
+            rascunho cosmético.
+          </li>
+        </ul>
+      </div>
+    </div>
+  )
+}

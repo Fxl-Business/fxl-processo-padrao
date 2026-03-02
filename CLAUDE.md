@@ -12,212 +12,132 @@ automatizada. Toda evolução do processo deve caminhar nessa direção.
 
 ---
 
-## REGRA 1 — PARIDADE OBRIGATÓRIA MD ↔ HTML
+## ESTRUTURA DO REPOSITÓRIO
 
-Todo arquivo `.md` possui um arquivo `.html` correspondente na mesma pasta.
-Eles são pares obrigatórios e devem estar sempre sincronizados.
-
-**Antes de concluir qualquer alteração, verifique:**
-
-- Se alterou um `.md` → o `.html` correspondente deve ser regerado na mesma sessão
-- Se alterou um `.html` → não faça isso. O `.html` é sempre gerado a partir do `.md`, nunca editado diretamente
-- Uma mudança em arquivo de processo pode afetar múltiplos arquivos em cascata — verifique sempre
-
-**Ao concluir qualquer edição, informe explicitamente:**
 ```
-✅ MD atualizado: [caminho do arquivo]
-✅ HTML regerado: [caminho do arquivo]
-```
-ou
-```
-⚠️ HTML pendente: [caminho do arquivo] — motivo: [razão]
+fxl-processo-padrao/
+│
+├── CLAUDE.md                    ← você está aqui
+├── README.md                    ← visão geral do projeto
+│
+├── docs/                        ← EXCLUSIVO PARA O CLAUDE
+│   ├── processo/
+│   │   ├── master/
+│   │   ├── identidade/
+│   │   ├── bi_personalizado/
+│   │   ├── produto/
+│   │   └── fases/
+│   ├── build/
+│   │   ├── wireframe/
+│   │   ├── design/
+│   │   └── arquitetura/
+│   └── suporte/
+│
+├── src/                         ← APLICAÇÃO REACT (para humanos)
+│   ├── components/
+│   ├── pages/
+│   └── lib/
+│
+├── public/
+├── package.json
+├── vite.config.ts
+├── tailwind.config.ts
+└── vercel.json
 ```
 
 ---
 
-## REGRA 2 — O QUE PERTENCE A CADA ARQUIVO
+## REGRA 1 — SEPARAÇÃO OBRIGATÓRIA: `/docs/` vs `/src/pages/`
 
-**Arquivo `.md` — lido pelo Claude como contexto**
+### `/docs/` — Lido pelo Claude como contexto operacional
+
+Contém a fonte da verdade do processo FXL. Escrito para o modelo.
+
 - Objetivo da fase ou documento
 - Entradas necessárias para execução
 - Instruções de execução (imperativo, direto)
 - Saída esperada com formato definido
 - Critério de avanço ou conclusão
-- Checklist de validação MD↔HTML
+- Prompts padrão escritos em 3ª pessoa operacional
+  - ✅ "Será utilizado o seguinte prompt padrão nas próximas interações:"
+  - ❌ "Use este prompt para iniciar uma conversa" ← isso vai na página React
 
-**Arquivo `.html` — lido por humanos no browser**
-- Versão visual e navegável do conteúdo do `.md`
+### `/src/pages/` — Lido por humanos na aplicação React
+
+Versão visual e navegável da documentação. Escrito para pessoas.
+
 - Contexto e raciocínio por trás das instruções
 - Exemplos reais e erros comuns
-- Prompts padrão para usar com o Claude (em blocos destacados)
-- Seção "Especificação do MD" — descreve o que deve estar no `.md` correspondente
-- Histórico de versões
+- Prompts em blocos destacados com botão de cópia, com orientação direta ao usuário
+  - ✅ "Use este prompt ao iniciar uma conversa no Project FXL — Processo Padrão"
+  - ❌ "Será utilizado o prompt padrão X" ← isso vai no MD
 
-**Nunca coloque prompts prontos no `.md`.**
-**Nunca edite o `.html` diretamente — ele é sempre gerado a partir do `.md`.**
-
----
-
-## REGRA 3 — PADRÃO HTML FXL
-
-Todo arquivo `.html` gerado deve seguir rigorosamente este padrão:
-
-### Estrutura obrigatória
-- Arquivo único autocontido — CSS e JS inline, sem dependências externas
-- Navegação no topo: link para `../../index.html` e link para o `.md` equivalente no GitHub
-- Sumário clicável com âncoras no início do conteúdo
-- Rodapé com versão, data e link para o repositório
-- **Sidebar de seção (quando aplicável):** páginas que fazem parte de uma seção
-  com múltiplos documentos devem incluir sidebar lateral com links para todos
-  os documentos da seção. O item ativo recebe fundo `#1B3A5C` e texto `#FFFFFF`.
-  Largura: 240px. Fundo: `#F0F4F8`. Posicionamento: sticky ao topo da área de conteúdo.
-  Em mobile (<768px): oculta com `display: none`.
-  Seções que atualmente requerem sidebar: `build/arquitetura/` e `processo/fases/`.
-
-### Visual
-- Fundo da página: `#F8F9FA`
-- Fundo do conteúdo: `#FFFFFF`
-- Texto principal: `#1A1A2E`
-- Fonte: `Inter, system-ui, sans-serif` (sem Google Fonts — autocontido)
-- Cor primária FXL: `#1B3A5C`
-- Largura máxima do conteúdo: `860px` centralizado com padding lateral
-- H1: `28px`, bold, cor `#1B3A5C`
-- H2: `20px`, bold, cor `#1B3A5C`
-- H3: `16px`, bold, cor `#1A1A2E`
-
-### Componentes visuais padronizados
-
-**Tabelas**
-- Header: fundo `#1B3A5C`, texto `#FFFFFF`, bold
-- Linhas alternadas: `#F5F5F5` e `#FFFFFF`
-- Borda: `1px solid #E0E0E0`
-- Width: 100%
-
-**Blocos de prompt (prompts para usar com Claude)**
-- Fundo: `#F0F4F8`
-- Borda esquerda: `4px solid #1B3A5C`
-- Prefixo: label "💬 Prompt" em bold antes do bloco
-- Fonte: monospace
-
-**Critério de avanço**
-- Fundo: `#E8F5E9`
-- Borda esquerda: `4px solid #2E8B57`
-- Prefixo: `✅ Critério de Avanço`
-- Texto bold verde `#2E8B57`
-
-**Avisos e pendências**
-- Fundo: `#FFF8E1`
-- Borda esquerda: `4px solid #F59E0B`
-- Prefixo: `⚠️`
-
-**Sumário**
-- Fundo: `#F0F4F8`
-- Borda: `1px solid #D0D8E4`
-- Links internos âncora, sem sublinhado, cor `#1B3A5C`
-
-**Navegação (topo)**
-- Barra fina `#1B3A5C` com links brancos: `← Índice Geral` e `Ver MD no GitHub`
-
-**Rodapé**
-- Fundo `#1B3A5C`, texto `#FFFFFF`
-- Versão | Data | Link para o repositório
+**Nunca copie texto literalmente entre o MD e a página React. São vozes diferentes.**
 
 ---
 
-## REGRA 4 — CASCATA DE MUDANÇAS
+## REGRA 2 — PARIDADE OBRIGATÓRIA: MD ↔ ROTA REACT
 
-Quando uma alteração no processo geral for solicitada, verifique obrigatoriamente:
+Cada arquivo `.md` em `/docs/` possui uma rota correspondente em `/src/pages/`.
+Eles são pares obrigatórios com vozes distintas e devem evoluir juntos.
 
-1. `processo/master/POP_MASTER.md` + `POP_MASTER.html` — impacta o roteamento geral?
-2. `processo/fases/` — impacta alguma fase específica?
-3. `processo/bi_personalizado/` ou `processo/produto/` — impacta algum POP específico?
-4. `pacotes/` — impacta os pacotes colados nos Claude Projects?
-5. `suporte/` — impacta biblioteca de KPIs ou padrões de build?
-6. `index.html` — precisa refletir alguma mudança estrutural?
+**Antes de concluir qualquer alteração, verifique:**
 
-Informe quais arquivos foram verificados e quais foram alterados.
+- Se criou ou alterou um `.md` em `/docs/` → a página React correspondente deve ser criada/atualizada na mesma sessão
+- Se alterou a página React → verifique se o MD precisa de atualização operacional
 
----
+**Mapeamento de rotas:**
 
-## REGRA 5 — NOMENCLATURA FXL
-
-| Usar | Evitar |
+| Arquivo em `/docs/` | Rota React |
 |---|---|
-| Dashboard | Painel, relatório visual, tela |
-| KPI | Métrica (quando for indicador-chave), número |
-| Módulo | Área, seção, bloco |
-| Briefing | Levantamento, formulário inicial |
-| Blueprint | Rascunho, esboço |
-| Auditoria | Teste, revisão |
-| Inputs | Uploads, importação de dados |
-| BI Personalizado | Dashboard de cliente, projeto customizado |
-| Produto | White-label, SaaS (como categoria geral) |
+| `docs/processo/master/POP_MASTER.md` | `/processo/master` |
+| `docs/processo/fases/fase1_diagnostico.md` | `/processo/fases/fase1` |
+| `docs/build/arquitetura/premissas_gerais.md` | `/build/arquitetura/premissas-gerais` |
+| `docs/suporte/biblioteca_kpis.md` | `/suporte/biblioteca-kpis` |
 
----
-
-## REGRA 6 — HISTÓRICO DE VERSÕES
-
-Ao atualizar qualquer arquivo, adicione uma linha na seção "Histórico de Versões" do `.html`:
-
+**Ao concluir qualquer edição, informe explicitamente:**
 ```
-| [data] | [versão] | [o que mudou] | [responsável] |
+✅ MD atualizado: [caminho]
+✅ Página React atualizada: [rota]
+```
+ou
+```
+⚠️ Página React pendente: [rota] — motivo: [razão]
 ```
 
 ---
 
-## REGRA 7 — SINALIZAÇÕES OBRIGATÓRIAS
+## REGRA 3 — NOMENCLATURA OFICIAL FXL
 
-Se ao editar um arquivo você identificar:
-
-- Um KPI novo relevante → sinalizar para adicionar à `suporte/biblioteca_kpis.md`
-- Uma melhoria de processo → sinalizar para incorporar ao POP correspondente
-- Um padrão de build recorrente → sinalizar para incorporar à pasta `build/`
-- Uma informação faltando que bloqueia a edição → perguntar antes de continuar
-
----
-
-## REGRA 8 — ENTREGA DE PROMPT
-
-**Ao finalizar:**
-- Sempre entregue um prompt completo e pronto para o Claude Code
-- O prompt deve especificar: quais arquivos alterar, o que muda em cada um, e o que verificar em cascata
-- **O prompt final deve ser entregue como arquivo `.md` para download**, além de exibido na conversa
-- O arquivo deve ser nomeado com padrão descritivo: `prompt_[escopo]_[acao].md`
-  - Exemplo: `prompt_sidebar_navegacao.md`, `prompt_fase3_adiciona_sprint.md`
-- Inclua a mensagem de commit sugerida no final do prompt
+Sempre usar os termos oficiais:
+- **Dashboard** — nunca "painel" ou "tela"
+- **KPI** — nunca "métrica" ou "indicador" sem contexto
+- **Briefing** — documento de diagnóstico do cliente
+- **Blueprint** — documento de wireframe estratégico
+- **Auditoria** — fase de validação técnica
+- **Inputs** — dados de entrada do processo
+- **POP** — Procedimento Operacional Padrão
 
 ---
 
-## ESTRUTURA DO REPOSITÓRIO
+## REGRA 4 — STACK OBRIGATÓRIA
 
-```
-CLAUDE.md                          ← este arquivo (regras automáticas)
-README.md                          ← índice técnico + visão de longo prazo
-index.html                         ← índice navegável para humanos (GitHub Pages)
+Esta aplicação usa:
+- React 18 + TypeScript 5 (strict mode obrigatório)
+- Vite 5
+- Tailwind CSS 3
+- shadcn/ui (última estável)
+- react-router-dom v6
+- Vercel (deploy)
 
-processo/
-  master/                          ← POP_MASTER — visão geral e roteamento
-  identidade/                      ← identidade e tom FXL
-  bi_personalizado/                ← POP para projetos de cliente específico
-  produto/                         ← POP para produtos FXL (plataforma, sistema, SaaS)
-  fases/                           ← detalhamento de cada fase (compartilhado por todos)
+Nunca adicionar dependências sem documentar justificativa.
 
-build/
-  wireframe/                       ← blocos disponíveis, padrões de UX
-  design/                          ← design system FXL (a criar)
-  arquitetura/                     ← auth, banco, infra, lógica (a criar)
+---
 
-suporte/
-  biblioteca_kpis.md               ← KPIs por módulo, evolui com cada projeto
+## REGRA 5 — O QUE NUNCA FAZER
 
-pacotes/
-  pacote_bi_personalizado.md       ← colado em Projects de cliente
-  pacote_produto.md                ← colado em Projects de produto
-```
-
-## COMO PUBLICAR (GitHub Pages)
-
-Este repositório é publicado via GitHub Pages.
-URL base: `https://[org].github.io/fxl-processo-padrao/`
-Cada HTML é acessível pelo caminho correspondente.
-O `index.html` na raiz é a página inicial pública.
+- Nunca editar arquivos dentro de `/src/` para conteúdo operacional — esse conteúdo vai em `/docs/`
+- Nunca colocar prompts prontos em linguagem de UI dentro dos MDs
+- Nunca duplicar texto literal entre MD e página React
+- Nunca criar arquivos `.html` — esta era acabou
+- Nunca usar `any` em TypeScript

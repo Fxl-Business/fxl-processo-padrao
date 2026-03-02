@@ -1,0 +1,29 @@
+import { Link } from 'react-router-dom'
+
+export default function TopNav() {
+  return (
+    <header className="sticky top-0 z-20 flex h-14 flex-shrink-0 items-center border-b border-border/80 bg-white/90 px-4 backdrop-blur md:px-6">
+      <Link to="/" className="flex items-center gap-2.5">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-fxl-navy shadow-sm">
+          <span className="text-xs font-bold leading-none text-white">FXL</span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-semibold text-foreground">Processo Padrão</span>
+          <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
+            Vite + React
+          </span>
+        </div>
+      </Link>
+      <div className="ml-auto flex items-center gap-4">
+        <a
+          href="https://github.com/FXL-BI/fxl-processo-padrao"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          GitHub
+        </a>
+      </div>
+    </header>
+  )
+}
