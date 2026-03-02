@@ -124,3 +124,29 @@ Não basta a mensagem estar dentro do arquivo do prompt — ela deve ser apresen
 ```
 
 Isso garante que o usuário tenha a mensagem pronta para copiar após executar o prompt no Claude Code.
+
+---
+
+## Regra de entrega — Arquivo MD obrigatório
+
+Todo prompt gerado pelo Claude Project "FXL — Processo Padrão" deve ser entregue de duas formas:
+
+1. **Exibido na conversa** — para leitura e revisão imediata
+2. **Arquivo `.md` para download** — para colar diretamente no Claude Code sem perda de formatação
+
+### Nomenclatura do arquivo
+
+Padrão: `prompt_[escopo]_[acao].md`
+
+| Exemplo de situação | Nome do arquivo |
+|---|---|
+| Adicionar sidebar de navegação | `prompt_sidebar_navegacao.md` |
+| Criar fase 3 com novo conteúdo | `prompt_fase3_adiciona_conteudo.md` |
+| Atualizar padrão HTML de todas as páginas | `prompt_html_standard_update.md` |
+| Adicionar novo KPI à biblioteca | `prompt_kpi_adiciona_margem.md` |
+
+### Por que MD e não texto puro
+
+- Garante que blocos de código, tabelas e estrutura de seções chegam íntegros ao Claude Code
+- Permite versionamento no repositório se necessário
+- Evita perda de formatação em cópias manuais

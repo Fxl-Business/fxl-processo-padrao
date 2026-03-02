@@ -67,6 +67,12 @@ Todo arquivo `.html` gerado deve seguir rigorosamente este padrão:
 - Navegação no topo: link para `../../index.html` e link para o `.md` equivalente no GitHub
 - Sumário clicável com âncoras no início do conteúdo
 - Rodapé com versão, data e link para o repositório
+- **Sidebar de seção (quando aplicável):** páginas que fazem parte de uma seção
+  com múltiplos documentos devem incluir sidebar lateral com links para todos
+  os documentos da seção. O item ativo recebe fundo `#1B3A5C` e texto `#FFFFFF`.
+  Largura: 240px. Fundo: `#F0F4F8`. Posicionamento: sticky ao topo da área de conteúdo.
+  Em mobile (<768px): oculta com `display: none`.
+  Seções que atualmente requerem sidebar: `build/arquitetura/` e `processo/fases/`.
 
 ### Visual
 - Fundo da página: `#F8F9FA`
@@ -167,6 +173,18 @@ Se ao editar um arquivo você identificar:
 - Uma melhoria de processo → sinalizar para incorporar ao POP correspondente
 - Um padrão de build recorrente → sinalizar para incorporar à pasta `build/`
 - Uma informação faltando que bloqueia a edição → perguntar antes de continuar
+
+---
+
+## REGRA 8 — ENTREGA DE PROMPT
+
+**Ao finalizar:**
+- Sempre entregue um prompt completo e pronto para o Claude Code
+- O prompt deve especificar: quais arquivos alterar, o que muda em cada um, e o que verificar em cascata
+- **O prompt final deve ser entregue como arquivo `.md` para download**, além de exibido na conversa
+- O arquivo deve ser nomeado com padrão descritivo: `prompt_[escopo]_[acao].md`
+  - Exemplo: `prompt_sidebar_navegacao.md`, `prompt_fase3_adiciona_sprint.md`
+- Inclua a mensagem de commit sugerida no final do prompt
 
 ---
 
