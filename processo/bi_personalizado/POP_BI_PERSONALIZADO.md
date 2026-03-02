@@ -30,11 +30,11 @@ O diagnóstico parte de uma reunião presencial ou remota com o cliente. O opera
 
 ## Fase 2 — Wireframe Estratégico
 
-O Blueprint é gerado a partir do briefing e usado no Whimsical para criar o wireframe visual. O diferencial do BI Personalizado é que o cliente precisa dar **aprovação formal escrita** antes do desenvolvimento iniciar — sem essa aprovação, a Fase 3 não começa.
+O Blueprint é gerado a partir do briefing pelo Claude Project "FXL — Wireframe Builder". O Claude Code gera o wireframe em HTML+CSS+JS, publicado na plataforma de wireframes para revisão. O diferencial do BI Personalizado é que o cliente precisa dar **aprovação formal escrita** antes do desenvolvimento iniciar — sem essa aprovação, a Fase 3 não começa.
 
 → Detalhamento completo: processo/fases/fase2_wireframe.md
 
-**Critério de Avanço:** Cliente visualiza o wireframe no Whimsical e dá aprovação formal escrita.
+**Critério de Avanço:** Cliente visualiza o wireframe na plataforma e dá aprovação formal escrita.
 
 ---
 

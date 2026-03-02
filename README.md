@@ -57,6 +57,8 @@ O padrão visual dos HTMLs está em `build/HTML_STANDARD_FXL.md`.
 
 ## Estrutura do Repositório
 
+> **Repositório relacionado:** `fxl-wireframes` — contém o código da plataforma de wireframes e os wireframes gerados por cliente. Wireframes são gerados via Claude Code a partir de Blueprints produzidos no Project "FXL — Wireframe Builder".
+
 ```
 fxl-processo-padrao/
 │

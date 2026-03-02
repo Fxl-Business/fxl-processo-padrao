@@ -70,17 +70,24 @@
         <div class="label">FXL Business Intelligence — Fases do Processo</div>
         <h1>Fase 2 — Wireframe Estratégico</h1>
         <div class="subtitle">Definição da arquitetura visual antes do desenvolvimento</div>
-        <div class="meta"><span>Versão 1.0</span><span>2026</span></div>
+        <div class="meta"><span>Versão 2.0</span><span>2026-03-02</span></div>
       </header>
 
       <nav class="toc">
         <h3>Sumário</h3>
         <ol>
           <li><a href="#objetivo">Objetivo</a></li>
+          <li><a href="#arquitetura">Arquitetura do Processo</a>
+            <ol>
+              <li><a href="#ambientes">Ambientes Envolvidos</a></li>
+              <li><a href="#fluxo-geral">Fluxo Geral</a></li>
+            </ol>
+          </li>
           <li><a href="#bi-personalizado">BI Personalizado</a>
             <ol>
-              <li><a href="#blueprint">Blueprint</a></li>
-              <li><a href="#prompt-blueprint">Prompt — Gerar Blueprint</a></li>
+              <li><a href="#blueprint-bi">Blueprint</a></li>
+              <li><a href="#prompt-bi">Prompt — Gerar Blueprint</a></li>
+              <li><a href="#revisao-bi">Processo de Revisão</a></li>
               <li><a href="#criterio-bi">Critério de Avanço</a></li>
             </ol>
           </li>
@@ -100,21 +107,44 @@
         <div class="warning">⚠️ Não inicie o desenvolvimento sem aprovação formal do wireframe. Para BI Personalizado, a aprovação precisa ser do cliente. Para Produto, da equipe FXL.</div>
       </section>
 
+      <section class="section" id="arquitetura">
+        <h2>Arquitetura do Processo</h2>
+        <p>A Fase 2 envolve três ambientes distintos que trabalham em sequência: o Claude Project do Cliente (fonte do Briefing), o Claude Project "FXL — Wireframe Builder" (transforma o Briefing em Blueprint e prompt), e o Claude Code no repositório <code>fxl-wireframes</code> (gera o wireframe em HTML+CSS+JS).</p>
+
+        <h3 id="ambientes">Ambientes Envolvidos</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Ambiente</th><th>Função na Fase 2</th></tr></thead>
+            <tbody>
+              <tr><td>Claude Project do Cliente</td><td>Fonte do Documento de Briefing (Fase 1)</td></tr>
+              <tr><td>Claude Project "FXL — Wireframe Builder"</td><td>Transforma Briefing em Blueprint → gera prompt para Claude Code</td></tr>
+              <tr><td>Claude Code (repositório <code>fxl-wireframes</code>)</td><td>Gera os arquivos HTML+CSS+JS do wireframe</td></tr>
+              <tr><td>Plataforma de Wireframes (Vercel/Netlify)</td><td>Hospeda wireframes para visualização e comentários</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="fluxo-geral">Fluxo Geral</h3>
+        <div class="flow-list">
+          <ol>
+            <li>Operador copia o Documento de Briefing do Project do Cliente</li>
+            <li>Cola no Project "FXL — Wireframe Builder"</li>
+            <li>Wireframe Builder analisa o Briefing e gera o Blueprint</li>
+            <li>Blueprint sai como prompt pronto para o Claude Code</li>
+            <li>Operador cola o prompt no Claude Code (repositório <code>fxl-wireframes</code>)</li>
+            <li>Claude Code gera os arquivos HTML+CSS+JS do wireframe</li>
+            <li>Wireframe é publicado na plataforma</li>
+            <li>Operador convida o cliente por email</li>
+            <li>Cliente navega, comenta por tela ou por elemento</li>
+            <li>Iterações até aprovação formal → Fase 3</li>
+          </ol>
+        </div>
+      </section>
+
       <section class="section" id="bi-personalizado" data-tipo="bi">
         <h2>BI Personalizado</h2>
         <span class="type-badge">BI Personalizado</span>
-        <p><strong>Contexto:</strong> Blueprint gerado a partir do Documento de Briefing validado na Fase 1. O cliente precisa aprovar visualmente antes do desenvolvimento iniciar.</p>
-
-        <h3>Fluxo</h3>
-        <div class="flow-list">
-          <ol>
-            <li>Claude gera o Blueprint textual a partir do briefing</li>
-            <li>Operador usa o Blueprint como prompt no Whimsical AI</li>
-            <li>Whimsical gera o wireframe visual</li>
-            <li>Cliente visualiza e aprova formalmente</li>
-            <li>Critério de avanço atingido → Fase 3</li>
-          </ol>
-        </div>
+        <p><strong>Contexto:</strong> Blueprint gerado a partir do Documento de Briefing validado na Fase 1. O cliente precisa aprovar visualmente o wireframe antes do desenvolvimento iniciar.</p>
 
         <h3>Entradas necessárias</h3>
         <ul>
@@ -123,8 +153,8 @@
           <li>Padrões de blocos (<code>build/wireframe/blocos_disponiveis.md</code>)</li>
         </ul>
 
-        <h3 id="blueprint">Blueprint</h3>
-        <p>Documento textual que descreve cada tela do sistema. Serve como especificação para o Whimsical e, posteriormente, como referência para o desenvolvimento.</p>
+        <h3 id="blueprint-bi">Blueprint</h3>
+        <p>Documento textual que descreve cada tela do sistema. Gerado pelo Claude Project "FXL — Wireframe Builder" a partir do Briefing. Serve como especificação para a geração do wireframe em HTML+CSS+JS e como referência para o desenvolvimento na Fase 3.</p>
 
         <h4>Para cada tela, especificar</h4>
         <ul>
@@ -144,46 +174,51 @@
           <li>Tela de Inputs (upload de dados)</li>
         </ul>
 
-        <h3 id="prompt-blueprint">Prompt — Gerar Blueprint</h3>
+        <h3 id="prompt-bi">Prompt — Gerar Blueprint (no Wireframe Builder)</h3>
+        <p>Cole este prompt no Claude Project "FXL — Wireframe Builder" com o Briefing ao final.</p>
         <div class="prompt-label">💬 Prompt</div>
-        <div class="prompt-block">Com base no Documento de Briefing validado, gere o Blueprint completo.
+        <div class="prompt-block">Analise o Documento de Briefing abaixo e gere o Blueprint completo.
 
 Para cada tela: nome, objetivo, filtros, cards de KPI, gráficos e tabelas.
 Inclua a tela de Inputs com instruções de upload.
 Siga os padrões de blocos disponíveis em build/wireframe/blocos_disponiveis.md.
-Ao final, gere o Prompt Whimsical pronto para uso.
+
+Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
+O prompt deve instruir o Claude Code a gerar cada tela como HTML+CSS+JS puro,
+seguindo o design system FXL e os padrões do repositório fxl-wireframes.
 
 [COLE O DOCUMENTO DE BRIEFING AQUI]</div>
 
-        <h3>Prompt Whimsical</h3>
-        <p>Gerado automaticamente pelo Claude ao final do Blueprint. Formato otimizado para o Whimsical AI gerar o wireframe visual. Basta copiar e colar diretamente no Whimsical.</p>
+        <h3 id="revisao-bi">Processo de Revisão</h3>
+        <p>Após o wireframe ser publicado na plataforma, inicia-se o ciclo de revisão com o cliente:</p>
+        <div class="flow-list">
+          <ol>
+            <li>Wireframe publicado na plataforma de wireframes</li>
+            <li>Operador envia convite por email ao cliente (login via Supabase Auth)</li>
+            <li>Cliente navega tela a tela na plataforma</li>
+            <li>Comentários por tela (observações gerais) e por elemento (ajustes específicos)</li>
+            <li>Equipe FXL analisa comentários e implementa ajustes no Claude Code</li>
+            <li>Novo ciclo de revisão até aprovação formal</li>
+          </ol>
+        </div>
 
         <h3>Saída esperada</h3>
         <ul>
           <li>Blueprint textual completo</li>
-          <li>Prompt Whimsical pronto</li>
-          <li>Wireframe visual no Whimsical</li>
+          <li>Prompt de Wireframe para Claude Code</li>
+          <li>Wireframe em HTML+CSS+JS publicado na plataforma</li>
+          <li>Comentários do cliente resolvidos</li>
           <li>Aprovação formal do cliente (escrita)</li>
         </ul>
 
         <h3 id="criterio-bi">Critério de Avanço</h3>
-        <div class="advance">✅ Critério de Avanço — Cliente visualiza o wireframe no Whimsical e dá aprovação formal escrita. Sem aprovação, a Fase 3 não inicia.</div>
+        <div class="advance">✅ Critério de Avanço — Cliente visualiza o wireframe na plataforma e dá aprovação formal escrita. Sem aprovação, a Fase 3 não inicia.</div>
       </section>
 
       <section class="section" id="produto-fxl" data-tipo="produto">
         <h2>Produto FXL</h2>
         <span class="type-badge">Produto FXL</span>
-        <p><strong>Contexto:</strong> Fluxo idêntico ao BI Personalizado, exceto que a aprovação é interna. Não há cliente externo para validar — a equipe FXL decide quando o wireframe está aprovado.</p>
-
-        <h3>Fluxo</h3>
-        <div class="flow-list">
-          <ol>
-            <li>Claude gera o Blueprint a partir do Documento de Definição</li>
-            <li>Operador gera wireframe no Whimsical</li>
-            <li>Equipe FXL revisa e aprova internamente</li>
-            <li>Critério de avanço atingido → Fase 3</li>
-          </ol>
-        </div>
+        <p><strong>Contexto:</strong> Fluxo idêntico ao BI Personalizado, exceto que a aprovação é interna. Não há cliente externo para validar — a equipe FXL decide quando o wireframe está aprovado para avançar.</p>
 
         <h3>Entradas necessárias</h3>
         <ul>
@@ -193,20 +228,23 @@ Ao final, gere o Prompt Whimsical pronto para uso.
         </ul>
 
         <h3 id="prompt-produto">Prompt — Gerar Blueprint (Produto)</h3>
+        <p>Cole este prompt no Claude Project "FXL — Wireframe Builder" com o Documento de Definição ao final.</p>
         <div class="prompt-label">💬 Prompt</div>
-        <div class="prompt-block">Com base no Documento de Definição de Produto, gere o Blueprint completo.
+        <div class="prompt-block">Analise o Documento de Definição de Produto abaixo e gere o Blueprint completo.
 
 Para cada tela: nome, objetivo, filtros, cards de KPI, gráficos e tabelas.
 Inclua a tela de Inputs (se aplicável).
 Considere que este é um produto para múltiplos usuários — a UI deve ser autoexplicativa.
-Ao final, gere o Prompt Whimsical.
+
+Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
 
 [COLE O DOCUMENTO DE DEFINIÇÃO AQUI]</div>
 
         <h3>Saída esperada</h3>
         <ul>
           <li>Blueprint textual completo</li>
-          <li>Wireframe visual no Whimsical</li>
+          <li>Prompt de Wireframe para Claude Code</li>
+          <li>Wireframe em HTML+CSS+JS publicado na plataforma</li>
           <li>Aprovação interna da equipe FXL</li>
         </ul>
 
@@ -222,6 +260,7 @@ Ao final, gere o Prompt Whimsical.
             <tbody>
               <tr><td>2026-02-27</td><td>1.0</td><td>Criação inicial do documento</td><td>FXL</td></tr>
               <tr><td>2026-03-01</td><td>1.1</td><td>Favicon, seletor de tipo (tabs BI/Produto) e data-tipo nas sections</td><td>FXL</td></tr>
+              <tr><td>2026-03-02</td><td>2.0</td><td>Remoção do Whimsical, novo fluxo com Claude Code + plataforma de wireframes</td><td>FXL</td></tr>
             </tbody>
           </table>
         </div>
@@ -229,7 +268,7 @@ Ao final, gere o Prompt Whimsical.
     </div>
     <footer>
       <div class="footer-inner">
-        <span>Versão 1.0 — 2026</span>
+        <span>Versão 2.0 — 2026-03-02</span>
         <a href="https://github.com/FXL-BI/fxl-processo-padrao" target="_blank">github.com/FXL-BI/fxl-processo-padrao</a>
         <span>FXL Business Intelligence — Uso Interno</span>
       </div>
