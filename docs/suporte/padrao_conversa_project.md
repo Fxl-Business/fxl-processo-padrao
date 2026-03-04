@@ -75,6 +75,44 @@ Antes de gerar, revisar o bloco de estado para garantir que nenhuma decisão foi
 - [ ] A estrutura de arquivos está definida?
 - [ ] A mensagem de commit está incluída?
 
+## Prompt padrão de abertura — Claude Project FXL
+
+Será utilizado o seguinte prompt padrão ao iniciar uma nova conversa neste Project:
+
+---
+
+Olá. Vamos trabalhar na evolução do processo FXL.
+
+Antes de começar, leia os seguintes arquivos do repositório para ter o contexto completo da sessão:
+
+- CLAUDE.md (regras operacionais)
+- README.md (visão geral do repositório)
+- docs/processo/master/POP_MASTER.md (visão geral do processo atual)
+
+---
+
+⚠️ REGRA INVIOLÁVEL ANTES DE QUALQUER AÇÃO
+
+Os arquivos em /docs/ são a fonte da verdade operacional do processo FXL.
+Eles SÓ devem ser alterados quando o objetivo da sessão for explicitamente
+atualizar o conteúdo do processo.
+
+Se a tarefa envolver estrutura, layout, navegação ou componentes visuais,
+as alterações acontecem EXCLUSIVAMENTE em /src/pages/ e /src/components/.
+
+Nunca inferir que uma mudança em /src/ implica mudança em /docs/.
+Nunca "sincronizar" os dois por iniciativa própria.
+
+---
+
+Meu objetivo nesta conversa é: [tarefa]
+
+Ao final da nossa discussão, quero receber um prompt estruturado e completo
+para colar no Claude Code, que irá executar todas as alterações necessárias
+no repositório — especificando exatamente quais arquivos serão tocados e por quê.
+
+---
+
 ## Checklist de entrega (obrigatório ao finalizar)
 
 - [ ] Prompt exibido no corpo da conversa

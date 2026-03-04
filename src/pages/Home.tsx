@@ -4,14 +4,35 @@ import PageHeader from '@/components/docs/PageHeader'
 import PhaseCard from '@/components/docs/PhaseCard'
 import PromptBlock from '@/components/docs/PromptBlock'
 
-const PROMPT_INICIO = `Olá. Vamos evoluir o repositório FXL — Processo Padrão.
+const PROMPT_INICIO = `Olá. Vamos trabalhar na evolução do processo FXL.
 
-Antes de começar, leia:
-- CLAUDE.md
-- README.md
-- docs/processo/master/POP_MASTER.md
+Antes de começar, leia os seguintes arquivos do repositório para ter o contexto completo da sessão:
 
-Descreva a melhoria que será feita e identifique quais pares MD + página React devem ser atualizados nesta sessão.`
+- CLAUDE.md (regras operacionais)
+- README.md (visão geral do repositório)
+- docs/processo/master/POP_MASTER.md (visão geral do processo atual)
+
+---
+
+⚠️ REGRA INVIOLÁVEL ANTES DE QUALQUER AÇÃO
+
+Os arquivos em /docs/ são a fonte da verdade operacional do processo FXL.
+Eles SÓ devem ser alterados quando o objetivo da sessão for explicitamente
+atualizar o conteúdo do processo.
+
+Se a tarefa envolver estrutura, layout, navegação ou componentes visuais,
+as alterações acontecem EXCLUSIVAMENTE em /src/pages/ e /src/components/.
+
+Nunca inferir que uma mudança em /src/ implica mudança em /docs/.
+Nunca "sincronizar" os dois por iniciativa própria.
+
+---
+
+Meu objetivo nesta conversa é: [tarefa]
+
+Ao final da nossa discussão, quero receber um prompt estruturado e completo
+para colar no Claude Code, que irá executar todas as alterações necessárias
+no repositório — especificando exatamente quais arquivos serão tocados e por quê.`
 
 export default function Home() {
   return (
