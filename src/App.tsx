@@ -20,6 +20,7 @@ import Fase4 from '@/pages/processo/fases/Fase4'
 import Fase5 from '@/pages/processo/fases/Fase5'
 import Fase6 from '@/pages/processo/fases/Fase6'
 import BibliotecaKpis from '@/pages/suporte/BibliotecaKpis'
+import FluxoDoisRepositorios from '@/pages/suporte/FluxoDoisRepositorios'
 import PadraoPromptCode from '@/pages/suporte/PadraoPromptCode'
 import UiSkills from '@/pages/suporte/UiSkills'
 
@@ -50,6 +51,7 @@ export default function App() {
           <Route path="build/arquitetura/claude-md-template" element={<ClaudeMdTemplate />} />
           <Route path="build/arquitetura/fxl-third-party-knowledge" element={<FxlThirdPartyKnowledge />} />
 
+          <Route path="suporte/fluxo-dois-repositorios" element={<FluxoDoisRepositorios />} />
           <Route path="suporte/biblioteca-kpis" element={<BibliotecaKpis />} />
           <Route path="suporte/ui-skills" element={<UiSkills />} />
           <Route path="suporte/padrao-prompt-code" element={<PadraoPromptCode />} />

@@ -17,7 +17,7 @@ Definir a arquitetura completa do produto antes de qualquer linha de código. O 
 | Claude Project do Cliente | Analisa o Briefing e gera o Blueprint + prompt para Claude Code |
 | Claude Code (`fxl-third-party-knowledge`) | Gera os arquivos `.tsx` do wireframe usando componentes do módulo |
 | `src/components/wireframe/` | Módulo oficial de componentes React reutilizáveis de wireframe |
-| fxl-third-party-knowledge (Vercel) | Hospeda o app React com viewer de wireframe e overlay de comentários |
+| Acervo FXL (Vercel) | Hospeda o app React com viewer de wireframe, docs de processo e overlay de comentários |
 
 ### Fluxo geral
 

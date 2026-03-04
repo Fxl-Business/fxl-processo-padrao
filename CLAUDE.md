@@ -54,6 +54,19 @@ Nunca inferir que uma mudança aqui implica mudança automática lá.
 
 ---
 
+## CONTEXTO DO DIRETÓRIO PAI
+
+Este repositório vive dentro de `fxl/fxl-processo-padrao/`.
+O operador abre o Claude Code a partir de `fxl/` — não de dentro deste repo.
+Ao abrir de `fxl/`, o Claude Code carrega em hierarquia:
+1. `fxl/CLAUDE.md` — árbitro de escopo e sincronização
+2. `fxl/fxl-processo-padrao/CLAUDE.md` — este arquivo
+3. `fxl/fxl-third-party-knowledge/CLAUDE.md` — regras do Acervo FXL
+
+Detalhamento completo do fluxo: `docs/suporte/fluxo_dois_repositorios.md`
+
+---
+
 ## REGRA 1 — SEPARAÇÃO OBRIGATÓRIA: `/docs/` vs `/src/pages/`
 
 ### `/docs/` — Lido pelo Claude como contexto operacional

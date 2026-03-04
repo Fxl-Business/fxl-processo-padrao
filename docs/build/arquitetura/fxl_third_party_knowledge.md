@@ -1,9 +1,10 @@
-# fxl-third-party-knowledge — Arquitetura e Convenções
+# Acervo FXL (fxl-third-party-knowledge) — Arquitetura e Convenções
 
 ## Objetivo
 
-Repositório central que concentra o knowledge base e os wireframes de todos os
-clientes e projetos FXL. Substitui a fragmentação anterior em que cada projeto
+Repositório central da FXL — concentra knowledge base de clientes, wireframes
+navegáveis e documentação detalhada de processo (POPs, biblioteca de KPIs,
+blocos de wireframe). Substitui a fragmentação anterior em que cada projeto
 vivia em repositórios separados ou como arquivos estáticos em Claude Projects.
 
 ---
@@ -142,4 +143,5 @@ O prompt deve sempre especificar:
 Conectar na Vercel com framework preset Vite.
 O app React serve como portal central de clientes e viewer de wireframes.
 
-Domínio padrão: `third-party.fxlbi.com.br`
+Domínio padrão: `acervo.fxlbi.com.br`
+(Nome anterior: third-party.fxlbi.com.br — atualizar DNS na Vercel)

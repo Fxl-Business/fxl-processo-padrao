@@ -43,7 +43,7 @@ const navigation: NavItem[] = [
           { label: 'Master Prompt', href: '/build/arquitetura/master-prompt' },
           { label: 'Testes', href: '/build/arquitetura/testes' },
           { label: 'CLAUDE.md — Template', href: '/build/arquitetura/claude-md-template' },
-          { label: 'FXL Central de Projetos', href: '/build/arquitetura/fxl-third-party-knowledge' },
+          { label: 'Acervo FXL', href: '/build/arquitetura/fxl-third-party-knowledge' },
         ],
       },
     ],
@@ -51,6 +51,7 @@ const navigation: NavItem[] = [
   {
     label: 'Suporte',
     children: [
+      { label: 'Fluxo de Dois Repositórios', href: '/suporte/fluxo-dois-repositorios' },
       { label: 'Biblioteca de KPIs', href: '/suporte/biblioteca-kpis' },
       { label: 'UI Skills', href: '/suporte/ui-skills' },
       { label: 'Padrão de Prompt Code', href: '/suporte/padrao-prompt-code' },

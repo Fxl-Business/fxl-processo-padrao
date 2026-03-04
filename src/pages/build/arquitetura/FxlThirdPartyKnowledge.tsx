@@ -41,9 +41,9 @@ export default function FxlThirdPartyKnowledge() {
     <div>
       <PageHeader
         badge="Build"
-        title="FXL Central de Projetos"
-        description="Central de knowledge e wireframes de todos os clientes e projetos FXL. Um único repositório (fxl-third-party-knowledge), uma subpasta por cliente, componentes reutilizáveis, melhoria contínua via Claude Code."
-        version="1.0"
+        title="Acervo FXL"
+        description="Repositório central da FXL: knowledge base de clientes, wireframes navegáveis e documentação detalhada de processo. Um repositório, tudo no lugar."
+        version="2.0"
         date="2026"
       />
 
