@@ -43,7 +43,7 @@ const navigation: NavItem[] = [
           { label: 'Master Prompt', href: '/build/arquitetura/master-prompt' },
           { label: 'Testes', href: '/build/arquitetura/testes' },
           { label: 'CLAUDE.md — Template', href: '/build/arquitetura/claude-md-template' },
-          { label: 'fxl-third-party-knowledge', href: '/build/arquitetura/fxl-third-party-knowledge' },
+          { label: 'FXL Central de Projetos', href: '/build/arquitetura/fxl-third-party-knowledge' },
         ],
       },
     ],
