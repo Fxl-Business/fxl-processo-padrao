@@ -1,3 +1,15 @@
+> ⚠️ DEPRECADO — Este pacote não deve ser usado em novos projetos.
+>
+> O Project "FXL — Wireframe Builder" foi eliminado como ambiente separado.
+> Suas responsabilidades foram absorvidas pelo Claude Project de cada cliente,
+> seguindo o padrão definido em `pacotes/pacote_cliente_project.md`.
+>
+> A geração de Blueprint e de wireframe agora acontece diretamente no Project
+> do cliente, com output como prompt para o Claude Code atualizar o repositório
+> `fxl-third-party-knowledge`.
+>
+> Este arquivo é mantido apenas como referência histórica.
+
 # Pacote — FXL Wireframe Builder
 
 ## Identidade

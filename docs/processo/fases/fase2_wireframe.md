@@ -14,23 +14,41 @@ Definir a arquitetura completa do produto antes de qualquer linha de código. O 
 
 | Ambiente | Função na Fase 2 |
 |---|---|
-| Claude Project do Cliente | Fonte do Documento de Briefing (Fase 1) |
-| Claude Project "FXL — Wireframe Builder" | Transforma Briefing em Blueprint → gera prompt para Claude Code |
-| Claude Code (repositório `fxl-wireframes`) | Gera os arquivos HTML+CSS+JS do wireframe |
-| Plataforma de Wireframes (Vercel/Netlify) | Hospeda wireframes para visualização e comentários |
+| Claude Project do Cliente | Analisa o Briefing e gera o Blueprint + prompt para Claude Code |
+| Claude Code (`fxl-third-party-knowledge`) | Gera os arquivos `.tsx` do wireframe usando componentes do módulo |
+| `src/components/wireframe/` | Módulo oficial de componentes React reutilizáveis de wireframe |
+| fxl-third-party-knowledge (Vercel) | Hospeda o app React com viewer de wireframe e overlay de comentários |
 
 ### Fluxo geral
 
-1. Operador copia o Documento de Briefing do Project do Cliente
-2. Cola no Project "FXL — Wireframe Builder"
-3. Wireframe Builder analisa o Briefing e gera o Blueprint
+1. Operador abre o Claude Project do cliente
+2. Cola o Documento de Briefing validado (Fase 1)
+3. Claude Project analisa o Briefing e gera o Blueprint tela a tela
 4. Blueprint sai como prompt pronto para o Claude Code
-5. Operador cola o prompt no Claude Code (repositório `fxl-wireframes`)
-6. Claude Code gera os arquivos HTML+CSS+JS do wireframe
-7. Wireframe é publicado na plataforma
-8. Operador convida o cliente por email
-9. Cliente navega, comenta por tela ou por elemento
+5. Operador cola o prompt no Claude Code (`fxl-third-party-knowledge`)
+6. Claude Code gera os arquivos `.tsx` em `clients/[client-slug]/wireframe/screens/`
+   usando componentes de `src/components/wireframe/`
+7. Wireframe é publicado automaticamente via Vercel
+8. Operador compartilha o link com o cliente
+9. Cliente navega e usa o overlay de comentários por tela ou por bloco
 10. Iterações até aprovação formal → Fase 3
+
+### Módulo de componentes
+
+O wireframe não é mais gerado como HTML puro. O Claude Code importa componentes
+React pré-montados de `src/components/wireframe/`, passando dados fictícios
+coerentes com o segmento do cliente. Componentes disponíveis:
+
+- `KpiCard` — valor, rótulo, variação
+- `BarLineChart` — gráfico de barras ou linha com dados fictícios
+- `DataTable` — tabela com colunas configuráveis
+- `InputsScreen` — tela de upload de dados
+- `WireframeSidebar` — menu lateral de navegação entre telas
+- `GlobalFilters` — filtros de período, segmento e outros
+- `CommentOverlay` — overlay flutuante de comentários por tela/bloco
+
+Se uma tela exigir um componente ainda não existente no módulo, o Claude Code
+deve sinalizar antes de prosseguir — nunca criar componente local na pasta do cliente.
 
 ---
 

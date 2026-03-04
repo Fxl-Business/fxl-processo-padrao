@@ -30,11 +30,16 @@ O diagnóstico parte de uma reunião presencial ou remota com o cliente. O opera
 
 ## Fase 2 — Wireframe Estratégico
 
-O Blueprint é gerado a partir do briefing pelo Claude Project "FXL — Wireframe Builder". O Claude Code gera o wireframe em HTML+CSS+JS, publicado na plataforma de wireframes para revisão. O diferencial do BI Personalizado é que o cliente precisa dar **aprovação formal escrita** antes do desenvolvimento iniciar — sem essa aprovação, a Fase 3 não começa.
+O Blueprint é gerado diretamente no Claude Project do cliente, a partir do Documento
+de Briefing. O Claude Code gera os arquivos `.tsx` do wireframe no repositório
+`fxl-third-party-knowledge`, usando o módulo oficial de componentes React. O wireframe
+é publicado automaticamente via Vercel. O diferencial do BI Personalizado é que o cliente
+precisa dar **aprovação formal escrita** antes do desenvolvimento iniciar — sem essa
+aprovação, a Fase 3 não começa.
 
 → Detalhamento completo: docs/processo/fases/fase2_wireframe.md
 
-**Critério de Avanço:** Cliente visualiza o wireframe na plataforma e dá aprovação formal escrita.
+**Critério de Avanço:** Cliente visualiza o wireframe publicado e dá aprovação formal escrita.
 
 ---
 

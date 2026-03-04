@@ -8,7 +8,13 @@ Leia antes de começar:
 - docs/processo/fases/fase2_wireframe.md
 - docs/processo/fases/fase1_diagnostico.md
 
-Cole abaixo o Briefing validado e gere o Blueprint completo, pronto para revisão visual:
+Cliente: [NOME]
+Slug: [client-slug]
+
+Cole abaixo o Briefing validado e gere:
+1. O Blueprint completo (tela a tela)
+2. O prompt para o Claude Code gerar os arquivos .tsx no repositório fxl-third-party-knowledge,
+   usando os componentes de src/components/wireframe/
 
 [BRIEFING AQUI]`
 
@@ -33,10 +39,12 @@ export default function Fase2() {
 
         <h2>Como o fluxo funciona</h2>
         <ol>
-          <li>O Briefing validado entra no Project "FXL — Wireframe Builder".</li>
+          <li>O Briefing validado entra no Claude Project do cliente.</li>
           <li>O Blueprint textual é montado tela a tela.</li>
-          <li>O prompt resultante vai para o Claude Code no repositório de wireframes.</li>
-          <li>O wireframe é publicado para navegação e comentários.</li>
+          <li>O prompt resultante vai para o Claude Code no repositório <code>fxl-third-party-knowledge</code>.</li>
+          <li>Claude Code gera os arquivos <code>.tsx</code> usando componentes do módulo <code>src/components/wireframe/</code>.</li>
+          <li>Wireframe é publicado automaticamente via Vercel.</li>
+          <li>Cliente navega e usa o overlay de comentários por tela ou bloco.</li>
           <li>A equipe itera até aprovação formal ou interna.</li>
         </ol>
 
@@ -47,13 +55,6 @@ export default function Fase2() {
           <li>Cards de KPI, gráficos, tabelas e ações.</li>
           <li>Tela de Inputs e seu papel no fluxo operacional.</li>
         </ul>
-
-        <h2>Onde o Whimsical entra</h2>
-        <p>
-          Se o time usar Whimsical como apoio de discussão visual, trate-o como artefato auxiliar.
-          A fonte de verdade continua sendo o Blueprint textual validado e o wireframe navegável
-          publicado para revisão.
-        </p>
       </div>
 
       <InfoBlock type="warning" className="mb-6">
@@ -61,8 +62,15 @@ export default function Fase2() {
         Personalizado a aprovação é do cliente; em Produto FXL, da equipe.
       </InfoBlock>
 
+      <InfoBlock type="info" className="mb-6">
+        <strong>Módulo de componentes:</strong> o wireframe não usa mais HTML puro. O Claude Code
+        importa componentes React de <code>src/components/wireframe/</code> — KPI Card, gráficos,
+        tabelas, filtros globais, sidebar e overlay de comentários. Nunca criar componente local
+        na pasta do cliente.
+      </InfoBlock>
+
       <PromptBlock
-        label="Use este prompt ao gerar o Blueprint no Wireframe Builder"
+        label="Use este prompt ao gerar o Blueprint no Claude Project do cliente"
         prompt={PROMPT_WIREFRAME}
       />
 

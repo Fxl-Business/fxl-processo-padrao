@@ -119,3 +119,68 @@ no repositório — especificando exatamente quais arquivos serão tocados e por
 - [ ] Mensagem de commit destacada ao final da resposta
 
 ⚠️ A entrega só está completa quando os três itens acima estão marcados.
+
+---
+
+## Padrão para Claude Project de Cliente
+
+### Diferença em relação ao Project FXL — Processo Padrão
+
+O Project de cliente opera sobre um escopo fechado: um cliente específico,
+com knowledge em `fxl-third-party-knowledge/clients/[client-slug]/`.
+O output padrão é sempre um prompt para o Claude Code atualizar essa subpasta.
+
+### Bloco de estado adaptado para Project de cliente
+
+```
+---
+## Estado da conversa
+
+**Cliente:** [nome] | **Slug:** [client-slug]
+**Objetivo:** [tarefa desta sessão]
+
+**Decisões tomadas:**
+- [decisão] — confirmada em [qual mensagem]
+
+**Knowledge consultado:**
+- [arquivo lido nesta sessão]
+
+**Pendências:**
+- [perguntas ou decisões abertas]
+
+**Próximo passo:** [o que faremos a seguir]
+---
+```
+
+### Regra de escopo obrigatória
+
+Todo prompt gerado para o Claude Code deve conter o slug do cliente explicitamente.
+O Claude Code nunca deve alterar arquivos fora de `clients/[client-slug]/`.
+
+### Prompt padrão de abertura — Claude Project de Cliente
+
+Será utilizado o seguinte prompt padrão ao iniciar uma nova conversa neste Project:
+
+---
+
+Olá. Vamos trabalhar no projeto [NOME DO CLIENTE / PRODUTO].
+
+Antes de começar, leia os arquivos disponíveis no knowledge deste Project.
+
+Slug do cliente: [client-slug]
+Repositório alvo: fxl-third-party-knowledge
+
+---
+
+⚠️ REGRA DE ESCOPO
+
+Todo prompt gerado para o Claude Code deve especificar explicitamente o slug
+do cliente. O Claude Code nunca deve alterar a subpasta de outro cliente.
+
+---
+
+Meu objetivo nesta conversa é: [tarefa]
+
+Ao final, quero receber um prompt estruturado e completo para colar no Claude Code,
+que irá atualizar os arquivos em clients/[client-slug]/ — especificando exatamente
+quais arquivos serão tocados e por quê.

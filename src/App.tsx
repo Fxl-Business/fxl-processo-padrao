@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
 import BuildArquiteturaIndex from '@/pages/build/arquitetura/Index'
 import ClaudeMdTemplate from '@/pages/build/arquitetura/ClaudeMdTemplate'
+import FxlThirdPartyKnowledge from '@/pages/build/arquitetura/FxlThirdPartyKnowledge'
 import DeployVercel from '@/pages/build/arquitetura/DeployVercel'
 import MasterPrompt from '@/pages/build/arquitetura/MasterPrompt'
 import PremissasGerais from '@/pages/build/arquitetura/PremissasGerais'
@@ -47,6 +48,7 @@ export default function App() {
           <Route path="build/arquitetura/master-prompt" element={<MasterPrompt />} />
           <Route path="build/arquitetura/testes" element={<Testes />} />
           <Route path="build/arquitetura/claude-md-template" element={<ClaudeMdTemplate />} />
+          <Route path="build/arquitetura/fxl-third-party-knowledge" element={<FxlThirdPartyKnowledge />} />
 
           <Route path="suporte/biblioteca-kpis" element={<BibliotecaKpis />} />
           <Route path="suporte/ui-skills" element={<UiSkills />} />
