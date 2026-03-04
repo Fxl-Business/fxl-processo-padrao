@@ -16,34 +16,41 @@ automatizada. Toda evolução do processo deve caminhar nessa direção.
 
 ```
 fxl-processo-padrao/
+├── CLAUDE.md
+├── README.md
 │
-├── CLAUDE.md                    ← você está aqui
-├── README.md                    ← visão geral do projeto
-│
-├── docs/                        ← EXCLUSIVO PARA O CLAUDE
+├── docs/
 │   ├── processo/
-│   │   ├── master/
+│   │   ├── master/          ← POP_MASTER.md — roteamento e visão superior
 │   │   ├── identidade/
-│   │   ├── bi_personalizado/
-│   │   ├── produto/
-│   │   └── fases/
+│   │   └── fases/           ← fase1 a fase6 — resumo de cada fase
 │   ├── build/
-│   │   ├── wireframe/
-│   │   ├── design/
-│   │   └── arquitetura/
+│   │   └── arquitetura/     ← premissas técnicas de stack e deploy
 │   └── suporte/
+│       └── padrao_conversa_project.md
 │
-├── src/                         ← APLICAÇÃO REACT (para humanos)
-│   ├── components/
-│   ├── pages/
-│   └── lib/
-│
-├── public/
-├── package.json
-├── vite.config.ts
-├── tailwind.config.ts
-└── vercel.json
+└── src/                     ← Aplicação React (para humanos)
+    ├── components/
+    ├── pages/
+    └── lib/
 ```
+
+---
+
+## RELAÇÃO COM fxl-third-party-knowledge
+
+O repositório `fxl-third-party-knowledge` é a fonte de execução detalhada.
+Os seguintes documentos foram migrados para lá e não existem mais aqui:
+
+- POP_BI_PERSONALIZADO.md → fxl-third-party-knowledge/docs/process/
+- POP_PRODUTO.md → fxl-third-party-knowledge/docs/process/
+- pacote_cliente.md → fxl-third-party-knowledge/docs/process/
+- blocos_disponiveis.md → fxl-third-party-knowledge/docs/wireframe/
+- biblioteca_kpis.md → fxl-third-party-knowledge/docs/suporte/
+
+Quando uma sessão de Claude Project resultar em prompt para o Claude Code,
+o escopo do prompt determina qual repositório é alterado.
+Nunca inferir que uma mudança aqui implica mudança automática lá.
 
 ---
 

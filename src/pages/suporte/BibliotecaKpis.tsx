@@ -1,3 +1,4 @@
+import InfoBlock from '@/components/docs/InfoBlock'
 import PageHeader from '@/components/docs/PageHeader'
 
 export default function BibliotecaKpis() {
@@ -54,11 +55,17 @@ export default function BibliotecaKpis() {
 
         <h2>Erros comuns</h2>
         <ul>
-          <li>Tratar “indicador bonito” como KPI sem impacto de decisão.</li>
+          <li>Tratar "indicador bonito" como KPI sem impacto de decisão.</li>
           <li>Prometer KPI antes de validar a coluna que o sustenta.</li>
           <li>Duplicar o mesmo KPI com nomes diferentes em módulos distintos.</li>
         </ul>
       </div>
+
+      <InfoBlock type="info" className="mb-6">
+        <strong>Biblioteca completa:</strong> a referência operacional detalhada foi migrada para{' '}
+        <code>fxl-third-party-knowledge/docs/suporte/biblioteca_kpis.md</code>.
+        Suba esse arquivo no knowledge do Claude Project do cliente ao trabalhar em Briefings.
+      </InfoBlock>
     </div>
   )
 }

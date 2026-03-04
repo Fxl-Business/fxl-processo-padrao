@@ -88,6 +88,22 @@ export default function DashboardComercial() {
 
 ---
 
+## Pasta docs/ — Knowledge de execução (adicionado 2026-03-04)
+
+A pasta `docs/` na raiz do repositório concentra o knowledge de execução que
+antes estava distribuído em `fxl-processo-padrao`. Isso permite que o Claude
+Project de cada cliente precise de apenas UM repositório como fonte.
+
+Estrutura:
+- docs/process/ — POPs detalhados (BI Personalizado, Produto, pacote de cliente)
+- docs/wireframe/ — Blocos disponíveis para composição de Blueprint
+- docs/suporte/ — Biblioteca de KPIs por módulo
+
+O Claude Project do cliente deve subir arquivos desta pasta conforme a tarefa.
+Ver docs/process/pacote_cliente.md para o guia completo.
+
+---
+
 ## Ideia de evolução futura (não implementar ainda)
 
 No futuro, o Claude Code poderia gerar apenas um arquivo de definições por tela

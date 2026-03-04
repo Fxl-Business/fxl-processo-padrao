@@ -1,18 +1,5 @@
 import InfoBlock from '@/components/docs/InfoBlock'
 import PageHeader from '@/components/docs/PageHeader'
-import PromptBlock from '@/components/docs/PromptBlock'
-
-const PROMPT_PRODUTO = `Olá. Vamos estruturar um Produto FXL.
-
-Leia antes de começar:
-- docs/processo/produto/POP_PRODUTO.md
-- docs/processo/fases/fase1_diagnostico.md
-
-Produto: [NOME]
-Tipo inicial: [BI DE PLATAFORMA / BI DE SEGMENTO / SISTEMA / SAAS]
-Objetivo: [UMA FRASE]
-
-Organize a Fase 1 com foco em definição de produto, decisões pendentes e critérios para avançar ao wireframe.`
 
 export default function ProcessoProduto() {
   return (
@@ -75,14 +62,15 @@ export default function ProcessoProduto() {
       </div>
 
       <InfoBlock type="success" className="mb-6">
-        <strong>Atalho mental:</strong> em Produto, a pergunta central não é “o cliente aprovou?”,
-        mas sim “o sistema está claro, genérico e sustentável para múltiplos contextos?”.
+        <strong>Atalho mental:</strong> em Produto, a pergunta central não é "o cliente aprovou?",
+        mas sim "o sistema está claro, genérico e sustentável para múltiplos contextos?".
       </InfoBlock>
 
-      <PromptBlock
-        label="Use este prompt ao iniciar uma definição de Produto FXL"
-        prompt={PROMPT_PRODUTO}
-      />
+      <InfoBlock type="info" className="mb-6">
+        <strong>Referência de execução:</strong> o POP detalhado deste fluxo foi migrado para{' '}
+        <code>fxl-third-party-knowledge/docs/process/POP_PRODUTO.md</code>.
+        Suba esse arquivo no knowledge do Claude Project do cliente antes de iniciar.
+      </InfoBlock>
     </div>
   )
 }

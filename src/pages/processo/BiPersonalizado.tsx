@@ -1,18 +1,6 @@
+import InfoBlock from '@/components/docs/InfoBlock'
 import PageHeader from '@/components/docs/PageHeader'
 import PhaseCard from '@/components/docs/PhaseCard'
-import PromptBlock from '@/components/docs/PromptBlock'
-
-const PROMPT_BI = `Olá. Vamos iniciar um BI Personalizado.
-
-Leia antes de começar:
-- docs/processo/bi_personalizado/POP_BI_PERSONALIZADO.md
-- docs/processo/fases/fase1_diagnostico.md
-
-Cliente: [NOME]
-Segmento: [SEGMENTO]
-Status atual: [DIAGNÓSTICO / WIREFRAME / DESENVOLVIMENTO]
-
-Identifique a próxima fase, os critérios de avanço e o que precisa ser validado antes de seguir.`
 
 export default function ProcessoBiPersonalizado() {
   return (
@@ -85,12 +73,11 @@ export default function ProcessoBiPersonalizado() {
         />
       </div>
 
-      <div className="mt-8">
-        <PromptBlock
-          label="Use este prompt ao abrir um novo fluxo de BI Personalizado"
-          prompt={PROMPT_BI}
-        />
-      </div>
+      <InfoBlock type="info" className="mb-6">
+        <strong>Referência de execução:</strong> o POP detalhado deste fluxo foi migrado para{' '}
+        <code>fxl-third-party-knowledge/docs/process/POP_BI_PERSONALIZADO.md</code>.
+        Suba esse arquivo no knowledge do Claude Project do cliente antes de iniciar.
+      </InfoBlock>
     </div>
   )
 }
