@@ -74,3 +74,11 @@ Antes de gerar, revisar o bloco de estado para garantir que nenhuma decisão foi
 - [ ] O escopo está claro e fechado?
 - [ ] A estrutura de arquivos está definida?
 - [ ] A mensagem de commit está incluída?
+
+## Checklist de entrega (obrigatório ao finalizar)
+
+- [ ] Prompt exibido no corpo da conversa
+- [ ] Arquivo `.md` gerado para download, nomeado `prompt_[escopo]_[acao].md`
+- [ ] Mensagem de commit destacada ao final da resposta
+
+⚠️ A entrega só está completa quando os três itens acima estão marcados.

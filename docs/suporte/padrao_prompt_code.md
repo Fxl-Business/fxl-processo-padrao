@@ -7,7 +7,27 @@ Este padrão define a estrutura obrigatória de todo prompt gerado no Claude Pro
 
 ---
 
-## Estrutura obrigatória
+## ⚠️ Regra de entrega obrigatória
+
+Toda resposta que contenha um prompt para o Claude Code deve incluir **obrigatoriamente**:
+
+1. O prompt exibido na conversa (para leitura rápida)
+2. Um arquivo `.md` pronto para download (para uso direto no Claude Code)
+3. A mensagem de commit destacada ao final da resposta
+
+**Nunca entregar um prompt apenas no corpo da conversa, sem o arquivo `.md` anexo.**
+
+Nomenclatura do arquivo: `prompt_[escopo]_[acao].md`
+
+| Exemplo de situação | Nome do arquivo |
+|---|---|
+| Migrar layout | `prompt_layout_migracao.md` |
+| Atualizar fase 3 | `prompt_fase3_atualizacao.md` |
+| Incluir novo KPI | `prompt_kpi_novo.md` |
+
+---
+
+## Estrutura obrigatória do prompt
 
 Todo prompt para o Claude Code deve seguir esta estrutura:
 
@@ -77,25 +97,3 @@ Ao concluir, informar:
 4. **Mensagem de commit descritiva**
    - Seguir o padrão: `[escopo]: [o que mudou]`
    - Máximo de 3 linhas, sem virar changelog
-
----
-
-## Regra de entrega obrigatória
-
-Toda entrega de prompt deve incluir:
-
-1. O prompt exibido na conversa
-2. Um arquivo `.md` pronto para download
-3. A mensagem de commit destacada ao final da resposta
-
----
-
-## Nomenclatura do arquivo
-
-Padrão: `prompt_[escopo]_[acao].md`
-
-| Exemplo de situação | Nome do arquivo |
-|---|---|
-| Migrar layout | `prompt_layout_migracao.md` |
-| Atualizar fase 3 | `prompt_fase3_atualizacao.md` |
-| Incluir novo KPI | `prompt_kpi_novo.md` |
