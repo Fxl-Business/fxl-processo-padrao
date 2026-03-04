@@ -24,7 +24,6 @@ Se a tarefa envolver estrutura, layout, navegação ou componentes visuais,
 as alterações acontecem EXCLUSIVAMENTE em /src/pages/ e /src/components/.
 
 Nunca inferir que uma mudança em /src/ implica mudança em /docs/.
-Nunca "sincronizar" os dois por iniciativa própria.
 
 ---
 
