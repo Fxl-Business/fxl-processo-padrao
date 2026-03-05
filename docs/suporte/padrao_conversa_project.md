@@ -83,11 +83,18 @@ Será utilizado o seguinte prompt padrão ao iniciar uma nova conversa neste Pro
 
 Olá. Vamos trabalhar na evolução do processo FXL.
 
-Antes de começar, leia os seguintes arquivos do repositório para ter o contexto completo da sessão:
+Antes de começar, leia os arquivos de contexto de ambos os repositórios:
 
-- CLAUDE.md (regras operacionais)
-- README.md (visão geral do repositório)
-- docs/processo/master/POP_MASTER.md (visão geral do processo atual)
+**Raiz:**
+- CLAUDE.md
+
+**fxl-processo-padrao:**
+- fxl-processo-padrao/CLAUDE.md
+- fxl-processo-padrao/README.md
+- fxl-processo-padrao/docs/processo/master/POP_MASTER.md
+
+**fxl-third-party-knowledge:**
+- fxl-third-party-knowledge/CLAUDE.md
 
 ---
 
@@ -98,17 +105,19 @@ Eles SÓ devem ser alterados quando o objetivo da sessão for explicitamente
 atualizar o conteúdo do processo.
 
 Se a tarefa envolver estrutura, layout, navegação ou componentes visuais,
-as alterações acontecem EXCLUSIVAMENTE em /src/pages/ e /src/components/.
+as alterações acontecem EXCLUSIVAMENTE em /src/ do repositório especificado.
 
 Nunca inferir que uma mudança em /src/ implica mudança em /docs/.
+Nunca inferir que uma mudança num repositório implica mudança no outro.
 
 ---
 
-Meu objetivo nesta conversa é: [tarefa]
+Meu objetivo nesta conversa é: [DESCREVA AQUI]
 
+---
 Ao final da nossa discussão, quero receber um prompt estruturado e completo
-para colar no Claude Code, que irá executar todas as alterações necessárias
-no repositório — especificando exatamente quais arquivos serão tocados e por quê.
+para colar no Claude Code, especificando exatamente quais arquivos serão
+tocados, por quê, e com mensagem de commit para cada repositório afetado.
 
 ---
 

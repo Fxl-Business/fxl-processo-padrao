@@ -36,10 +36,11 @@ Todo prompt para o Claude Code deve seguir esta estrutura:
 
 Olá. Vamos trabalhar na evolução do processo FXL.
 
-Antes de começar, leia os seguintes arquivos do repositório para ter o contexto completo:
+Antes de começar, leia os arquivos de contexto dos repositórios relevantes:
 
-- `CLAUDE.md`
-- `README.md`
+- `CLAUDE.md` (raiz fxl/)
+- `fxl-processo-padrao/CLAUDE.md` (se o escopo tocar este repo)
+- `fxl-third-party-knowledge/CLAUDE.md` (se o escopo tocar este repo)
 - [outros arquivos relevantes para o contexto]
 
 ---
@@ -78,7 +79,11 @@ Ao concluir, informar:
 
 ## Mensagem de commit sugerida
 
-`[escopo]: [o que mudou]`
+Um commit por repositório afetado:
+
+`process: [o que mudou]` — para alterações em fxl-processo-padrao
+`docs: [o que mudou]` — para alterações em docs/ de fxl-third-party-knowledge
+`[client-slug]: [o que mudou]` — para alterações de cliente em fxl-third-party-knowledge
 ```
 
 ---
