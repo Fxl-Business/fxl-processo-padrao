@@ -26,8 +26,9 @@ export default function Fase5() {
       <div className="prose">
         <h2>Como a fase muda por tipo de projeto</h2>
         <p>
-          Em BI Personalizado, a entrega inicia uma checkagem assistida de 15 dias. Em Produto FXL,
-          a lógica é de lançamento: documentação pronta, suporte definido e versão registrada.
+          Em BI Personalizado, a entrega inicia uma checkagem assistida de 15 dias com o cliente.
+          Em Produto FXL, não existe período de checkagem — o produto é disponibilizado diretamente
+          após auditoria, com foco em documentação e registro de versão.
         </p>
 
         <h2>O que precisa estar claro no handoff</h2>

@@ -6,8 +6,11 @@ const PROMPT_MASTER = `Olá. Vamos avaliar uma mudança no processo FXL.
 
 Leia antes de sugerir qualquer alteração:
 - docs/processo/master/POP_MASTER.md
-- docs/processo/bi_personalizado/POP_BI_PERSONALIZADO.md
-- docs/processo/produto/POP_PRODUTO.md
+- docs/processo/fases/ (todas as fases resumidas)
+
+Se a mudança afetar execução detalhada, consulte também em fxl-third-party-knowledge:
+- docs/process/POP_BI_PERSONALIZADO.md
+- docs/process/POP_PRODUTO.md
 
 Explique qual tipo de projeto é afetado, quais fases sofrem impacto e quais pares MD + rota precisam evoluir juntos.`
 

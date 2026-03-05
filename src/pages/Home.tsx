@@ -52,6 +52,8 @@ export default function Home() {
       <InfoBlock type="info" className="mb-6">
         <strong>Regra de ouro:</strong> sempre pense em pares. Se um documento operacional em
         <code> /docs/ </code> muda, a rota humana equivalente deve evoluir na mesma sessão.
+        O padrão completo de condução das conversas está em{' '}
+        <code>docs/suporte/padrao_conversa_project.md</code>.
       </InfoBlock>
 
       <div className="prose">
@@ -113,13 +115,13 @@ export default function Home() {
       <div className="grid gap-3">
         <PhaseCard
           number={1}
-          title="Diagnóstico"
+          title="Diagnóstico Estratégico"
           description="Mapeia contexto, sistemas, dados e KPIs para formar o Briefing."
           href="/processo/fases/fase1"
         />
         <PhaseCard
           number={2}
-          title="Wireframe"
+          title="Wireframe Estratégico"
           description="Transforma o Briefing em Blueprint e valida o fluxo antes do código."
           href="/processo/fases/fase2"
         />

@@ -27,7 +27,9 @@ fxl-processo-padrao/
 │   ├── build/
 │   │   └── arquitetura/     ← premissas técnicas de stack e deploy
 │   └── suporte/
-│       └── padrao_conversa_project.md
+│       ├── padrao_conversa_project.md
+│       ├── padrao_prompt_code.md
+│       └── fluxo_dois_repositorios.md
 │
 └── src/                     ← Aplicação React (para humanos)
     ├── components/
@@ -108,12 +110,21 @@ Eles são pares obrigatórios com vozes distintas e devem evoluir juntos.
 
 **Mapeamento de rotas:**
 
+A rota React é derivada do caminho MD:
+`docs/[seção]/[subseção]/[arquivo].md` → `/[seção]/[subseção]/[arquivo-em-kebab-case]`
+
+Exemplos:
 | Arquivo em `/docs/` | Rota React |
 |---|---|
 | `docs/processo/master/POP_MASTER.md` | `/processo/master` |
 | `docs/processo/fases/fase1_diagnostico.md` | `/processo/fases/fase1` |
+| `docs/processo/fases/fase2_wireframe.md` | `/processo/fases/fase2` |
 | `docs/build/arquitetura/premissas_gerais.md` | `/build/arquitetura/premissas-gerais` |
-| `docs/suporte/biblioteca_kpis.md` | `/suporte/biblioteca-kpis` |
+| `docs/build/arquitetura/deploy_vercel.md` | `/build/arquitetura/deploy-vercel` |
+| `docs/suporte/padrao_prompt_code.md` | `/suporte/padrao-prompt-code` |
+| `docs/suporte/fluxo_dois_repositorios.md` | `/suporte/fluxo-dois-repositorios` |
+
+Para o mapeamento completo, consultar `src/App.tsx` (fonte de verdade das rotas).
 
 **Ao concluir qualquer edição, informe explicitamente:**
 ```

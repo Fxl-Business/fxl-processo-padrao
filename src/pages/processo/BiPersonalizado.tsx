@@ -44,7 +44,7 @@ export default function ProcessoBiPersonalizado() {
         <PhaseCard
           number={2}
           title="Wireframe Estratégico"
-          description="Gera Blueprint no Claude Project do cliente e publica wireframe React via FXL Central de Projetos."
+          description="Gera Blueprint no Claude Project do cliente e publica wireframe React via Acervo FXL."
           href="/processo/fases/fase2"
         />
         <PhaseCard

@@ -32,22 +32,22 @@ export default function BibliotecaKpis() {
           <tbody>
             <tr>
               <td>Comercial</td>
-              <td>Faturamento, ticket médio, conversão, vendas por vendedor.</td>
+              <td>Faturamento, ticket médio, conversão, vendas por vendedor, performance por produto, performance por região.</td>
               <td>Onde estamos vendendo bem e onde o funil está vazando?</td>
             </tr>
             <tr>
               <td>Operacional</td>
-              <td>Lead time, volume por etapa, SLA, produtividade por equipe.</td>
+              <td>Lead time, volume por etapa, SLA, produtividade por equipe, taxa de retrabalho.</td>
               <td>Onde a operação atrasa e qual etapa concentra gargalo?</td>
             </tr>
             <tr>
               <td>Financeiro</td>
-              <td>Receita, despesa, margem, inadimplência, fluxo de caixa.</td>
+              <td>Receita, despesa, margem, inadimplência, fluxo de caixa, DRE simplificado.</td>
               <td>O caixa sustenta a operação e qual linha corrói margem?</td>
             </tr>
             <tr>
               <td>Inputs</td>
-              <td>Volume importado, taxa de erro, tempo até atualização.</td>
+              <td>Volume importado, taxa de erro, tempo até atualização, cobertura de período.</td>
               <td>O dado está entrando com consistência suficiente?</td>
             </tr>
           </tbody>

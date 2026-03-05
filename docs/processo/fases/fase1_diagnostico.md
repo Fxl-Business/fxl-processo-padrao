@@ -203,12 +203,10 @@ Identifique restrições técnicas ou gaps de informação.
 
 ---
 
-## Checklist de validação MD ↔ HTML
+## Checklist de validação MD ↔ React
 
-- [ ] Todas as seções do MD estão representadas no HTML
+- [ ] Todas as seções do MD estão representadas na página React correspondente
+- [ ] Prompts usando componente PromptBlock com label descritiva
+- [ ] PageHeader com badge, title, description, version e date
+- [ ] InfoBlocks para critérios de avanço e avisos
 - [ ] Tabelas seguem o padrão visual FXL
-- [ ] Blocos de prompt com label "💬 Prompt"
-- [ ] Critérios de avanço com fundo verde
-- [ ] Avisos com fundo amarelo
-- [ ] Sumário com âncoras funcionais
-- [ ] Rodapé com versão correta

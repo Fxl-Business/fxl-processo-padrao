@@ -159,28 +159,7 @@ O Claude Code nunca deve alterar arquivos fora de `clients/[client-slug]/`.
 
 ### Prompt padrão de abertura — Claude Project de Cliente
 
-Será utilizado o seguinte prompt padrão ao iniciar uma nova conversa neste Project:
+O prompt padrão de abertura para projetos de cliente está em:
+`fxl-third-party-knowledge/docs/process/pacote_cliente.md`
 
----
-
-Olá. Vamos trabalhar no projeto [NOME DO CLIENTE / PRODUTO].
-
-Antes de começar, leia os arquivos disponíveis no knowledge deste Project.
-
-Slug do cliente: [client-slug]
-Repositório alvo: fxl-third-party-knowledge
-
----
-
-⚠️ REGRA DE ESCOPO
-
-Todo prompt gerado para o Claude Code deve especificar explicitamente o slug
-do cliente. O Claude Code nunca deve alterar a subpasta de outro cliente.
-
----
-
-Meu objetivo nesta conversa é: [tarefa]
-
-Ao final, quero receber um prompt estruturado e completo para colar no Claude Code,
-que irá atualizar os arquivos em clients/[client-slug]/ — especificando exatamente
-quais arquivos serão tocados e por quê.
+Este arquivo é a fonte da verdade desse prompt e deve ser subido no knowledge do Claude Project de cada cliente. Não manter cópia inline aqui para evitar versões conflitantes.

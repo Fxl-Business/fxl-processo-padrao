@@ -92,8 +92,8 @@ Inclua a tela de Inputs com instruções de upload.
 Siga os padrões de blocos disponíveis em docs/build/wireframe/blocos_disponiveis.md.
 
 Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
-O prompt deve instruir o Claude Code a gerar cada tela como HTML+CSS+JS puro,
-seguindo o design system FXL e os padrões do repositório fxl-wireframes.
+O prompt deve instruir o Claude Code a gerar cada tela como arquivo .tsx,
+importando os componentes de src/components/wireframe/ no repositório fxl-third-party-knowledge.
 
 [COLE O DOCUMENTO DE BRIEFING AQUI]
 ```
@@ -111,7 +111,7 @@ seguindo o design system FXL e os padrões do repositório fxl-wireframes.
 
 - Blueprint textual completo
 - Prompt de Wireframe para Claude Code
-- Wireframe em HTML+CSS+JS publicado na plataforma
+- Wireframe em React/TSX publicado via Vercel no Acervo FXL
 - Comentários do cliente resolvidos
 - Aprovação formal do cliente (escrita)
 
@@ -141,6 +141,8 @@ Inclua a tela de Inputs (se aplicável).
 Considere que este é um produto para múltiplos usuários — a UI deve ser autoexplicativa.
 
 Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
+O prompt deve instruir o Claude Code a gerar cada tela como arquivo .tsx,
+importando os componentes de src/components/wireframe/ no repositório fxl-third-party-knowledge.
 
 [COLE O DOCUMENTO DE DEFINIÇÃO AQUI]
 ```
@@ -149,7 +151,7 @@ Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
 
 - Blueprint textual completo
 - Prompt de Wireframe para Claude Code
-- Wireframe em HTML+CSS+JS publicado na plataforma
+- Wireframe em React/TSX publicado via Vercel no Acervo FXL
 - Aprovação interna da equipe FXL
 
 #### Critério de avanço
@@ -158,12 +160,13 @@ Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
 
 ---
 
-## Checklist de validação MD ↔ HTML
+## Checklist de validação MD ↔ React
 
 - [ ] Seções BI Personalizado e Produto claramente separadas
-- [ ] Prompts em blocos destacados
+- [ ] Prompts em blocos destacados usando componente PromptBlock
 - [ ] Critérios de avanço diferenciados (cliente vs interno)
 - [ ] Referências aos arquivos de suporte corretas
-- [ ] Nenhuma referência ao Whimsical em nenhum lugar
+- [ ] Nenhuma referência ao Whimsical ou a HTML+CSS+JS
+- [ ] Nenhuma referência a fxl-wireframes (repo inexistente)
 - [ ] Fluxo com ambientes documentado
-- [ ] Processo de revisão via plataforma documentado
+- [ ] Processo de revisão via Acervo FXL (Vercel) documentado
