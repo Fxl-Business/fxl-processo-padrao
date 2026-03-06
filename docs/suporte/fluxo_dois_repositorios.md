@@ -14,7 +14,7 @@ sem perda de contexto e sem risco de escopo cruzado.
 fxl/                              ← diretório pai (não é um repositório Git)
 ├── CLAUDE.md                     ← árbitro de escopo entre os dois repos
 ├── fxl-processo-padrao/          ← repositório Git: visão superior do processo
-└── fxl-third-party-knowledge/    ← repositório Git: execução, clientes, wireframes
+└── fxl-vault/    ← repositório Git: execução, clientes, wireframes
 ```
 
 Cada subpasta é um repositório Git independente com seu próprio remote no GitHub.
@@ -35,7 +35,7 @@ claude   # ou abrir pelo VS Code com "Open Folder" na pasta fxl/
 Abrindo de `fxl/`, o Claude Code enxerga:
 - `fxl/CLAUDE.md` — regras de escopo e sincronização (carregado como contexto pai)
 - `fxl/fxl-processo-padrao/CLAUDE.md` — regras operacionais do processo
-- `fxl/fxl-third-party-knowledge/CLAUDE.md` — regras de execução e clientes
+- `fxl/fxl-vault/CLAUDE.md` — regras de execução e clientes
 
 Os três CLAUDE.md ficam ativos simultaneamente, em hierarquia. O pai define o relacionamento;
 os filhos definem as regras de cada repositório.
@@ -54,13 +54,13 @@ os filhos definem as regras de cada repositório.
 6. Commit: `process: [o que mudou]` dentro de `fxl-processo-padrao/`
 7. Push
 
-### Sessão de cliente (fxl-third-party-knowledge)
+### Sessão de cliente (fxl-vault)
 
 1. Abrir o Claude Project do cliente
 2. Discutir e gerar o prompt estruturado
 3. Abrir Claude Code a partir de `fxl/`
-4. Colar o prompt — ele altera apenas `fxl-third-party-knowledge/clients/[client-slug]/`
-5. Commit: `[client-slug]: [o que mudou]` dentro de `fxl-third-party-knowledge/`
+4. Colar o prompt — ele altera apenas `fxl-vault/clients/[client-slug]/`
+5. Commit: `[client-slug]: [o que mudou]` dentro de `fxl-vault/`
 6. Push
 
 ### Sessão que toca os dois repos

@@ -6,7 +6,7 @@ const PROMPT_TEMPLATE = `# Prompt para Claude Code — [Título descritivo]
 Antes de começar, leia os arquivos de contexto dos repositórios relevantes:
 - CLAUDE.md (raiz fxl/)
 - fxl-processo-padrao/CLAUDE.md (se o escopo tocar este repo)
-- fxl-third-party-knowledge/CLAUDE.md (se o escopo tocar este repo)
+- fxl-vault/CLAUDE.md (se o escopo tocar este repo)
 - [outros arquivos relevantes para o contexto]
 
 ## Objetivo desta sessão

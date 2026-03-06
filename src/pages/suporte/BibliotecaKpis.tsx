@@ -63,7 +63,7 @@ export default function BibliotecaKpis() {
 
       <InfoBlock type="info" className="mb-6">
         <strong>Biblioteca completa:</strong> a referência operacional detalhada foi migrada para{' '}
-        <code>fxl-third-party-knowledge/docs/suporte/biblioteca_kpis.md</code>.
+        <code>fxl-vault/docs/suporte/biblioteca_kpis.md</code>.
         Suba esse arquivo no knowledge do Claude Project do cliente ao trabalhar em Briefings.
       </InfoBlock>
     </div>

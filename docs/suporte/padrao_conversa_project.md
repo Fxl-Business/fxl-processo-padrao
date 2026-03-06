@@ -93,8 +93,8 @@ Antes de começar, leia os arquivos de contexto de ambos os repositórios:
 - fxl-processo-padrao/README.md
 - fxl-processo-padrao/docs/processo/master/POP_MASTER.md
 
-**fxl-third-party-knowledge:**
-- fxl-third-party-knowledge/CLAUDE.md
+**fxl-vault:**
+- fxl-vault/CLAUDE.md
 
 ---
 
@@ -136,7 +136,7 @@ tocados, por quê, e com mensagem de commit para cada repositório afetado.
 ### Diferença em relação ao Project FXL — Processo Padrão
 
 O Project de cliente opera sobre um escopo fechado: um cliente específico,
-com knowledge em `fxl-third-party-knowledge/clients/[client-slug]/`.
+com knowledge em `fxl-vault/clients/[client-slug]/`.
 O output padrão é sempre um prompt para o Claude Code atualizar essa subpasta.
 
 ### Bloco de estado adaptado para Project de cliente
@@ -169,6 +169,6 @@ O Claude Code nunca deve alterar arquivos fora de `clients/[client-slug]/`.
 ### Prompt padrão de abertura — Claude Project de Cliente
 
 O prompt padrão de abertura para projetos de cliente está em:
-`fxl-third-party-knowledge/docs/process/pacote_cliente.md`
+`fxl-vault/docs/process/pacote_cliente.md`
 
 Este arquivo é a fonte da verdade desse prompt e deve ser subido no knowledge do Claude Project de cada cliente. Não manter cópia inline aqui para evitar versões conflitantes.

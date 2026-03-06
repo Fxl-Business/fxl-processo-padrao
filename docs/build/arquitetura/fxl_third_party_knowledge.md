@@ -1,4 +1,4 @@
-# Acervo FXL (fxl-third-party-knowledge) — Arquitetura e Convenções
+# Acervo FXL (fxl-vault) — Arquitetura e Convenções
 
 ## Objetivo
 
@@ -22,7 +22,7 @@ vivia em repositórios separados ou como arquivos estáticos em Claude Projects.
 ## Estrutura obrigatória
 
 ```
-fxl-third-party-knowledge/
+fxl-vault/
 ├── CLAUDE.md
 ├── README.md
 │

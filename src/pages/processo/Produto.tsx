@@ -68,7 +68,7 @@ export default function ProcessoProduto() {
 
       <InfoBlock type="info" className="mb-6">
         <strong>Referência de execução:</strong> o POP detalhado deste fluxo foi migrado para{' '}
-        <code>fxl-third-party-knowledge/docs/process/POP_PRODUTO.md</code>.
+        <code>fxl-vault/docs/process/POP_PRODUTO.md</code>.
         Suba esse arquivo no knowledge do Claude Project do cliente antes de iniciar.
       </InfoBlock>
     </div>

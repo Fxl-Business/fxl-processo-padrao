@@ -40,7 +40,7 @@ Antes de começar, leia os arquivos de contexto dos repositórios relevantes:
 
 - `CLAUDE.md` (raiz fxl/)
 - `fxl-processo-padrao/CLAUDE.md` (se o escopo tocar este repo)
-- `fxl-third-party-knowledge/CLAUDE.md` (se o escopo tocar este repo)
+- `fxl-vault/CLAUDE.md` (se o escopo tocar este repo)
 - [outros arquivos relevantes para o contexto]
 
 ---
@@ -82,8 +82,8 @@ Ao concluir, informar:
 Um commit por repositório afetado:
 
 `process: [o que mudou]` — para alterações em fxl-processo-padrao
-`docs: [o que mudou]` — para alterações em docs/ de fxl-third-party-knowledge
-`[client-slug]: [o que mudou]` — para alterações de cliente em fxl-third-party-knowledge
+`docs: [o que mudou]` — para alterações em docs/ de fxl-vault
+`[client-slug]: [o que mudou]` — para alterações de cliente em fxl-vault
 ```
 
 ---

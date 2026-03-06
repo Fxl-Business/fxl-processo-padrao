@@ -16,8 +16,8 @@ Antes de começar, leia os arquivos de contexto de ambos os repositórios:
 - fxl-processo-padrao/README.md
 - fxl-processo-padrao/docs/processo/master/POP_MASTER.md
 
-**fxl-third-party-knowledge:**
-- fxl-third-party-knowledge/CLAUDE.md
+**fxl-vault (Acervo FXL):**
+- fxl-vault/CLAUDE.md
 
 ---
 

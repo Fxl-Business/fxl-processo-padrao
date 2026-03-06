@@ -15,7 +15,7 @@ Definir a arquitetura completa do produto antes de qualquer linha de código. O 
 | Ambiente | Função na Fase 2 |
 |---|---|
 | Claude Project do Cliente | Analisa o Briefing e gera o Blueprint + prompt para Claude Code |
-| Claude Code (`fxl-third-party-knowledge`) | Gera os arquivos `.tsx` do wireframe usando componentes do módulo |
+| Claude Code (`fxl-vault`) | Gera os arquivos `.tsx` do wireframe usando componentes do módulo |
 | `src/components/wireframe/` | Módulo oficial de componentes React reutilizáveis de wireframe |
 | Acervo FXL (Vercel) | Hospeda o app React com viewer de wireframe, docs de processo e overlay de comentários |
 
@@ -25,7 +25,7 @@ Definir a arquitetura completa do produto antes de qualquer linha de código. O 
 2. Cola o Documento de Briefing validado (Fase 1)
 3. Claude Project analisa o Briefing e gera o Blueprint tela a tela
 4. Blueprint sai como prompt pronto para o Claude Code
-5. Operador cola o prompt no Claude Code (`fxl-third-party-knowledge`)
+5. Operador cola o prompt no Claude Code (`fxl-vault`)
 6. Claude Code gera os arquivos `.tsx` em `clients/[client-slug]/wireframe/screens/`
    usando componentes de `src/components/wireframe/`
 7. Wireframe é publicado automaticamente via Vercel
@@ -93,7 +93,7 @@ Siga os padrões de blocos disponíveis em docs/build/wireframe/blocos_disponive
 
 Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
 O prompt deve instruir o Claude Code a gerar cada tela como arquivo .tsx,
-importando os componentes de src/components/wireframe/ no repositório fxl-third-party-knowledge.
+importando os componentes de src/components/wireframe/ no repositório fxl-vault.
 
 [COLE O DOCUMENTO DE BRIEFING AQUI]
 ```
@@ -142,7 +142,7 @@ Considere que este é um produto para múltiplos usuários — a UI deve ser aut
 
 Ao final, gere o Prompt de Wireframe pronto para colar no Claude Code.
 O prompt deve instruir o Claude Code a gerar cada tela como arquivo .tsx,
-importando os componentes de src/components/wireframe/ no repositório fxl-third-party-knowledge.
+importando os componentes de src/components/wireframe/ no repositório fxl-vault.
 
 [COLE O DOCUMENTO DE DEFINIÇÃO AQUI]
 ```

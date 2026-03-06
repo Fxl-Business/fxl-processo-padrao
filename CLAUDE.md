@@ -39,16 +39,16 @@ fxl-processo-padrao/
 
 ---
 
-## RELAÇÃO COM fxl-third-party-knowledge
+## RELAÇÃO COM fxl-vault (Acervo FXL)
 
-O repositório `fxl-third-party-knowledge` é a fonte de execução detalhada.
+O repositório `fxl-vault` é a fonte de execução detalhada.
 Os seguintes documentos foram migrados para lá e não existem mais aqui:
 
-- POP_BI_PERSONALIZADO.md → fxl-third-party-knowledge/docs/process/
-- POP_PRODUTO.md → fxl-third-party-knowledge/docs/process/
-- pacote_cliente.md → fxl-third-party-knowledge/docs/process/
-- blocos_disponiveis.md → fxl-third-party-knowledge/docs/wireframe/
-- biblioteca_kpis.md → fxl-third-party-knowledge/docs/suporte/
+- POP_BI_PERSONALIZADO.md → fxl-vault/docs/process/
+- POP_PRODUTO.md → fxl-vault/docs/process/
+- pacote_cliente.md → fxl-vault/docs/process/
+- blocos_disponiveis.md → fxl-vault/docs/wireframe/
+- biblioteca_kpis.md → fxl-vault/docs/suporte/
 
 Quando uma sessão de Claude Project resultar em prompt para o Claude Code,
 o escopo do prompt determina qual repositório é alterado.
@@ -63,7 +63,7 @@ O operador abre o Claude Code a partir de `fxl/` — não de dentro deste repo.
 Ao abrir de `fxl/`, o Claude Code carrega em hierarquia:
 1. `fxl/CLAUDE.md` — árbitro de escopo e sincronização
 2. `fxl/fxl-processo-padrao/CLAUDE.md` — este arquivo
-3. `fxl/fxl-third-party-knowledge/CLAUDE.md` — regras do Acervo FXL
+3. `fxl/fxl-vault/CLAUDE.md` — regras do Acervo FXL
 
 Detalhamento completo do fluxo: `docs/suporte/fluxo_dois_repositorios.md`
 

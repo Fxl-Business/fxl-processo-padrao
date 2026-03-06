@@ -13,7 +13,7 @@ Slug: [client-slug]
 
 Cole abaixo o Briefing validado e gere:
 1. O Blueprint completo (tela a tela)
-2. O prompt para o Claude Code gerar os arquivos .tsx no repositório fxl-third-party-knowledge,
+2. O prompt para o Claude Code gerar os arquivos .tsx no repositório fxl-vault,
    usando os componentes de src/components/wireframe/
 
 [BRIEFING AQUI]`
@@ -41,7 +41,7 @@ export default function Fase2() {
         <ol>
           <li>O Briefing validado entra no Claude Project do cliente.</li>
           <li>O Blueprint textual é montado tela a tela.</li>
-          <li>O prompt resultante vai para o Claude Code no repositório <code>fxl-third-party-knowledge</code>.</li>
+          <li>O prompt resultante vai para o Claude Code no repositório <code>fxl-vault</code>.</li>
           <li>Claude Code gera os arquivos <code>.tsx</code> usando componentes do módulo <code>src/components/wireframe/</code>.</li>
           <li>Wireframe é publicado automaticamente via Vercel.</li>
           <li>Cliente navega e usa o overlay de comentários por tela ou bloco.</li>

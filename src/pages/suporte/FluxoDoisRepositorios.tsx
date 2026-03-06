@@ -16,11 +16,11 @@ const PROMPT_ABERTURA_CLIENTE = `Olá. Vamos trabalhar no projeto [NOME DO CLIEN
 
 Antes de começar, leia:
 - fxl/CLAUDE.md (árbitro de escopo entre repos)
-- fxl/fxl-third-party-knowledge/CLAUDE.md (regras do Acervo FXL)
-- fxl/fxl-third-party-knowledge/clients/[client-slug]/CLAUDE.md
+- fxl/fxl-vault/CLAUDE.md (regras do Acervo FXL)
+- fxl/fxl-vault/clients/[client-slug]/CLAUDE.md
 
 Slug do cliente: [client-slug]
-Este prompt altera APENAS fxl-third-party-knowledge/clients/[client-slug]/.
+Este prompt altera APENAS fxl-vault/clients/[client-slug]/.
 Meu objetivo nesta sessão: [tarefa]`
 
 export default function FluxoDoisRepositorios() {
@@ -29,7 +29,7 @@ export default function FluxoDoisRepositorios() {
       <PageHeader
         badge="Suporte"
         title="Fluxo de Dois Repositórios"
-        description="Como trabalhar com fxl-processo-padrao e fxl-third-party-knowledge simultaneamente a partir do diretório pai fxl/, usando o Claude Code sem risco de escopo cruzado."
+        description="Como trabalhar com fxl-processo-padrao e fxl-vault (Acervo FXL) simultaneamente a partir do diretório pai fxl/, usando o Claude Code sem risco de escopo cruzado."
         version="1.0"
         date="2026"
       />
@@ -45,7 +45,7 @@ export default function FluxoDoisRepositorios() {
         <pre>{`fxl/
 ├── CLAUDE.md                     ← árbitro de escopo
 ├── fxl-processo-padrao/          ← visão superior do processo
-└── fxl-third-party-knowledge/    ← Acervo FXL: execução e clientes`}</pre>
+└── fxl-vault/    ← Acervo FXL: execução e clientes`}</pre>
 
         <h2>Regra fundamental</h2>
         <p>
@@ -81,7 +81,7 @@ export default function FluxoDoisRepositorios() {
       />
 
       <PromptBlock
-        label="Use este prompt ao iniciar uma sessão de cliente (fxl-third-party-knowledge)"
+        label="Use este prompt ao iniciar uma sessão de cliente (fxl-vault)"
         prompt={PROMPT_ABERTURA_CLIENTE}
       />
     </div>

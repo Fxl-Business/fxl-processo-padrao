@@ -8,7 +8,7 @@ Leia antes de sugerir qualquer alteração:
 - docs/processo/master/POP_MASTER.md
 - docs/processo/fases/ (todas as fases resumidas)
 
-Se a mudança afetar execução detalhada, consulte também em fxl-third-party-knowledge:
+Se a mudança afetar execução detalhada, consulte também em fxl-vault:
 - docs/process/POP_BI_PERSONALIZADO.md
 - docs/process/POP_PRODUTO.md
 

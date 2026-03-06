@@ -49,7 +49,7 @@ export default function App() {
           <Route path="build/arquitetura/master-prompt" element={<MasterPrompt />} />
           <Route path="build/arquitetura/testes" element={<Testes />} />
           <Route path="build/arquitetura/claude-md-template" element={<ClaudeMdTemplate />} />
-          <Route path="build/arquitetura/fxl-third-party-knowledge" element={<FxlThirdPartyKnowledge />} />
+          <Route path="build/arquitetura/fxl-vault" element={<FxlThirdPartyKnowledge />} />
 
           <Route path="suporte/fluxo-dois-repositorios" element={<FluxoDoisRepositorios />} />
           <Route path="suporte/biblioteca-kpis" element={<BibliotecaKpis />} />

@@ -16,7 +16,7 @@ Usar quando:
 - Os dados são próprios daquele cliente
 - A aprovação formal do wireframe e da entrega depende do cliente
 
-Referência de execução: `fxl-third-party-knowledge/docs/process/POP_BI_PERSONALIZADO.md`
+Referência de execução: `fxl-vault/docs/process/POP_BI_PERSONALIZADO.md`
 
 ### Produto FXL
 
@@ -25,7 +25,7 @@ Usar quando:
 - O produto pode atender múltiplos usuários ou empresas
 - A aprovação das fases é interna
 
-Referência de execução: `fxl-third-party-knowledge/docs/process/POP_PRODUTO.md`
+Referência de execução: `fxl-vault/docs/process/POP_PRODUTO.md`
 
 ---
 
@@ -42,8 +42,8 @@ Referência de execução: `fxl-third-party-knowledge/docs/process/POP_PRODUTO.m
 
 Toda alteração estrutural deve verificar:
 - `docs/processo/fases/` (fases resumidas neste repositório)
-- `fxl-third-party-knowledge/docs/process/` (POPs detalhados de execução)
-- `fxl-third-party-knowledge/docs/wireframe/` e `docs/suporte/` (se a mudança afeta wireframe ou KPIs)
+- `fxl-vault/docs/process/` (POPs detalhados de execução)
+- `fxl-vault/docs/wireframe/` e `docs/suporte/` (se a mudança afeta wireframe ou KPIs)
 
 ---
 

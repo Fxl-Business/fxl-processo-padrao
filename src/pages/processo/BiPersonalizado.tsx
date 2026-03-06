@@ -75,7 +75,7 @@ export default function ProcessoBiPersonalizado() {
 
       <InfoBlock type="info" className="mb-6">
         <strong>Referência de execução:</strong> o POP detalhado deste fluxo foi migrado para{' '}
-        <code>fxl-third-party-knowledge/docs/process/POP_BI_PERSONALIZADO.md</code>.
+        <code>fxl-vault/docs/process/POP_BI_PERSONALIZADO.md</code>.
         Suba esse arquivo no knowledge do Claude Project do cliente antes de iniciar.
       </InfoBlock>
     </div>
